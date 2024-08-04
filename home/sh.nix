@@ -45,14 +45,6 @@ in
       enable = true;
       theme = "robbyrussell";
       };
-      plugins = [
-        "git"
-        "npm"
-        "history"
-        "node"
-        "rust"
-        "deno"
-      ];
     shellAliases = myAliases;
   };
   

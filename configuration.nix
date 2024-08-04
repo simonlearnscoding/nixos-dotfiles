@@ -20,6 +20,8 @@
       ./modules/xserver.nix
     ];
 
+  programs.gamemode.enable = true;
+  programs.steam.enable = true;
   environment.sessionVariables = {
     FLAKE = "/home/simon/.nixos";
   };

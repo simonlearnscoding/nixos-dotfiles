@@ -7,7 +7,6 @@ in
   imports = [
     ./user.nix
     ./development/default.nix
-    ./gaming.nix
     ./browser.nix
     ./sh.nix
     ./syncthing.nix

@@ -11,7 +11,7 @@
 #     url = "github:hyprwm/hyprland-plugins";
 #     inputs.hyprland.follows = "hyprland";
 #   };
-    stylix.url = "github:danth/stylix";
+  # stylix.url = "github:danth/stylix";
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     sops-nix.url = "github:Mic92/sops-nix";
@@ -31,7 +31,7 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./configuration.nix
-          inputs.stylix.nixosModules.stylix
+    #     inputs.stylix.nixosModules.stylix
         ];
       };
 
@@ -39,7 +39,7 @@
         simon = home-manager.lib.homeManagerConfiguration {
           pkgs = pkgsFor "x86_64-linux";
           modules = [
-          inputs.stylix.nixosModules.stylix
+  #       inputs.stylix.nixosModules.stylix
             ./home/home.nix
           ];
           extraSpecialArgs = { inherit inputs; };

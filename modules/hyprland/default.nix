@@ -28,4 +28,15 @@
     WLR_NO_HARDWARE_CURSORS = "1";
     NIXOS_OZONE_WL = "1";
   };
+
+  xdg.configFile."hypr" = {
+    source = ./hypr;
+    recursive = true;
+  };
+
+
+  xdg.configFile."dunst" = {
+    source = ./dunst;
+    recursive = true;
+  };
 }

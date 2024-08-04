@@ -17,8 +17,11 @@
     zsh
     oh-my-zsh
   ];
-  home.file.".config/nvim" = {
-      source = ./neovim/nvim;
-      target = "symlink";
-    };
+  xdg.configFile."nvim" = {
+    source = ./neovim/nvim;
+  };
+# home.file.".config/nvim" = {
+#     source = ./neovim/nvim;
+#     target = "symlink";
+#   };
 }
