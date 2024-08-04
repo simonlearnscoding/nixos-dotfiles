@@ -1,0 +1,22 @@
+snippet today 'all today'
+  ## Tasks Today prio H| planned:tod -habit priority:H status:pending
+  ## Tasks Today | planned:tod -habit priority: status:pending
+  ### Habits Today | planned:tod +habit status:pending
+  ## This Week | planned:tw status:pending
+  
+snippet tod 'tasks today'
+  ## Tasks Today | planned:tod status:pending
+
+
+snippet tw 'tasks this week'
+  ## This Week | planned:tw status:pending
+
+snippet tm 'tasks this month'
+  ## This month | planned:tm status:pending
+
+  
+snippet texclude 'tasks excluding a project'
+  ## Not $1 | project.isnt:$1 status:pending
+
+snippet tinclude 'tasks including a project'
+  ## Project: $1 | project:$1 status:pending

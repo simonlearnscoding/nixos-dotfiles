@@ -1,0 +1,6 @@
+--
+-- maps.n['<leader>lr'] = { ':IncRename ', desc = 'smart rename' }
+-- vim.api.nvim_set_keymap('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', { noremap = true, silent = true })
+-- l = { desc = ' LSP' },
+--
+--

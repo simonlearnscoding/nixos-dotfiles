@@ -1,0 +1,34 @@
+local Config = require("todo-comments.config")
+local Util = require("todo-comments.util")
+
+local M = {}
+
+-- Simplified search function for finding and printing TODO comments
+function M.search_and_print_todos()
+  -- Prepare the search command and arguments
+  local args = { search_pattern = "TODO", "." } -- Search in the current directory
+
+  -- Use plenary.job for asynchronous execution
+  local ok, Job = pcall(require, "plenary.job")
+  if not ok then
+    Util.error("search requires https://github.com/nvim-lua/plenary.nvim")
+    return
+  end
+
+  -- TODO
+  local Job = require 'plenary.job'
+
+  Job:new({
+    command = 'rg',
+    args = { 'PATTERN: hi' },
+    cwd = '/usr/bin',
+    env = { ['a'] = 'b' },
+    on_exit = function(j, return_val)
+      print(return_val)
+      print(j:result())
+    end,
+  }):sync() -- or start()
+end
+
+-- Optionally, create a Neovim command to easily call this function
+vim.api.nvim_create_user_command('PrintTodoComments', M.search_and_print_todos, {})

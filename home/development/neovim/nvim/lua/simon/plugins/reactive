@@ -1,0 +1,47 @@
+return {
+  'rasulomaroff/reactive.nvim',
+  config = function()
+    require('reactive').setup {
+      -- Custom behaviors for various modes
+      custom = {
+        -- Custom settings for delete mode
+        d = {
+          cursor = {
+            guifg = '#FF0000', -- Red foreground for delete mode
+            guibg = '#FFFFFF', -- White background for delete mode
+          },
+        },
+        -- Custom settings for visual mode
+        v = {
+          cursor = {
+            guifg = '#00FF00', -- Green foreground for visual mode
+            guibg = '#000000', -- Black background for visual mode
+          },
+        },
+        -- Custom settings for yank mode
+        y = {
+          cursor = {
+            guifg = '#FFFF00', -- Yellow foreground for yank mode
+            guibg = '#000000', -- Black background for yank mode
+          },
+        },
+        -- Add more custom settings for other modes as needed
+        -- Example: insert mode
+        i = {
+          cursor = {
+            guifg = '#0000FF', -- Blue foreground for insert mode
+            guibg = '#FFFFFF', -- White background for insert mode
+          },
+        },
+        -- Example: replace mode
+        r = {
+          cursor = {
+            guifg = '#FF00FF', -- Purple foreground for replace mode
+            guibg = '#FFFFFF', -- White background for replace mode
+          },
+        },
+        -- Add more modes as needed
+      },
+    }
+  end
+}
