@@ -18,6 +18,7 @@
       ./modules/system.nix
       ./modules/locale.nix
       ./modules/xserver.nix
+      ./modules/devshells.nix
     ];
 
   programs.gamemode.enable = true;

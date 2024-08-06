@@ -29,14 +29,14 @@
     NIXOS_OZONE_WL = "1";
   };
 
+  xdg.configFile."dunst" = {
+    source = ./dunst;
+    recursive = true;
+  };
   xdg.configFile."hypr" = {
     source = ./hypr;
     recursive = true;
   };
 
 
-  xdg.configFile."dunst" = {
-    source = ./dunst;
-    recursive = true;
-  };
 }
