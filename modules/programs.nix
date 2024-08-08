@@ -2,8 +2,9 @@
 { config, pkgs, ... }:
 
 {
+# TODO: why light?
   programs.light.enable = true;
-  programs.zsh.enable = true;
+# programs.zsh.enable = true;
 
   environment.systemPackages = with pkgs; [
     iw

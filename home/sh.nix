@@ -39,14 +39,15 @@ in
   
   programs.fzf.enable = true;
   
-  programs.zsh = {
-    enable = true;
-    oh-my-zsh = {
-      enable = true;
-      theme = "robbyrussell";
-      };
-    shellAliases = myAliases;
-  };
+  programs.fish.enable = true;
+# programs.zsh = {
+#   enable = true;
+#   oh-my-zsh = {
+#     enable = true;
+#     theme = "robbyrussell";
+#     };
+#   shellAliases = myAliases;
+# };
   
   home.packages = with pkgs; [
     taskwarrior3
