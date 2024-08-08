@@ -17,7 +17,7 @@ let
     ta = "task add";
     tm = "task modify";
     tc = "task context";
-    rm = "trash-add";
+    rm = "trash-put";
   };
 in
 {

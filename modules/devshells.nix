@@ -1,15 +1,18 @@
-{config, pkgs, lib }:
+{config, pkgs, lib, ... }:
 
 {
 
-environment.systemPackages = (lib.mapAttrsToList (name: value: (pkgs.writeShellScriptBin name value)) {
-    python = "nix-ld-run poetry run -C ~/.config/python/ python $@";
-    python3 = "nix-ld-run poetry run -C ~/.config/python/ python $@";
-    pyinit = "mkdir -p ~/.config/python/ && poetry init -C ~/.config/python/";
-    pi = "nix-ld-run poetry -C ~/.config/python/ add $@";
-    pu = "nix-ld-run poetry -C ~/.config/python/ remove $@";
-    py = "nix-ld-run poetry -C ~/.config/python/ run bpython $@";
-    pyetry = "nix-ld-run poetry -C ~/.config/python/ $@";
+environment.systemPackages = with pkgs; [
+  poetry
+  nodejs_20
+] ++ (lib.mapAttrsToList (name: value: (pkgs.writeShellScriptBin name value)) {
+    python = "steam-run poetry run -C . python $@";
+    python3 = "steam-run poetry run -C . python $@";
+    pyinit = "poetry init -C .";
+    pi = "steam-run poetry -C . add $@";
+    pu = "steam-run poetry -C . remove $@";
+    py = "steam-run poetry -C ~/.config/python/ run bpython $@";
+    pyetry = "steam-run poetry -C ~/.config/python/ $@";
 
     yarn = "corepack yarn $@";
     yarnpkg = "corepack yarnpkg $@";
@@ -26,3 +29,4 @@ programs.nix-ld.enable = true;
 programs.nix-ld.libraries = [];
   # Put libraries here that you need to use for python libraries
   }
+

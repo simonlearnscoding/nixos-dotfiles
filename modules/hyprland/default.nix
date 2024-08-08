@@ -1,4 +1,3 @@
-# hyprland.nix
 { config, pkgs, ... }:
 
 {
@@ -29,14 +28,29 @@
     NIXOS_OZONE_WL = "1";
   };
 
-  xdg.configFile."dunst" = {
-    source = ./dunst;
-    recursive = true;
-  };
-  xdg.configFile."hypr" = {
-    source = ./hypr;
-    recursive = true;
-  };
+# services.dunst = {
+#   enable = true;
+#   settings = {
+#     global = {
+#       width = 300;
+#       height = 300;
+#       offset = "30x50";
+#       origin = "top-center";
+#     };
+#   };
+# };
+# TODO: move this to home man
+# xdg.configFile."hypr" = {
+#   source = ./hypr;
+#   recursive = true;
+# };
 
-
+  # Enable dunst to start automatically
+  systemd.user.services.dunst = {
+    description = "Dunst Notification Daemon";
+    wantedBy = [ "default.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.dunst}/bin/dunst";
+    };
+  };
 }
