@@ -3,10 +3,14 @@
 let
   myAliases = {
     nom = "nix";
+    mkdir="mkdir -p";
     l = "eza --icons";
     ls = "eza --icons";
+
+    ll="eza -lha --icons=auto --sort=name --group-directories-first";
     c = "z";
     ".." = "cd ..";
+    "..."="cd ../..";
     cd = "z";
     ci = "zi";
     gg = "lazygit";
@@ -39,15 +43,27 @@ in
   
   programs.fzf.enable = true;
   
-  programs.fish.enable = true;
-# programs.zsh = {
-#   enable = true;
-#   oh-my-zsh = {
-#     enable = true;
-#     theme = "robbyrussell";
-#     };
-#   shellAliases = myAliases;
-# };
+  programs.fish.enable = false;
+ programs.zsh = {
+   plugins = [
+ {
+    name = "powerlevel10k";
+    src = pkgs.zsh-powerlevel10k;
+    file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+  }
+  {
+    name = "powerlevel10k-config";
+    src = ./p10k-config;
+    file = "p10k.zsh";
+  }
+
+   ];
+   enable = true;
+   oh-my-zsh = {
+     enable = true;
+     };
+   shellAliases = myAliases;
+ };
   
   home.packages = with pkgs; [
     taskwarrior3

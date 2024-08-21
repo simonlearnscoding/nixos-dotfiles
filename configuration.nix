@@ -3,16 +3,14 @@
 {
   imports =
     [
-      inputs.xremap-flake.nixosModules.default
+#     inputs.xremap-flake.nixosModules.default
       ./hardware-configuration.nix
-      ./modules/xremap.nix
       ./modules/printing.nix
       ./modules/audio.nix
       ./modules/bluetooth.nix
       ./modules/gc.nix
       ./modules/swap.nix
       ./modules/fonts.nix
-      ./modules/gnome.nix
       ./modules/environment-variables.nix
       ./modules/hyprland/default.nix
       ./modules/display-manager.nix

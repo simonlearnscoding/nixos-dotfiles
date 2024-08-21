@@ -2,8 +2,9 @@
 
 {
   services.xremap = {
-    withWlroots = true;
-    userName = "simon";
+    enabled = false;
+#   withWlroots = true;
+#   userName = "simon";
 #   config = {
 #     modmap = [
 #       {

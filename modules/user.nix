@@ -6,7 +6,7 @@
     isNormalUser = true;
     description = "simon";
     extraGroups = [ "networkmanager" "input" "wheel" "video" "audio"  ];
-    shell = pkgs.fish;
+    shell = pkgs.zsh;
   };
 }
 

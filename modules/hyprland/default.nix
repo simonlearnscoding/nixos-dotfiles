@@ -1,6 +1,11 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
+  # Enable X server and GDM as the display manager
+  services.xserver.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+
+  # Include the Hyprland session and necessary packages
   environment.systemPackages = with pkgs; [
     hyprland
     libnotify
@@ -12,40 +17,25 @@
     waybar
   ];
 
+  # Enable Hyprland and configure Xwayland
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
   };
 
+  # XDG portal configuration for Wayland compatibility
   xdg.portal = {
     enable = true;
     config.common.default = "*";  # Keeps the old behavior
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
+  # Set necessary session variables
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";
     NIXOS_OZONE_WL = "1";
   };
 
-# services.dunst = {
-#   enable = true;
-#   settings = {
-#     global = {
-#       width = 300;
-#       height = 300;
-#       offset = "30x50";
-#       origin = "top-center";
-#     };
-#   };
-# };
-# TODO: move this to home man
-# xdg.configFile."hypr" = {
-#   source = ./hypr;
-#   recursive = true;
-# };
-
-  # Enable dunst to start automatically
+  # Enable dunst to start automatically with the user session
   systemd.user.services.dunst = {
     description = "Dunst Notification Daemon";
     wantedBy = [ "default.target" ];
@@ -53,4 +43,14 @@
       ExecStart = "${pkgs.dunst}/bin/dunst";
     };
   };
+
+  # Create a session file for Hyprland in the Wayland sessions directory
+  environment.etc."wayland-sessions/hyprland.desktop".text = ''
+    [Desktop Entry]
+    Name=Hyprland
+    Comment=Start Hyprland Wayland session
+    Exec=Hyprland
+    Type=Application
+    DesktopNames=Hyprland
+  '';
 }

@@ -6,7 +6,6 @@
     yarn
     pass-git-helper
     xh
-    zllij
     progress
     noti
     topgrade
