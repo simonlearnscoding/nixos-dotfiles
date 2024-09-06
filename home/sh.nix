@@ -34,7 +34,7 @@ in
     enable = true;
     theme = "Rosé Pine";
     font = {
-      name = "JetBrainsMono";
+      name = "JetBrainsMono Nerd Font";
       size = 12;
     };
     extraConfig = "padding 8";
@@ -43,7 +43,11 @@ in
   
   programs.fzf.enable = true;
   
-  programs.fish.enable = false;
+ programs.fish.enable = false;
+
+programs.zsh.initExtra = "source ~/.p10k.zsh";
+
+home.file.".p10k.zsh".source = ./p10k-config/p10k.zsh;
  programs.zsh = {
    plugins = [
  {
@@ -58,6 +62,8 @@ in
   }
 
    ];
+
+
    enable = true;
    oh-my-zsh = {
      enable = true;
