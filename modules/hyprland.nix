@@ -14,7 +14,7 @@
     hypridle
     hyprpaper
     kitty
-    starship
+    # starship # I am using p10k instead
     qutebrowser
     zathura
     mpv

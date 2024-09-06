@@ -22,6 +22,7 @@ let
     tm = "task modify";
     tc = "task context";
     rm = "trash-put";
+    update = "sudo nixos-rebuild switch --flake ~/.nixos/";
   };
 in
 {
@@ -46,6 +47,12 @@ in
  programs.fish.enable = false;
 
 programs.zsh.initExtra = "source ~/.p10k.zsh";
+programs.zsh = {
+  enableCompletion = true;
+  autosuggestion.enable = true;
+  syntaxHighlighting.enable = true;
+    
+  };
 
 home.file.".p10k.zsh".source = ./p10k-config/p10k.zsh;
  programs.zsh = {
