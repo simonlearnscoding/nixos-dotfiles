@@ -8,6 +8,12 @@
   # Include the Hyprland session and necessary packages
   environment.systemPackages = with pkgs; [
     hyprland
+    hyprlock
+    pyprland
+    hypridle
+    hyprpicker
+    hyprcursor
+    hyprpaper
     libnotify
     swww
     dunst
@@ -15,6 +21,11 @@
     xdg-desktop-portal
     xdg-desktop-portal-gtk
     waybar
+    # starship # I am using p10k instead
+    qutebrowser
+    zathura
+    mpv
+    imv
   ];
 
   # Enable Hyprland and configure Xwayland
