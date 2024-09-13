@@ -88,8 +88,11 @@ home.file.".p10k.zsh".source = ./p10k-config/p10k.zsh;
     nix-output-monitor
     nh
     lf
+    cmake
+    gcc
     pokemon-colorscripts-mac
     neofetch
+    ripgrep
     kitty
     bat
     trash-cli
