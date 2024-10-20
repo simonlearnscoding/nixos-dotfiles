@@ -4,6 +4,12 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     xremap-flake.url = "github:xremap/nix-flake";
+    nixvim = {
+      url = "github:nix-community/nixvim";
+    };
+    pre-commit-hooks = {
+      url = "github:cachix/pre-commit-hooks.nix";
+    };
     hyprland = {
       url = "github:hyprwm/Hyprland";
       };
@@ -17,7 +23,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, nixvim, home-manager, ... }@inputs:
     let
       pkgsFor = system: import nixpkgs {
         inherit system;
