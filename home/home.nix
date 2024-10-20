@@ -21,4 +21,12 @@ in
     inherit homeDirectory;
     stateVersion = "24.05";
   };
+
+  # Optionally, you can add your Neovim configuration here
+   xdg.configFile."nvim" = {
+     source = ./configfiles/nvim;
+   };
+   xdg.configFile."hypr" = {
+source = ./configfiles/hypr;
+     };
 }
