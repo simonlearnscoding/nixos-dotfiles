@@ -59,6 +59,7 @@ gnomeExtensions.rounded-window-corners
     gnomeExtensions.space-bar
     gnomeExtensions.appindicator
 
+    (callPackage ./../files/custom_pkgs/rounded-window-corners-reborn.nix {})
     gnomeExtensions.user-themes
   ];
 
