@@ -11,6 +11,7 @@ in
     #./atuin.nix // this is for sh history or something
     # TODO: only load this if gnome is on
     ./gnome.nix
+    ./neovim.nix
     ./sh.nix
     ./syncthing.nix
     ./communication.nix

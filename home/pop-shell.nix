@@ -9,9 +9,8 @@
           },
           {
             "class": "gnome-calculator"
-          },
-          {
-            "class": "zoom"
+          }
+        ]
       }
     '';
   };

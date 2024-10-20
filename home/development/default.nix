@@ -49,7 +49,7 @@ in
     gh
     git
     github-copilot-cli
-    customNeovim  # Use the wrapped version of Neovim
+    # customNeovim  # Use the wrapped version of Neovim
     neovide
     lazygit
     zsh

@@ -76,12 +76,14 @@ in
       "org/gnome/desktop/peripherals/mouse" = {
         "speed" = 0.0;
         "accel-profile" = "flat";
+	"natural-scroll" = "true";
       };
 
       "org/gnome/desktop/peripherals/touchpad" = {
         "speed" = 0.4;
         "tap-to-click" = true;
         "two-finger-scrolling-enabled" = true;
+	"natural-scroll" = true;
       };
 
       "org/gnome/desktop/privacy" = {
@@ -106,7 +108,7 @@ in
         "move-to-workspace-7" = ["<Super><Shift>7"];
         "move-to-workspace-8" = ["<Super><Shift>8"];
         "move-to-workspace-9" = ["<Super><Shift>9"];
-        "switch-applications" = ["<Super>Tab"];
+        "switch-applications" = ["<Super>Esc"];
         "switch-to-workspace-1" = ["<Super>1"];
         "switch-to-workspace-2" = ["<Super>2"];
         "switch-to-workspace-3" = ["<Super>3"];
@@ -137,7 +139,11 @@ in
         "center-new-windows" = true;
         "dynamic-workspaces" = true;
         "edge-tiling" = false;
+	"overlay-key" = "";
       };
+
+
+      
 
       "org/gnome/nautilus/preferences" = {
         "default-folder-viewer" = "list-view";
@@ -162,10 +168,16 @@ in
           "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/"
           "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/"
           "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom8/"
+          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom9/"
+          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom10/"
         ];
         "screensaver" = ["<Alt><Ctrl>l"];
       };
-
+	"org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom10" = {
+	  "binding" = "<Super>Tab";
+	  "command" = "ulauncher";
+	  "name" = "Ulauncher";
+	};
 
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
         "binding" = "<Super>v";
@@ -208,6 +220,13 @@ in
         "command" = "gnome-pomodoro --start-stop";
         "name" = "Pomodoro";
       };
+
+
+"org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom9" = {
+  "binding" = "<Super>y";
+  "command" = "pop-shell-toggle";
+  "name" = "Toggle Window Tiling";
+};
 
       "org/gnome/settings-daemon/plugins/power" = {
         "sleep-inactive-ac-type" = "nothing";
@@ -411,15 +430,16 @@ in
         "enable-move-to-workspace-shortcuts" = true;
       };
 
-
+"org/gnome/shell/keybindings" = {
+  "toggle-overview" = ["<Super>d"]; # Super + D for Activities Overview
+};
       "org/gnome/shell/keybindings" = {
         "show-screen-recording-ui" = ["<Shift><Super>r"];
         "show-screenshot-ui" = ["<Shift><Super>S"];
         "switch-to-application-1" = [];
         "switch-to-application-2" = [];
         "switch-to-application-3" = [];
-        "switch-to-application-4" = [];
-        "switch-to-application-5" = [];
+        "switch-to-application-4" = []; "switch-to-application-5" = [];
         "switch-to-application-6" = [];
         "switch-to-application-7" = [];
         "switch-to-application-8" = [];
