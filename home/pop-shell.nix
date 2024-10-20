@@ -12,10 +12,6 @@
           },
           {
             "class": "zoom"
-          }
-        ],
-        "skiptaskbarhidden": [],
-        "log_on_focus": false
       }
     '';
   };

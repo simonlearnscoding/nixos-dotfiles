@@ -1,24 +1,26 @@
-{pkgs, ...}:
-{  gtk = {
-  enable = true;
-  theme = {
-	name = "rose-pine";
-	package = pkgs.rose-pine-gtk-theme;
-	  };
-  iconTheme = {
-	package = pkgs.whitesur-icon-theme;
-	name = "whitesur";
-	  };
-	gtk3.extraConfig = {
-	      Settings = ''
-		gtk-application-prefer-dark-theme=1
-	      '';
-	    };
-
-    gtk4.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
+{
+  userConfig,
+  pkgs,
+  ...
+}: {
+  # GTK theme configuration
+  gtk = {
+    enable = true;
+    catppuccin = {
+      enable = true;
+      gnomeShellTheme = true;
+    };
+    iconTheme = {
+      name = "Tela-circle-dark";
+      package = pkgs.tela-circle-icon-theme;
+    };
+    cursorTheme = {
+      name = "Yaru";
+      package = pkgs.yaru-theme;
+    };
+    font = {
+      name = "Roboto";
+      size = 11;
     };
   };
-  }
+}

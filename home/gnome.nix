@@ -5,17 +5,18 @@ in
   with lib.hm.gvariant; {
     imports = [
       ./pop-shell.nix
+      ./flameshot.nix
     ];
 
     dconf.settings = {
 
       "org/gnome/desktop/interface" = {
-        "cursor-theme" = "Yaru";
+        # "cursor-theme" = "Yaru";
         "font-name" = "Roboto 11";
         "icon-theme" = "Tela-circle-dark";
         "color-scheme" = "prefer-dark";
         "document-font-name" = "Roboto 11";
-        "enable-animations" = false;
+        "enable-animations" = true;
         "enable-hot-corners" = false;
         "font-antialiasing" = "grayscale";
         "font-hinting" = "slight";
@@ -94,8 +95,7 @@ in
 
       "org/gnome/desktop/wm/keybindings" = {
         "close" = ["<Super>q"];
-        "minimize" = ["<Super>comma"];
-        "move-to-center" = ["<Control><Alt>c"];
+        "minimize" = ["<Super>n"];
         "move-to-workspace-1" = ["<Super><Shift>1"];
         "move-to-workspace-10" = ["<Super><Shift>0"];
         "move-to-workspace-2" = ["<Super><Shift>2"];
@@ -117,6 +117,12 @@ in
         "switch-to-workspace-8" = ["<Super>8"];
         "switch-to-workspace-9" = ["<Super>9"];
         "toggle-maximized" = ["<Super>m"];
+	    "switch-to-workspace-left" = ["<Control><Super>h"];
+	    "switch-to-workspace-right" = ["<Control><Super>l"];
+
+    # Move windows to other workspaces vertically
+    "move-to-workspace-left" = ["<Super><Shift>h"];
+    "move-to-workspace-right" = ["<Super><Shift>l"];
       };
 
       "org/gnome/desktop/wm/preferences" = {
@@ -148,54 +154,47 @@ in
 
       "org/gnome/settings-daemon/plugins/media-keys" = {
         "custom-keybindings" = [
-          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+
           "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
           "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/"
           "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/"
           "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/"
           "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/"
-          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/"
           "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/"
           "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom8/"
         ];
         "screensaver" = ["<Alt><Ctrl>l"];
       };
 
-      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-        "binding" = "<Control>space";
-        "command" = "ulauncher-toggle";
-        "name" = "Ulauncher";
+
+      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
+        "binding" = "<Super>v";
+        "command" = "neovide";
+        "name" = "Neovide";
       };
 
 
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
-        "binding" = "<Shift><Alt>2";
-        "command" = "normcap -c '#B7BDF8' -l eng rus pol --clipboard-handler wlclipboard";
-        "name" = "OCR";
+        "binding" = "<Super>s";
+        "command" = "pop-shell-stack";
+        "name" = "Stack windos";
       };
-
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3" = {
-        "binding" = "<Shift><Super>Return";
-        "command" = "alacritty";
-        "name" = "Alacritty";
+        "binding" = "<Super>t";
+        "command" = "kitty";
+        "name" = "Terminal";
       };
 
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4" = {
-        "binding" = "<Shift><Super>b";
+        "binding" = "<Super>b";
         "command" = "brave";
         "name" = "Brave";
       };
 
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5" = {
-        "binding" = "<Shift><Super>f";
+        "binding" = "<Super>f";
         "command" = "nautilus";
         "name" = "Files";
-      };
-
-      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6" = {
-        "binding" = "<Alt><Ctrl>q";
-        "command" = "gnome-session-quit";
-        "name" = "Logout";
       };
 
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7" = {
@@ -312,6 +311,8 @@ in
         "tile-by-default" = true;
       };
 
+
+
       "org/gnome/shell/extensions/just-perfection" = {
         "accessibility-menu" = true;
         "activities-button" = true;
@@ -330,7 +331,6 @@ in
         "double-super-to-appgrid" = true;
         "gesture" = true;
         "hot-corner" = false;
-        "keyboard-layout" = true;
         "notification-banner-position" = 2;
         "osd" = false;
         "panel" = true;
@@ -411,14 +411,10 @@ in
         "enable-move-to-workspace-shortcuts" = true;
       };
 
-      "org/gnome/shell/extensions/unblank" = {
-        "power" = false;
-        "time" = 0;
-      };
 
       "org/gnome/shell/keybindings" = {
         "show-screen-recording-ui" = ["<Shift><Super>r"];
-        "show-screenshot-ui" = ["<Ctrl><Alt>S"];
+        "show-screenshot-ui" = ["<Shift><Super>S"];
         "switch-to-application-1" = [];
         "switch-to-application-2" = [];
         "switch-to-application-3" = [];
@@ -429,7 +425,7 @@ in
         "switch-to-application-8" = [];
         "switch-to-application-9" = [];
         "toggle-application-view" = ["<Super>a"];
-        "toggle-message-tray" = ["<Super>v"];
+        "toggle-message-tray" = ["<Super>c"];
       };
 
     };

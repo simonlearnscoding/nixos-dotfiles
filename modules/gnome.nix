@@ -51,6 +51,7 @@
   environment.systemPackages = with pkgs; [
     gnome.gnome-tweaks
 #   gnomeExtensions.auto-move-windows
+gnomeExtensions.rounded-window-corners
     gnomeExtensions.blur-my-shell
     gnomeExtensions.dash-to-dock
     gnomeExtensions.just-perfection
