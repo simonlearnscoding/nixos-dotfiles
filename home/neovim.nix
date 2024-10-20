@@ -4,19 +4,19 @@ in {
   # Neovim text editor configuration
   programs.neovim = {
     enable = true;
-    package = pkgs.unstable.neovim-unwrapped;
+    package = pkgs.neovim-unwrapped;
     defaultEditor = true;
     withNodeJs = true;
     withPython3 = true;
     withRuby = true;
 
-    extraPackages = with pkgs.unstable; [
-      alejandra
+    extraPackages = with pkgs; [
       black
-      golangci-lint
-      gopls
-      gotools
-      hadolint
+      ripgrep
+      gcc
+      gnumake
+      nodejs_22
+      python3
       isort
       lua-language-server
       markdownlint-cli
