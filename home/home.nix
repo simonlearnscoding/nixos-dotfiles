@@ -10,7 +10,6 @@ in
     ./browser.nix
     # TODO: only load this if gnome is on
     ./gnome.nix
-    ./gtk.nix
     ./sh.nix
     ./syncthing.nix
     ./communication.nix
