@@ -8,11 +8,13 @@ in
     ./user.nix
     ./development/default.nix
     ./browser.nix
+    #./atuin.nix // this is for sh history or something
     # TODO: only load this if gnome is on
     ./gnome.nix
     ./sh.nix
     ./syncthing.nix
     ./communication.nix
+    ./ulauncher.nix
     ./media-tools.nix
     ./system-utilities.nix
   ];

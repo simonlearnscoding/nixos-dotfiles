@@ -5,7 +5,7 @@ in
   with lib.hm.gvariant; {
     imports = [
       ./pop-shell.nix
-      ./flameshot.nix
+#     ./flameshot.nix
     ];
 
     dconf.settings = {
