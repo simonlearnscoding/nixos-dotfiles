@@ -8,6 +8,8 @@ in
     ./user.nix
     ./development/default.nix
     ./browser.nix
+    # TODO: only load this if gnome is on
+    ./gnome.nix
     ./sh.nix
     ./syncthing.nix
     ./communication.nix
@@ -23,10 +25,10 @@ in
   };
 
   # Optionally, you can add your Neovim configuration here
-   xdg.configFile."nvim" = {
-     source = ./configfiles/nvim;
-   };
-   xdg.configFile."hypr" = {
-source = ./configfiles/hypr;
-     };
+#   xdg.configFile."nvim" = {
+#     source = ./configfiles/nvim;
+#   };
+#   xdg.configFile."hypr" = {
+#source = ./configfiles/hypr;
+#     };
 }

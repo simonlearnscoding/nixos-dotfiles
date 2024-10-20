@@ -12,7 +12,8 @@
       ./modules/swap.nix
       ./modules/fonts.nix
       ./modules/environment-variables.nix
-      ./modules/hyprland/default.nix
+      #./modules/hyprland/default.nix
+      ./modules/gnome.nix
       ./modules/display-manager.nix
       ./modules/energy-management.nix
       ./modules/info-fetchers.nix
