@@ -13,6 +13,7 @@ let
     "..."="cd ../..";
     cd = "z";
     ci = "zi";
+    b = "cd ..";
     gg = "lazygit";
     cadd = "zoxide add";
     cdadd = "zoxide add";
