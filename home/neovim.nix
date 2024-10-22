@@ -1,4 +1,4 @@
-{pkgs, ...}: let
+{ pkgs, config, lib, ... }: let
   neovim_config = ./../files/configs/nvim;
 in {
   # Neovim text editor configuration
@@ -35,11 +35,10 @@ in {
     ];
   };
 
-  # source lua config from this repo
-  xdg.configFile = {
-    "nvim" = {
-      source = "${neovim_config}";
-      recursive = true;
-    };
-  };
+
+  # Symlink for Neovim configuration
+# home.file.".config/nvim" = {
+#   source = neovim_config; # Directly use the neovim_config variable
+#   recursive = true;
+# };
 }
