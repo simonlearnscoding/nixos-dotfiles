@@ -138,6 +138,8 @@ in
       "org/gnome/mutter" = {
         "center-new-windows" = true;
         "dynamic-workspaces" = true;
+  "workspaces-only-on-primary" = false;
+  "disable-animations" = false;  # Ensure this is set to false
         "edge-tiling" = false;
 	"overlay-key" = "";
       };
@@ -171,7 +173,6 @@ in
           "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom9/"
           "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom10/"
         ];
-        "screensaver" = ["<Alt><Ctrl>l"];
       };
 	"org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom10" = {
 	  "binding" = "<Super>Tab";
@@ -251,7 +252,7 @@ in
         "favorite-apps" = [
           "org.gnome.Nautilus.desktop"
           "brave-browser.desktop"
-          "Alacritty.desktop"
+          "kitty"
           "org.telegram.desktop.desktop"
           "spotify.desktop"
         ];
@@ -264,7 +265,6 @@ in
           "org.telegram.desktop.desktop:3"
           "spotify.desktop:4"
           "com.obsproject.Studio.desktop:4"
-          "Zoom.desktop:5"
         ];
       };
 
@@ -300,7 +300,7 @@ in
       };
 
       "org/gnome/shell/extensions/dash-to-dock" = {
-        "animate-show-apps" = false;
+        "animate-show-apps" = true;
         "apply-custom-theme" = false;
         "autohide" = true;
         "background-color" = "rgb(24,25,38)";
@@ -337,7 +337,6 @@ in
         "activities-button" = true;
         "activities-button-icon-monochrome" = false;
         "activities-button-label" = true;
-        "animation" = 0;
         "app-menu" = false;
         "app-menu-icon" = true;
         "app-menu-label" = true;
