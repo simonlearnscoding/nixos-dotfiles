@@ -3,29 +3,28 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     xremap-flake.url = "github:xremap/nix-flake";
-    nixvim = {
-      url = "github:nix-community/nixvim";
-    };
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     pre-commit-hooks = {
       url = "github:cachix/pre-commit-hooks.nix";
     };
     hyprland = {
       url = "github:hyprwm/Hyprland";
       };
-#   hyprland-plugins = {
-#     url = "github:hyprwm/hyprland-plugins";
-#     inputs.hyprland.follows = "hyprland";
-#   };
-  # stylix.url = "github:danth/stylix";
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.inputs.nixpkgs-unstable.follows = "nixpkgs-unstable";
     sops-nix.url = "github:Mic92/sops-nix";
   };
 
-  outputs = { self, nixpkgs, nixvim, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable,  home-manager, ... }@inputs:
     let
       pkgsFor = system: import nixpkgs {
+        inherit system;
+      };
+
+      pkgsForUnstable = system: import nixpkgs-unstable {
         inherit system;
       };
     in
@@ -48,7 +47,7 @@
   #       inputs.stylix.nixosModules.stylix
             ./home/home.nix
           ];
-          extraSpecialArgs = { inherit inputs; };
+          extraSpecialArgs = {  inherit inputs ; pkgs-unstable = pkgsForUnstable "x86_64-linux"; };
         };
       };
     };
