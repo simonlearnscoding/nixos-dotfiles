@@ -75,8 +75,8 @@ in
 
       "org/gnome/desktop/peripherals/mouse" = {
         "speed" = 0.0;
-        "accel-profile" = "flat";
-	"natural-scroll" = "true";
+	"natural-scroll" = true;
+        # "accel-profile" = flat;
       };
 
       "org/gnome/desktop/peripherals/touchpad" = {
@@ -138,17 +138,17 @@ in
       "org/gnome/mutter" = {
         "center-new-windows" = true;
         "dynamic-workspaces" = true;
-  "workspaces-only-on-primary" = false;
-  "disable-animations" = false;  # Ensure this is set to false
+        "workspaces-only-on-primary" = false;
+        "disable-animations" = false;  # Ensure this is set to false
         "edge-tiling" = false;
-	"overlay-key" = "";
+	"overlay-key" = "<Super>";
       };
 
 
       
 
       "org/gnome/nautilus/preferences" = {
-        "default-folder-viewer" = "list-view";
+       "default-folder-viewer" = "grid-view";
         "migrated-gtk-settings" = true;
         "search-filter-time-type" = "last_modified";
         "search-view" = "list-view";
@@ -271,6 +271,13 @@ in
       "org/gnome/shell/extensions/blur-my-shell" = {
         "settings-version" = 2;
       };
+
+  "org/gnome/shell/extensions/blur-my-shell/custom-apps" = {
+    "blurred-apps" = [
+      "neovide"  # Add Neovide to blurred apps
+      # You can add more desktop entries of applications you want to blur here.
+    ];
+  };
 
       "org/gnome/shell/extensions/blur-my-shell/dash-to-dock" = {
         "pipeline" = "pipeline_default_rounded";

@@ -1,30 +1,11 @@
-{ pkgs, ... }:
-let
-  # Define the paths for necessary binaries and libraries
-  bins = [ pkgs.sqlite pkgs.ripgrep pkgs.gcc pkgs.gnumake pkgs.nodejs_20 pkgs.python3 ];
-
-  # Wrap Neovim with the correct environment (LD_LIBRARY_PATH)
-  customNeovim = pkgs.symlinkJoin {
-    name = "custom-neovim";
-    paths = [ pkgs.neovim ] ++ bins;
-    buildInputs = [ pkgs.makeWrapper ];
-
-    # Ensure that Neovim sees the libsqlite3.so and other necessary tools
-    postBuild = ''
-      wrapProgram $out/bin/nvim \
-        --set LD_LIBRARY_PATH ${pkgs.lib.makeLibraryPath bins};
-    '';
-  };
-in
+{ pkgs, pkgs-unstable, ... }:
 {
   home.packages = with pkgs; [
     vscodium
     yarn
     pass-git-helper
     xh
-    progress
-    noti
-    topgrade
+    progress noti topgrade
     gitkraken
     tealdeer
     monolith
@@ -38,8 +19,7 @@ in
     tre-command
     felix-fm
     cmatrix
-    pipes-rs
-    rsclock
+    pipes-rs rsclock
     cava
     figlet
     python3
@@ -49,7 +29,6 @@ in
     gh
     git
     github-copilot-cli
-    # customNeovim  # Use the wrapped version of Neovim
     neovide
     lazygit
     zsh
@@ -57,18 +36,43 @@ in
     sqlite
   ];
 
-  # Neovim plugin configuration
-  programs.neovim.plugins = [
-    {
-      plugin = pkgs.vimPlugins.sqlite-lua;
-      config = ''
-        let g:sqlite_clib_path = '${pkgs.sqlite}/lib/libsqlite3.so'
-      '';
-    }
-  ];
 
-  # Optionally, you can add your Neovim configuration here
-  # xdg.configFile."nvim" = {
-  #   source = ./neovim/nvim;
-  # };
+
+programs.neovim = {
+    defaultEditor = true;
+    withNodeJs = true;
+    withPython3 = true;
+    enable = true;
+    package = pkgs-unstable.neovim-unwrapped;
+    extraPackages = with pkgs-unstable;[
+      sqlite
+      ripgrep
+      gcc 
+      gnumake
+      nodejs_20
+      python3
+
+      # For Python
+      pyright             # Python LSP
+      black               # Python code formatter
+      isort               # Python import sorter
+      ruff                # Python linter
+
+      # For JavaScript/TypeScript
+      nodePackages.typescript-language-server  # TypeScript and JavaScript LSP
+      #typescript-language-server  # TypeScript and JavaScript LSP
+      nodePackages.prettier                    # JavaScript/TypeScript formatter
+      tailwindcss-language-server
+
+      # For Lua
+      lua-language-server  # Lua LSP
+      stylua               # Lua code formatter
+
+
+      # For Nix
+      nixpkgs-fmt         # Nix formatter
+      nixd
+    ];
+
+};
 }
