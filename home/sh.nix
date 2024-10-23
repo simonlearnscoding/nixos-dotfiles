@@ -32,9 +32,18 @@ in
     enableZshIntegration = true;
   };
   
+
+  # programs.stylix.targets.kitty.enable = true;
   programs.kitty = {
     enable = true;
     theme = "Rosé Pine";
+    settings = {
+    enable_audio_bell = false;
+    background_opacity = "0.9";
+
+    # window_padding_width = 8;
+    background_blur = 5;
+    };
     font = {
       name = "JetBrainsMono Nerd Font";
       size = 12;
