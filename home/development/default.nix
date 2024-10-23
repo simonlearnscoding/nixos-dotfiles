@@ -67,7 +67,7 @@ programs.neovim = {
       # For Lua
       lua-language-server  # Lua LSP
       stylua               # Lua code formatter
-      emmet_ls
+#     emmet_ls
       texlab
 
       # For Nix
