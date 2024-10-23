@@ -31,11 +31,11 @@
     {
 #     devShells.x86_64-linux.default = import /home/simon/.nixos/shell.nix { inherit nixpkgs; };
 
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.pc = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";  # Specify the system type here
         specialArgs = { inherit inputs; };
         modules = [
-          ./configuration.nix
+          ./hosts/pc/configuration.nix
     #     inputs.stylix.nixosModules.stylix
         ];
       };

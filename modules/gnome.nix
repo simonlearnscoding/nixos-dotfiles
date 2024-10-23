@@ -54,12 +54,12 @@
     gnomeExtensions.rounded-window-corners
     gnomeExtensions.blur-my-shell
     gnomeExtensions.dash-to-dock
-    gnomeExtensions.just-perfection
+    # gnomeExtensions.just-perfection
     gnomeExtensions.pop-shell
     gnomeExtensions.space-bar
     gnomeExtensions.appindicator
 
-    (callPackage ./../files/custom_pkgs/rounded-window-corners-reborn.nix {})
+    # (callPackage ./../files/custom_pkgs/rounded-window-corners-reborn.nix {})
     gnomeExtensions.user-themes
   ];
 
