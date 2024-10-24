@@ -9,6 +9,7 @@
     gitkraken
     tealdeer
     monolith
+    mongodb-compass
     fd
     tokei
     mdcat
