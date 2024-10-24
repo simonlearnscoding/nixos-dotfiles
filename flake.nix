@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     xremap-flake.url = "github:xremap/nix-flake";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     pre-commit-hooks = {
