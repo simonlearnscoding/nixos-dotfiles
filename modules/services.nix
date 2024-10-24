@@ -32,7 +32,7 @@
     swappy
     ffmpeg_6-full
     wl-screenrec
-    wl-clipboard
+    # wl-clipboard
     wl-clip-persist
     cliphist
     xdg-utils

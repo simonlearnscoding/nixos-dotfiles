@@ -50,7 +50,6 @@ in
       pokemon-colorscripts-mac
       xdg-utils
       neofetch
-      kitty
       lazygit
       bat
       zsh

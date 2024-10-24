@@ -11,7 +11,7 @@
     iw
     wpa_supplicant
     networkmanager
-    wl-clipboard
+    # wl-clipboard
     wget
     pulseaudio
     gnumake

@@ -42,7 +42,7 @@ in
     background_opacity = "0.9";
 
     # window_padding_width = 8;
-    background_blur = 5;
+    background_blur = 20;
     };
     font = {
       name = "JetBrainsMono Nerd Font";
