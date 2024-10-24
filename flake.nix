@@ -36,7 +36,14 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./hosts/pc/configuration.nix
-    #     inputs.stylix.nixosModules.stylix
+        ];
+      };
+
+      nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";  # Specify the system type here
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./hosts/laptop/configuration.nix
         ];
       };
 
