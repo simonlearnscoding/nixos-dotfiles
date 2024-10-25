@@ -5,6 +5,7 @@ in
 {
   imports = [
     ./sh.nix
+    ./music-production.nix
 #   inputs.xremap-flake.homeManagerModules.default
   ];
 
