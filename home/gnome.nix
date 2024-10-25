@@ -119,12 +119,12 @@ in
         "switch-to-workspace-8" = ["<Super>8"];
         "switch-to-workspace-9" = ["<Super>9"];
         "toggle-maximized" = ["<Super>m"];
-	    "switch-to-workspace-left" = ["<Control><Super>h"];
-	    "switch-to-workspace-right" = ["<Control><Super>l"];
+	"switch-to-workspace-left" = ["<Control><Super>h"];
+	"switch-to-workspace-right" = ["<Control><Super>l"];
 
-    # Move windows to other workspaces vertically
-    "move-to-workspace-left" = ["<Super><Shift>h"];
-    "move-to-workspace-right" = ["<Super><Shift>l"];
+        # Move windows to other workspaces vertically
+        "move-to-workspace-left" = ["<Super><Shift>h"];
+        "move-to-workspace-right" = ["<Super><Shift>l"];
       };
 
       "org/gnome/desktop/wm/preferences" = {
@@ -200,8 +200,8 @@ in
 
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4" = {
         "binding" = "<Super>b";
-        "command" = "brave";
-        "name" = "Brave";
+        "command" = "firefox";
+        "name" = "Firefox";
       };
 
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5" = {
@@ -241,6 +241,7 @@ in
           "blur-my-shell@aunetx"
           "clipboard-history@alexsaveau.dev"
           "dash-to-dock@micxgx.gmail.com"
+          "material-shell@PapyElGringo"
           "just-perfection-desktop@just-perfection"
           "pomodoro@arun.codito.in"
           "pop-shell@system76.com"
