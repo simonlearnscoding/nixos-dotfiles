@@ -9,6 +9,7 @@ let
 
     ll="eza -lha --icons=auto --sort=name --group-directories-first";
     c = "z";
+    lg = "ls | grep";
     ".." = "cd ..";
     "..."="cd ../..";
     cd = "z";
