@@ -6,6 +6,7 @@ in
 {
   imports = [
     ./user.nix
+    ./music-production.nix
     ./development/default.nix
     ./browser.nix
     #./atuin.nix // this is for sh history or something
