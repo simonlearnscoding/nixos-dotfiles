@@ -54,7 +54,7 @@
     gnomeExtensions.blur-my-shell
     gnomeExtensions.dash-to-dock
     # gnomeExtensions.just-perfection
-    gnomeExtensions.pop-shell
+    # gnomeExtensions.pop-shell
     gnomeExtensions.space-bar
     gnomeExtensions.appindicator
 

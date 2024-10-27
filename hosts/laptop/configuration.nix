@@ -33,4 +33,6 @@
   environment.sessionVariables = {
     FLAKE = "/home/simon/.nixos";
   };
+
+nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 }

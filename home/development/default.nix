@@ -1,13 +1,20 @@
-{ pkgs, pkgs-unstable, ... }:
 {
+  pkgs,
+  inputs,
+  pkgs-unstable,
+  ...
+}: {
   home.packages = with pkgs; [
     vscodium
     yarn
     pass-git-helper
     xh
-    progress noti topgrade
+    progress
+    noti
+    topgrade
     gitkraken
     tealdeer
+    nixd
     monolith
     mongodb-compass
     fd
@@ -20,7 +27,8 @@
     tre-command
     felix-fm
     cmatrix
-    pipes-rs rsclock
+    pipes-rs
+    rsclock
     cava
     figlet
     python3
@@ -37,45 +45,43 @@
     sqlite
   ];
 
-
-
-programs.neovim = {
+  programs.neovim = {
     defaultEditor = true;
     withNodeJs = true;
     withPython3 = true;
     enable = true;
     package = pkgs-unstable.neovim-unwrapped;
-    extraPackages = with pkgs-unstable;[
+    extraPackages = with pkgs-unstable; [
       sqlite
       ripgrep
-      gcc 
+      gcc
       gnumake
       nodejs_20
       python3
 
       # For Python
-      pyright             # Python LSP
-      black               # Python code formatter
-      isort               # Python import sorter
-      ruff                # Python linter
+      pyright # Python LSP
+      black # Python code formatter
+      isort # Python import sorter
+      ruff # Python linter
 
       # For JavaScript/TypeScript
-      nodePackages.typescript-language-server  # TypeScript and JavaScript LSP
+      nodePackages.typescript-language-server # TypeScript and JavaScript LSP
       #typescript-language-server  # TypeScript and JavaScript LSP
-      nodePackages.prettier                    # JavaScript/TypeScript formatter
+      nodePackages.prettier # JavaScript/TypeScript formatter
       tailwindcss-language-server
 
       # For Lua
-      lua-language-server  # Lua LSP
-      stylua               # Lua code formatter
-#     emmet_ls
+      lua-language-server # Lua LSP
+      stylua # Lua code formatter
+      #     emmet_ls
       texlab
 
       # For Nix
-      nixpkgs-fmt         # Nix formatter
+      nixpkgs-fmt # Nix formatter
       alejandra
-      nil
+      # nil
+      nixd
     ];
-
-};
+  };
 }
