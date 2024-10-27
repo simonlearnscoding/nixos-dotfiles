@@ -73,6 +73,7 @@ programs.neovim = {
 
       # For Nix
       nixpkgs-fmt         # Nix formatter
+      alejandra
       nil
     ];
 
