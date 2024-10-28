@@ -27,7 +27,7 @@
     ./../../modules/user.nix
     ./../../modules/system.nix
     ./../../modules/locale.nix
-    ./../../modules/xserver.nix
+    # ./../../modules/xserver.nix
     ./../../modules/devshells.nix
   ];
 

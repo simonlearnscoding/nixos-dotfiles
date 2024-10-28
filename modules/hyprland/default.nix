@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   # Enable X server and GDM as the display manager
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
@@ -34,12 +32,6 @@
     xwayland.enable = true;
   };
 
-  # XDG portal configuration for Wayland compatibility
-  xdg.portal = {
-    enable = true;
-    config.common.default = "*";  # Keeps the old behavior
-  };
-
   # Set necessary session variables
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";
@@ -49,7 +41,7 @@
   # Enable dunst to start automatically with the user session
   systemd.user.services.dunst = {
     description = "Dunst Notification Daemon";
-    wantedBy = [ "default.target" ];
+    wantedBy = ["default.target"];
     serviceConfig = {
       ExecStart = "${pkgs.dunst}/bin/dunst";
     };
