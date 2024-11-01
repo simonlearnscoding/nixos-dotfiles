@@ -1,20 +1,7 @@
-{ pkgs, ... }:
-
-{
-  # Basic system settings
-  imports = [ 
-    # Example: Add your own NixOS modules here
-  ];
-
-  # Enable the X server
-  services.xserver.enable = true;
+{pkgs, ...}: {
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
-  # Remove decorations for QT applications
-  environment.sessionVariables = {
-    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-  };
   # Excluding some GNOME applications from the default install
   environment.gnome.excludePackages =
     (with pkgs; [
@@ -61,6 +48,4 @@
     # (callPackage ./../files/custom_pkgs/rounded-window-corners-reborn.nix {})
     gnomeExtensions.user-themes
   ];
-
-
 }
