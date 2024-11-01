@@ -15,7 +15,6 @@
     ./../modules/environment-variables.nix
     ./../modules/gnome.nix
     ./../modules/energy-management.nix
-    ./../modules/info-fetchers.nix
     ./../modules/hardware.nix
     ./../modules/bootloader.nix
     ./../modules/networking.nix
