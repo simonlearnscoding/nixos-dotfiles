@@ -14,13 +14,13 @@
     ./../modules/fonts.nix
     ./../modules/environment-variables.nix
     ./../modules/gnome.nix
-    ./../modules/display-manager.nix
     ./../modules/energy-management.nix
     ./../modules/info-fetchers.nix
     ./../modules/hardware.nix
     ./../modules/bootloader.nix
     ./../modules/networking.nix
-    ./../modules/programs.nix
+    ./../modules/light.nix
+    ./../modules/gnupg.nix
     ./../modules/user.nix
     ./../modules/system.nix
     ./../modules/locale.nix

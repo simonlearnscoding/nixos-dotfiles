@@ -1,23 +1,16 @@
-
-{ config, pkgs, ... }:
-
 {
-  networking.hostName = "nixos"; # Define your hostname.
-
-  # Enable networking
-# networking.networkmanager.enable = true;
-  # Enable GNOME control center for network settings
-  # Additional packages and MIME type configuration
-
-programs.nm-applet.enable = true;
+  config,
+  pkgs,
+  ...
+}: {
   environment.systemPackages = with pkgs; [
-#   gnome-control-center
-#   gnome-keyring
-#   nm-applet
+    # `iw` - A command-line tool for configuring and managing WiFi devices.
+    iw
+
+    # `wpa_supplicant` - Essential for managing WiFi connections, often used with NetworkManager.
+    wpa_supplicant
+
+    # `networkmanager` - A service to manage network connections, including Ethernet and WiFi.
+    networkmanager
   ];
-
-# services.gnome.gnome-control-center.enable = true;
-  # Enable GNOME keyring
-  services.gnome.gnome-keyring.enable = true;
-
 }

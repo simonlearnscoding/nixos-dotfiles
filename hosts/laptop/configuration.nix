@@ -10,6 +10,7 @@
     ./../common.nix
   ];
 
+  networking.hostName = "simon-laptop";
   programs.gamemode.enable = true;
   programs.steam.enable = true;
   environment.sessionVariables = {

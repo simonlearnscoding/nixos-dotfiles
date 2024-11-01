@@ -1,17 +1,19 @@
-{ config, pkgs, ... }:
-
-let
+{
+  config,
+  pkgs,
+  ...
+}: let
   myAliases = {
     nom = "nix";
-    mkdir="mkdir -p";
+    mkdir = "mkdir -p";
     l = "eza --icons";
     ls = "eza --icons";
 
-    ll="eza -lha --icons=auto --sort=name --group-directories-first";
+    ll = "eza -lha --icons=auto --sort=name --group-directories-first";
     c = "z";
     lg = "ls | grep";
     ".." = "cd ..";
-    "..."="cd ../..";
+    "..." = "cd ../..";
     cd = "z";
     ci = "zi";
     b = "cd ..";
@@ -26,24 +28,22 @@ let
     rm = "trash-put";
     update = "sudo nixos-rebuild switch --flake ~/.nixos/";
   };
-in
-{
+in {
   programs.zoxide = {
     enable = true;
     enableZshIntegration = true;
   };
-  
 
   # programs.stylix.targets.kitty.enable = true;
   programs.kitty = {
     enable = true;
     theme = "Rosé Pine";
     settings = {
-    enable_audio_bell = false;
-    background_opacity = "0.9";
+      enable_audio_bell = false;
+      background_opacity = "0.9";
 
-    # window_padding_width = 8;
-    background_blur = 20;
+      # window_padding_width = 8;
+      background_blur = 20;
     };
     font = {
       name = "JetBrainsMono Nerd Font";
@@ -52,43 +52,40 @@ in
     extraConfig = "padding 8";
     shellIntegration.enableZshIntegration = true;
   };
-  
-  programs.fzf.enable = true;
-  
- programs.fish.enable = false;
 
-programs.zsh.initExtra = "source ~/.p10k.zsh";
-programs.zsh = {
-  enableCompletion = true;
-  autosuggestion.enable = true;
-  syntaxHighlighting.enable = true;
-    
+  programs.fzf.enable = true;
+
+  programs.fish.enable = false;
+
+  programs.zsh.initExtra = "source ~/.p10k.zsh";
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
   };
 
-home.file.".p10k.zsh".source = ./p10k-config/p10k.zsh;
- programs.zsh = {
-   plugins = [
- {
-    name = "powerlevel10k";
-    src = pkgs.zsh-powerlevel10k;
-    file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-  }
-  {
-    name = "powerlevel10k-config";
-    src = ./p10k-config;
-    file = "p10k.zsh";
-  }
+  home.file.".p10k.zsh".source = ./p10k-config/p10k.zsh;
+  programs.zsh = {
+    plugins = [
+      {
+        name = "powerlevel10k";
+        src = pkgs.zsh-powerlevel10k;
+        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+      }
+      {
+        name = "powerlevel10k-config";
+        src = ./p10k-config;
+        file = "p10k.zsh";
+      }
+    ];
 
-   ];
+    oh-my-zsh = {
+      enable = true;
+    };
+    shellAliases = myAliases;
+  };
 
-
-   enable = true;
-   oh-my-zsh = {
-     enable = true;
-     };
-   shellAliases = myAliases;
- };
-  
   home.packages = with pkgs; [
     taskwarrior3
     taskwarrior-tui
@@ -98,6 +95,9 @@ home.file.".p10k.zsh".source = ./p10k-config/p10k.zsh;
     btop
     nix-output-monitor
     nh
+    wget
+    gnumake
+    xclip
     lf
     cmake
     gcc
