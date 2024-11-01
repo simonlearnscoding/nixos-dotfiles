@@ -31,7 +31,7 @@
   programs.steam.enable = true;
 
   environment.sessionVariables = {
-    FLAKE = "/home/simon/.nixos";
+    FLAKE = "/home/simon/nixos-dotfiles";
   };
 
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
