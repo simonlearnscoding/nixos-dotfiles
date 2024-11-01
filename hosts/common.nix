@@ -6,6 +6,7 @@
   ...
 }: {
   imports = [
+    ./../modules/xserver.nix
     ./../modules/printing.nix
     ./../modules/audio.nix
     ./../modules/bluetooth.nix
