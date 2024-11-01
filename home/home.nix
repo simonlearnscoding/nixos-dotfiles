@@ -1,12 +1,16 @@
-
-{ pkgs, lib, inputs, ... }: let
+{
+  pkgs,
+  lib,
+  inputs,
+  ...
+}: let
   username = "simon";
   homeDirectory = "/home/${username}";
-in
-{
+in {
   imports = [
     ./user.nix
     ./music-production.nix
+    ./info-fetchers.nix
     ./development/default.nix
     ./browser.nix
     #./atuin.nix // this is for sh history or something
@@ -20,7 +24,7 @@ in
     ./media-tools.nix
     ./system-utilities.nix
   ];
-  nixpkgs.config = { allowUnfree = true; };
+  nixpkgs.config = {allowUnfree = true;};
 
   home = {
     inherit username;
@@ -29,10 +33,10 @@ in
   };
 
   # Optionally, you can add your Neovim configuration here
-#   xdg.configFile."nvim" = {
-#     source = ./configfiles/nvim;
-#   };
-#   xdg.configFile."hypr" = {
-#source = ./configfiles/hypr;
-#     };
+  #   xdg.configFile."nvim" = {
+  #     source = ./configfiles/nvim;
+  #   };
+  #   xdg.configFile."hypr" = {
+  #source = ./configfiles/hypr;
+  #     };
 }

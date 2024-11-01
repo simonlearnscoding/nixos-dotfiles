@@ -1,17 +1,18 @@
 { config, pkgs, ... }:
 
 {
+  # Enable virtual input devices support
   hardware.uinput.enable = true;
 
+  # Add user 'simon' to groups for uinput and input device access
   users.groups.uinput.members = ["simon"];
   users.groups.input.members = ["simon"];
 
   hardware = {
     opengl = {
-      enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
+      enable = true;             # Enable OpenGL for graphics rendering
+      driSupport = true;         # Enable Direct Rendering Infrastructure (DRI) support
+      driSupport32Bit = true;    # Enable 32-bit DRI support for compatibility with certain applications
     };
-    bluetooth.enable = true;
   };
 }
