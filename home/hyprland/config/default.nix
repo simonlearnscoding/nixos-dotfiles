@@ -6,7 +6,7 @@
 in {
   imports = [
     ./keybinds.nix
-    # ./animations.nix
+    ./animations.nix
     # {inherit term editor file browser;}
   ];
   wayland.windowManager.hyprland = {
