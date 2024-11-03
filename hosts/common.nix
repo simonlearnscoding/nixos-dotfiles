@@ -11,6 +11,9 @@
     ./../modules/audio.nix
     ./../modules/bluetooth.nix
     ./../modules/gc.nix
+    ./../modules/gdm.nix
+    ./../modules/wayland.nix
+    ./../modules/hyprland.nix
     ./../modules/swap.nix
     ./../modules/fonts.nix
     ./../modules/environment-variables.nix

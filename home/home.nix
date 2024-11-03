@@ -13,6 +13,7 @@ in {
     ./info-fetchers.nix
     ./development/default.nix
     ./browser.nix
+    ./hyprland/default.nix
     #./atuin.nix // this is for sh history or something
     # TODO: only load this if gnome is on
     ./gnome.nix
