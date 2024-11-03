@@ -14,19 +14,14 @@
   ];
 
   # Configure the Dunst notification daemon to start automatically with the user session
-  services.dunst.enable = true;
-
-  # Environment variables specific to user applications
-  home.sessionVariables = {
-    WLR_NO_HARDWARE_CURSORS = "1"; # If only needed for user applications, move here
-  };
-
-  # Configure Dunst to run as a user service, using systemd in Home Manager
-  systemd.user.services.dunst = {
-    description = "Dunst Notification Daemon"; # Description for the systemd service
-    wantedBy = ["default.target"]; # Start with the user session by default
-    serviceConfig = {
-      ExecStart = "${pkgs.dunst}/bin/dunst"; # Path to the Dunst executable
-    };
-  };
+  # services.dunst.enable = true;
+  #
+  # # Configure Dunst to run as a user service, using systemd in Home Manager
+  # systemd.user.services.dunst = {
+  #   description = "Dunst Notification Daemon"; # Description for the systemd service
+  #   wantedBy = ["default.target"]; # Start with the user session by default
+  #   serviceConfig = {
+  #     ExecStart = "${pkgs.dunst}/bin/dunst"; # Path to the Dunst executable
+  #   };
+  # };
 }

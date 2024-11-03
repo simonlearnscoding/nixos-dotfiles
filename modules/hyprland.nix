@@ -1,27 +1,18 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   # Add essential packages for system-level use
   environment.systemPackages = with pkgs; [
-    hyprland              # The Hyprland Wayland window manager
-    hyprlock              # Screen locker for Hyprland
-    hypridle              # Utility to manage idle states on Wayland with Hyprland
-    hyprpicker            # Color picker for Hyprland
-    libnotify             # Library for sending notifications
-    rofi-wayland          # Application launcher for Wayland
-    xdg-desktop-portal    # Provides desktop integration portals (e.g., file dialogs)
-    xdg-desktop-portal-gtk # GTK portal support for xdg-desktop-portal
-    waybar                # Customizable status bar for Wayland
+    hyprland # The Hyprland Wayland window manager
+    hyprlock # Screen locker for Hyprland
+    hypridle # Utility to manage idle states on Wayland with Hyprland
+    hyprpicker # Color picker for Hyprland
+    libnotify # Library for sending notifications
+    rofi-wayland # Application launcher for Wayland
   ];
 
   # Enable Hyprland and configure Xwayland for compatibility with X11 applications
   programs.hyprland = {
-    enable = true;              # Enable the Hyprland window manager
-    xwayland.enable = true;     # Enable Xwayland to support X11 apps on Wayland
-  };
-
-  # Set environment variables that apply system-wide for compatibility with Wayland/Hyprland
-  environment.sessionVariables = {
-    WLR_NO_HARDWARE_CURSORS = "1";  # Disable hardware cursors for better compatibility
-    NIXOS_OZONE_WL = "1";           # Enable Wayland support for Chromium and Electron apps
+    enable = true; # Enable the Hyprland window manager
+    xwayland.enable = true; # Enable Xwayland to support X11 apps on Wayland
   };
 
   # Create a session file for Hyprland in the Wayland sessions directory

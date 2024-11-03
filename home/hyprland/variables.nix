@@ -24,4 +24,8 @@
     CLUTTER_BACKEND = "wayland";
     # GTK_THEME = "Dracula";
   };
+
+  # systemd.user.services.hyprland = {
+  #   Environment = "HYPRLAND_CONFIG_PATH=/path/to/your/config";
+  # };
 }

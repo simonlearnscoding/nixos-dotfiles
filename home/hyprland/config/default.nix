@@ -1,5 +1,6 @@
 {...}: {
   wayland.windowManager.hyprland = {
+    enable = true;
     settings = {
       # autostart
       exec-once = [
