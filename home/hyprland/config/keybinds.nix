@@ -1,149 +1,123 @@
-{...}: {
-  wayland.windowManager.hyprland = {
-    enable = true;
+# keybindings.nix
+{...}: let
+  mainMod = "Super"; # Define Super as the main mod key
+in {
+  wayland.windowManager.hyprland.settings.bind = [
+    "${mainMod}, Q, exec, hyprctl dispatch killactive"
+    "${mainMod}, delete, exit"
+    "${mainMod}, G, togglefloating"
+    "ALT, return, fullscreen"
+    # "${mainMod}, backspace, exec, $scrPath/logoutlaunch.sh 1" # logout menu
+    "${mainMod}, T, exec, kitty"
+    "${mainMod}, F, exec, nautilus"
+    "${mainMod}, B, exec, brave"
+    # "CTRL SHIFT, ESCAPE, exec, $scrPath/sysmonlaunch.sh"
 
-    settings = {
-      mainModifier = "SUPER";
+    # Rofi toggles
+    "${mainMod}, Tab, exec, pkill -x rofi ; rofi -show drun"
+    "${mainMod}, SPACE, exec, pkill -x rofi ; rofi -show drun"
+    "${mainMod}, a, exec, pkill -x rofi ; rofi -show window"
+    "${mainMod}, ESCAPE, exec, pkill -x rofi ; rofi -show window"
+    "${mainMod}, e, exec, pkill -x rofi ; rofi -show drun"
 
-      applications = {
-        term = "kitty";
-        editor = "nvim";
-        file = "nautilus";
-        browser = "firefox";
-      };
+    # Audio controls
+    ", F1, exec, $scrPath/volumecontrol.sh -o m"
+    ", F2, exec, $scrPath/volumecontrol.sh -5%"
+    ", F3, exec, $scrPath/volumecontrol.sh +5%"
+    ", XF86AudioMute, exec, $scrPath/volumecontrol.sh -o m"
+    ", XF86AudioMicMute, exec, $scrPath/volumecontrol.sh -i m"
+    ", XF86AudioLowerVolume, exec, $scrPath/volumecontrol.sh -o d"
+    ", XF86AudioRaiseVolume, exec, $scrPath/volumecontrol.sh -o i"
+    ", XF86AudioPlay, exec, playerctl play-pause"
+    ", XF86AudioPause, exec, playerctl play-pause"
+    ", XF86AudioNext, exec, playerctl next"
+    ", XF86AudioPrev, exec, playerctl previous"
 
-      bind = [
-        "$mainMod, Q, exec, hyprctl dispatch killactive"
-        "$mainMod, delete, exit"
-        "$mainMod, G, togglefloating"
-        "ALT, return, fullscreen"
-        # "$mainMod, backspace, exec, $scrPath/logoutlaunch.sh 1" # logout menu
-        "$mainMod, T, exec, kitty"
-        "$mainMod, F, exec, nautilus"
-        "$mainMod, B, exec, brave"
-        # "CTRL SHIFT, ESCAPE, exec, $scrPath/sysmonlaunch.sh"
+    # Brightness controls
+    ", XF86MonBrightnessUp, exec, $scrPath/brightnesscontrol.sh i"
+    ", XF86MonBrightnessDown, exec, $scrPath/brightnesscontrol.sh d"
 
-        # Rofi toggles
-        "$mainMod, Tab, exec, pkill -x rofi ; rofi -show drun"
-        "$mainMod, SPACE, exec, pkill -x rofi ; rofi -show drun"
-        "$mainMod, a, exec, pkill -x rofi ; rofi -show window"
-        "$mainMod, ESCAPE, exec, pkill -x rofi ; rofi -show window"
-        "$mainMod, e, exec, pkill -x rofi ; rofi -show drun"
+    # Screenshot/Screencapture
+    "${mainMod}, P, exec, pin"
+    "${mainMod} SHIFT, S, exec, grim -g \"$(slurp)\" - | wl-copy"
+    # "${mainMod} SHIFT, G, exec, $scrPath/rec.sh"
+    # "${mainMod} ALT, P, exec, $scrPath/screenshot.sh m"
+    # ", print, exec, $scrPath/screenshot.sh p"
 
-        # Audio controls
-        ", F1, exec, $scrPath/volumecontrol.sh -o m" # toggle audio mute
-        ", F2, exec, $scrPath/volumecontrol.sh -5%" # decrease volume
-        ", F3, exec, $scrPath/volumecontrol.sh +5%" # increase volume
-        ", XF86AudioMute, exec, $scrPath/volumecontrol.sh -o m" # toggle audio mute
-        ", XF86AudioMicMute, exec, $scrPath/volumecontrol.sh -i m" # toggle microphone mute
-        ", XF86AudioLowerVolume, exec, $scrPath/volumecontrol.sh -o d" # decrease volume
-        ", XF86AudioRaiseVolume, exec, $scrPath/volumecontrol.sh -o i" # increase volume
-        ", XF86AudioPlay, exec, playerctl play-pause"
-        ", XF86AudioPause, exec, playerctl play-pause"
-        ", XF86AudioNext, exec, playerctl next"
-        ", XF86AudioPrev, exec, playerctl previous"
+    # Move focus with mainMod + arrow keys
+    "${mainMod}, H, movefocus, l"
+    "${mainMod}, K, movefocus, u"
+    "${mainMod}, J, movefocus, d"
+    "${mainMod}, L, movefocus, r"
+    "${mainMod}, left, movefocus, l"
+    "${mainMod}, up, movefocus, u"
+    "${mainMod}, down, movefocus, d"
+    "${mainMod}, right, movefocus, r"
+    "ALT, Tab, movefocus, d"
 
-        # Brightness controls
-        ", XF86MonBrightnessUp, exec, $scrPath/brightnesscontrol.sh i" # increase brightness
-        ", XF86MonBrightnessDown, exec, $scrPath/brightnesscontrol.sh d" # decrease brightness
+    # Switch workspaces
+    "${mainMod}, 1, workspace, 1"
+    "${mainMod}, 2, workspace, 2"
+    "${mainMod}, 3, workspace, 3"
+    "${mainMod}, 4, workspace, 4"
+    "${mainMod}, 5, workspace, 5"
+    "${mainMod}, 6, workspace, 6"
+    "${mainMod}, 7, workspace, 7"
+    "${mainMod}, 8, workspace, 8"
+    "${mainMod}, 9, workspace, 9"
+    "${mainMod}, 0, workspace, 10"
+    "${mainMod} CTRL, j, workspace, r+1"
+    "${mainMod} CTRL, k, workspace, r-1"
+    "${mainMod} CTRL, right, workspace, r+1"
+    "${mainMod} CTRL, left, workspace, r-1"
+    "${mainMod} CTRL, down, workspace, empty"
 
-        # Screenshot/Screencapture
-        "$mainMod, P, exec, pin"
-        "$mainMod SHIFT, S, exec, grim -g \"$(slurp)\" - | wl-copy"
-        # "$mainMod SHIFT, G, exec, $scrPath/rec.sh"
-        # "$mainMod ALT, P, exec, $scrPath/screenshot.sh m"
-        # ", print, exec, $scrPath/screenshot.sh p"
+    # Resize windows
+    "${mainMod} CONTROL ALT, l, resizeactive, 30 0"
+    "${mainMod} CONTROL ALT, h, resizeactive, -30 0"
+    "${mainMod} CONTROL ALT, k, resizeactive, 0 -30"
+    "${mainMod} CONTROL ALT, j, resizeactive, 0 30"
+    "${mainMod} CONTROL ALT, right, resizeactive, 30 0"
+    "${mainMod} CONTROL ALT, left, resizeactive, -30 0"
+    "${mainMod} CONTROL ALT, up, resizeactive, 0 -30"
+    "${mainMod} CONTROL ALT, down, resizeactive, 0 30"
 
-        # Custom scripts
-        # "$mainMod ALT, G, exec, $scrPath/gamemode.sh"
-        # "$mainMod SHIFT, D, exec, $scrPath/wallbashtoggle.sh"
-        # "$mainMod SHIFT, T, exec, pkill -x rofi || $scrPath/themeselect.sh"
-        # "$mainMod SHIFT, A, exec, pkill -x rofi || $scrPath/rofiselect.sh"
-        # "$mainMod SHIFT, W, exec, pkill -x rofi || $scrPath/swwwallselect.sh"
+    # Move active window
+    "${mainMod} SHIFT, h, movewindoworgroup, l"
+    "${mainMod} SHIFT, l, movewindoworgroup, r"
+    "${mainMod} SHIFT, k, movewindoworgroup, u"
+    "${mainMod} SHIFT, j, movewindoworgroup, d"
 
-        # Move focus with mainMod + arrow keys
-        "$mainMod, H, movefocus, l"
-        "$mainMod, K, movefocus, u"
-        "$mainMod, J, movefocus, d"
-        "$mainMod, L, movefocus, r"
-        "$mainMod, left, movefocus, l"
-        "$mainMod, up, movefocus, u"
-        "$mainMod, down, movefocus, d"
-        "$mainMod, right, movefocus, r"
-        "ALT, Tab, movefocus, d"
+    # Scroll through existing workspaces
+    "${mainMod}, mouse_down, workspace, e+1"
+    "${mainMod}, mouse_up, workspace, e-1"
 
-        # Switch workspaces
-        "$mainMod, 1, workspace, 1"
-        "$mainMod, 2, workspace, 2"
-        "$mainMod, 3, workspace, 3"
-        "$mainMod, 4, workspace, 4"
-        "$mainMod, 5, workspace, 5"
-        "$mainMod, 6, workspace, 6"
-        "$mainMod, 7, workspace, 7"
-        "$mainMod, 8, workspace, 8"
-        "$mainMod, 9, workspace, 9"
-        "$mainMod, 0, workspace, 10"
-        "$mainMod CTRL, j, workspace, r+1"
-        "$mainMod CTRL, k, workspace, r-1"
-        "$mainMod CTRL, right, workspace, r+1"
-        "$mainMod CTRL, left, workspace, r-1"
-        "$mainMod CTRL, down, workspace, empty"
+    # Move/Resize windows with mainMod + LMB/RMB and dragging
+    "${mainMod}, mouse:272, movewindow"
+    # "${mainMod}, mouse:273, resizewindow"
 
-        # Resize windows
-        "$mainMod CONTROL ALT, l, resizeactive, 30 0"
-        "$mainMod CONTROL ALT, h, resizeactive, -30 0"
-        "$mainMod CONTROL ALT, k, resizeactive, 0 -30"
-        "$mainMod CONTROL ALT, j, resizeactive, 0 30"
-        "$mainMod CONTROL ALT, right, resizeactive, 30 0"
-        "$mainMod CONTROL ALT, left, resizeactive, -30 0"
-        "$mainMod CONTROL ALT, up, resizeactive, 0 -30"
-        "$mainMod CONTROL ALT, down, resizeactive, 0 30"
+    # Special workspaces (scratchpad)
+    "${mainMod} ALT, S, movetoworkspacesilent, special"
+    "${mainMod}, W, togglespecialworkspace,"
 
-        # Move active window
-        "$mainMod SHIFT, h, movewindoworgroup, l"
-        "$mainMod SHIFT, l, movewindoworgroup, r"
-        "$mainMod SHIFT, k, movewindoworgroup, u"
-        "$mainMod SHIFT, j, movewindoworgroup, d"
+    # Toggle Layout
+    "${mainMod}, o, togglesplit,"
 
-        # Scroll through existing workspaces
-        "$mainMod, mouse_down, workspace, e+1"
-        "$mainMod, mouse_up, workspace, e-1"
+    # Move window silently to workspace Super + Alt + [0-9]
+    "${mainMod} ALT, 1, movetoworkspacesilent, 1"
+    "${mainMod} ALT, 2, movetoworkspacesilent, 2"
+    "${mainMod} ALT, 3, movetoworkspacesilent, 3"
+    "${mainMod} ALT, 4, movetoworkspacesilent, 4"
+    "${mainMod} ALT, 5, movetoworkspacesilent, 5"
+    "${mainMod} ALT, 6, movetoworkspacesilent, 6"
+    "${mainMod} ALT, 7, movetoworkspacesilent, 7"
+    "${mainMod} ALT, 8, movetoworkspacesilent, 8"
+    "${mainMod} ALT, 9, movetoworkspacesilent, 9"
+    "${mainMod} ALT, 0, movetoworkspacesilent, 10"
 
-        # Move/Resize windows with mainMod + LMB/RMB and dragging
-        "$mainMod, mouse:272, movewindow"
-        "$mainMod, mouse:273, resizewindow"
+    # Lid switch
+    ", switch:on:Lid Switch, exec, swaylock && systemctl suspend"
 
-        # Special workspaces (scratchpad)
-        "$mainMod ALT, S, movetoworkspacesilent, special"
-        "$mainMod, W, togglespecialworkspace,"
-
-        # Toggle Layout
-        "$mainMod, o, togglesplit,"
-
-        # Move window silently to workspace Super + Alt + [0-9]
-        "$mainMod ALT, 1, movetoworkspacesilent, 1"
-        "$mainMod ALT, 2, movetoworkspacesilent, 2"
-        "$mainMod ALT, 3, movetoworkspacesilent, 3"
-        "$mainMod ALT, 4, movetoworkspacesilent, 4"
-        "$mainMod ALT, 5, movetoworkspacesilent, 5"
-        "$mainMod ALT, 6, movetoworkspacesilent, 6"
-        "$mainMod ALT, 7, movetoworkspacesilent, 7"
-        "$mainMod ALT, 8, movetoworkspacesilent, 8"
-        "$mainMod ALT, 9, movetoworkspacesilent, 9"
-        "$mainMod ALT, 0, movetoworkspacesilent, 10"
-
-        # Lid switch
-        ", switch:on:Lid Switch, exec, swaylock && systemctl suspend"
-
-        "$mainMod CTRL, w, movetoworkspace, special"
-      ];
-    };
-
-    extraConfig = ''
-      monitor=,preferred,auto,auto
-      xwayland {
-        force_zero_scaling = true;
-      }
-    '';
-  };
+    "${mainMod} CTRL, w, movetoworkspace, special"
+  ];
 }
