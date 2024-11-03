@@ -10,6 +10,7 @@
     slurp # Selection tool for Wayland, often used with grim to capture selected screen regions
     wl-clip-persist # Clipboard manager for Wayland, keeps clipboard content after the app closes
     wf-recorder # Screen recording tool for Wayland, compatible with Hyprland
+    wl-clipboard
     glib # Core library providing data structure handling, portability, and utility functions
   ];
 
