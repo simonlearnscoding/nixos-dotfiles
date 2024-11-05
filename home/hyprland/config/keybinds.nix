@@ -6,12 +6,12 @@ in {
     "${mainMod}, Q, exec, hyprctl dispatch killactive"
     "${mainMod}, delete, exit"
     "${mainMod}, G, togglefloating"
+    "${mainMod}, M, togglefloating"
     "ALT, return, fullscreen"
     # "${mainMod}, backspace, exec, $scrPath/logoutlaunch.sh 1" # logout menu
     "${mainMod}, T, exec, kitty"
     "${mainMod}, F, exec, nautilus"
-    "${mainMod}, B, exec, brave"
-    # "CTRL SHIFT, ESCAPE, exec, $scrPath/sysmonlaunch.sh"
+    "${mainMod}, B, exec, firefox"
 
     # Rofi toggles
     "${mainMod}, Tab, exec, pkill -x rofi ; rofi -show drun"
@@ -85,8 +85,8 @@ in {
     # Move active window
     "${mainMod} SHIFT, h, movewindoworgroup, l"
     "${mainMod} SHIFT, l, movewindoworgroup, r"
-    "${mainMod} SHIFT, k, movewindoworgroup, u"
-    "${mainMod} SHIFT, j, movewindoworgroup, d"
+    # "${mainMod} SHIFT, k, movewindoworgroup, u"
+    # "${mainMod} SHIFT, j, movewindoworgroup, d"
 
     # Scroll through existing workspaces
     "${mainMod}, mouse_down, workspace, e+1"
@@ -99,10 +99,15 @@ in {
     # Special workspaces (scratchpad)
     "${mainMod} ALT, S, movetoworkspacesilent, special"
     "${mainMod}, W, togglespecialworkspace,"
+    "${mainMod}, SHIFT, W, movetoworkspace, special"
 
     # Toggle Layout
     "${mainMod}, o, togglesplit,"
 
+    # "${mainMod} SHIFT, h, movetoworkspace, left"
+    # "${mainMod} SHIFT, j, movetoworkspace, up"
+    "${mainMod} SHIFT, j, movetoworkspace, +1"
+    "${mainMod} SHIFT, k, movetoworkspace, -1"
     # Move window silently to workspace Super + Alt + [0-9]
     "${mainMod} ALT, 1, movetoworkspacesilent, 1"
     "${mainMod} ALT, 2, movetoworkspacesilent, 2"

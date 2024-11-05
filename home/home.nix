@@ -9,6 +9,7 @@
 in {
   imports = [
     ./user.nix
+    ./rofi.nix
     ./music-production.nix
     ./info-fetchers.nix
     ./development/default.nix
