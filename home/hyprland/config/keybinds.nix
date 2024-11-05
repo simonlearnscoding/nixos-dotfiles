@@ -1,12 +1,28 @@
 # keybindings.nix
-{...}: let
+{pkgs, ...}: let
   mainMod = "Super"; # Define Super as the main mod key
+
+  # Define the toggle-rofi script with `writeScriptBin`
+  toggleRofiScript = pkgs.writeScriptBin "toggle-rofi" ''
+    #!/bin/bash
+
+    if pgrep -x "rofi" > /dev/null; then
+      pkill -x rofi
+    else
+      rofi -show combi -combi-modi "window,drun" -modi combi
+    fi
+  '';
+  # Make the script available as a system package
+  environment.systemPackages = [
+    toggleRofiScript
+  ];
 in {
   wayland.windowManager.hyprland.settings.bind = [
     "${mainMod}, Q, exec, hyprctl dispatch killactive"
     "${mainMod}, delete, exit"
     "${mainMod}, G, togglefloating"
     "${mainMod}, M, togglefloating"
+    "${mainMod}, Return, exec, rofi -combi-modi 'window,drun' -show combi -modi combi"
     "ALT, return, fullscreen"
     # "${mainMod}, backspace, exec, $scrPath/logoutlaunch.sh 1" # logout menu
     "${mainMod}, T, exec, kitty"
@@ -98,8 +114,8 @@ in {
 
     # Special workspaces (scratchpad)
     "${mainMod} ALT, S, movetoworkspacesilent, special"
-    "${mainMod}, W, togglespecialworkspace,"
-    "${mainMod}, SHIFT, W, movetoworkspace, special"
+    "${mainMod}, W, togglespecialworkspace"
+    # "${mainMod}, SHIFT, W, movetoworkspace, special"
 
     # Toggle Layout
     "${mainMod}, o, togglesplit,"
