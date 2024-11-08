@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     sops-nix.url = "github:Mic92/sops-nix";
     hyprland.url = "github:hyprwm/Hyprland";
@@ -15,16 +16,14 @@
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    nixpkgs-unstable,
-    home-manager,
-    ...
-  } @ inputs: let
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... } @ inputs:
+  let
     pkgsFor = system:
       import nixpkgs {
         inherit system;
+        overlays = [
+          inputs.hyprpanel.overlay # Adding HyprPanel overlay here
+        ];
       };
 
     pkgsForUnstable = system:
@@ -32,11 +31,9 @@
         inherit system;
       };
   in {
-    #     devShells.x86_64-linux.default = import /home/simon/.nixos/shell.nix { inherit nixpkgs; };
-
     nixosConfigurations.pc = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux"; # Specify the system type here
-      specialArgs = {inherit inputs;};
+      specialArgs = { inherit inputs; };
       modules = [
         ./hosts/pc/configuration.nix
       ];
@@ -44,7 +41,7 @@
 
     nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux"; # Specify the system type here
-      specialArgs = {inherit inputs;};
+      specialArgs = { inherit inputs; };
       modules = [
         ./hosts/laptop/configuration.nix
       ];
@@ -54,7 +51,6 @@
       simon = home-manager.lib.homeManagerConfiguration {
         pkgs = pkgsFor "x86_64-linux";
         modules = [
-          #       inputs.stylix.nixosModules.stylix
           ./home/home.nix
         ];
         extraSpecialArgs = {

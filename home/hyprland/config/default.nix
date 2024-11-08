@@ -20,11 +20,12 @@ in {
       # };
     };
     extraConfig = ''
-      monitor=,preferred,auto,auto
+       monitor=,preferred,auto,auto
 
-      xwayland {
-        force_zero_scaling = true;
-      }
+      exec-once = hyprpanel
+       xwayland {
+         force_zero_scaling = true;
+       }
     '';
   };
 }
