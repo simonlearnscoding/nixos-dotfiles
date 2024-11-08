@@ -19,9 +19,10 @@
 in {
   wayland.windowManager.hyprland.settings.bind = [
     "${mainMod}, Q, exec, hyprctl dispatch killactive"
+    "${mainMod}, V, exec, neovide"
     "${mainMod}, delete, exit"
     "${mainMod}, G, togglefloating"
-    "${mainMod}, M, togglefloating"
+    "${mainMod}, M, fullscreen"
     "${mainMod}, Return, exec, rofi -combi-modi 'window,drun' -show combi -modi combi"
     "ALT, return, fullscreen"
     # "${mainMod}, backspace, exec, $scrPath/logoutlaunch.sh 1" # logout menu
