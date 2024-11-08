@@ -7,6 +7,7 @@ in {
   imports = [
     ./keybinds.nix
     ./animations.nix
+    ./windowrules.nix
     ./monitors.nix
     # {inherit term editor file browser;}
   ];
