@@ -11,6 +11,7 @@ in {
     ./user.nix
     ./wlsunset.nix
     ./rofi.nix
+    ./nwg-dock.nix
     ./music-production.nix
     ./info-fetchers.nix
     ./development/default.nix

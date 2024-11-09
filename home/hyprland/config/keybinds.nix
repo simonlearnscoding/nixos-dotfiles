@@ -38,13 +38,19 @@ in {
     "${mainMod}, e, exec, pkill -x rofi ; rofi -show drun"
 
     # Audio controls
-    ", F1, exec, $scrPath/volumecontrol.sh -o m"
-    ", F2, exec, $scrPath/volumecontrol.sh -5%"
-    ", F3, exec, $scrPath/volumecontrol.sh +5%"
-    ", XF86AudioMute, exec, $scrPath/volumecontrol.sh -o m"
-    ", XF86AudioMicMute, exec, $scrPath/volumecontrol.sh -i m"
-    ", XF86AudioLowerVolume, exec, $scrPath/volumecontrol.sh -o d"
-    ", XF86AudioRaiseVolume, exec, $scrPath/volumecontrol.sh -o i"
+    ", F1, exec, amixer set Master toggle"
+    ", F2, exec, amixer set Master 20%-"
+    ", F3, exec, amixer set Master 20%+"
+
+    ", XF86AudioMute, exec, amixer set Master toggle"
+    ", XF86AudioMicMute, exec, amixer set Capture toggle"
+    ", F4, exec, amixer set Capture toggle"
+    ", 190, exec, amixer set Capture toggle"
+
+    ", XF86MonBrightnessUp, exec, brightnessctl set +10%"
+    ", XF86MonBrightnessDown, exec, brightnessctl set 10%-"
+    ", XF86AudioLowerVolume, exec, amixer set Master 20%-"
+    ", XF86AudioRaiseVolume,  exec, amixer set Master 20%+"
     ", XF86AudioPlay, exec, playerctl play-pause"
     ", XF86AudioPause, exec, playerctl play-pause"
     ", XF86AudioNext, exec, playerctl next"
@@ -111,7 +117,7 @@ in {
 
     # Move/Resize windows with mainMod + LMB/RMB and dragging
     "${mainMod}, mouse:272, movewindow"
-    # "${mainMod}, mouse:273, resizewindow"
+    "${mainMod}, mouse:273, resizewindow"
 
     # Special workspaces (scratchpad)
     "${mainMod} ALT, S, movetoworkspacesilent, special"
