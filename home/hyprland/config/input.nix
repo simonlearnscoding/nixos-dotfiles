@@ -8,9 +8,4 @@
   touchpad = {
     natural_scroll = true;
   };
-
-  mouse = {
-    accel_profile = "adaptive"; # Options: "flat" or "adaptive"
-    accel_speed = 0.5; # Range -1 (slow) to 1 (fast)
-  };
 }

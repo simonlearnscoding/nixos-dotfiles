@@ -13,31 +13,24 @@
     swipe left 3 hyprctl dispatch focuswindow prev
   '';
 in {
-  # Add libinput-gestures to the system packages
-  environment.systemPackages = with pkgs; [
-    libinput-gestures
-  ];
+  # Add libinput-gestures to the home packages
+  home.packages = [pkgs.libinput-gestures];
 
   # Write the libinput-gestures configuration file
-  home-manager.users.simon = {
-    files = {
-      ".config/libinput-gestures.conf".text = gesturesConfig;
-    };
-  };
+  xdg.configFile."libinput-gestures.conf".text = gesturesConfig;
 
-  # Enable the libinput-gestures service for the user
-  systemd.user.services.libinput-gestures = {
-    description = "Libinput Gestures Service";
-    wantedBy = ["default.target"];
+  # # Enable libinput-gestures as a systemd service for the user
+  # systemd.user.services.libinput-gestures = {
+  #   description = "Libinput Gestures Service";
+  #   wantedBy = [ "default.target" ];
+  #
+  #   # Start libinput-gestures on login
+  #   serviceConfig = {
+  #     ExecStart = "${pkgs.libinput-gestures}/bin/libinput-gestures-setup start";
+  #     ExecStop = "${pkgs.libinput-gestures}/bin/libinput-gestures-setup stop";
+  #   };
+  # };
 
-    # Start libinput-gestures on login
-    serviceConfig = {
-      ExecStart = "${pkgs.libinput-gestures}/bin/libinput-gestures-setup start";
-      ExecStop = "${pkgs.libinput-gestures}/bin/libinput-gestures-setup stop";
-    };
-  };
-
-  # Optional: Set permissions for libinput-gestures to access input devices
-  # Add user to the "input" group for libinput-gestures
-  users.users.simon.extraGroups = ["input"];
+  # Optional: Ensure user is in the input group to access input devices
+  # users.users.${config.home.username}.extraGroups = [ "input" ];
 }

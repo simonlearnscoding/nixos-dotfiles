@@ -9,6 +9,7 @@
 in {
   imports = [
     ./user.nix
+    ./icons-theme.nix
     ./wlsunset.nix
     ./rofi.nix
     ./nwg-dock.nix

@@ -117,8 +117,9 @@ in {
 
     # Move/Resize windows with mainMod + LMB/RMB and dragging
     "${mainMod}, mouse:272, movewindow"
-    "${mainMod}, mouse:273, resizewindow"
-
+    #TODO: fix this resize window option doesn't exist
+    # "${mainMod}, mouse:273, resizewindow"
+    #
     # Special workspaces (scratchpad)
     "${mainMod} ALT, S, movetoworkspacesilent, special"
     "${mainMod}, W, togglespecialworkspace"
