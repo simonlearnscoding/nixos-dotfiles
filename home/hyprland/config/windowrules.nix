@@ -56,6 +56,7 @@
       # windowrulev2 = pin ,class:^(WebCord)$ #WebCord-Electron
       windowrulev2 = float, workspace:specialworkspace
       windowrulev2 = float,class:^(Spotify)$
+      windowrulev2 = float,class:^(rofi)$
       windowrulev2 = float,class:^(slack)$
       windowrulev2 = suppressevent maximize,            class:(neovide)
       windowrulev2 = float,class:^(telegram-desktop)$

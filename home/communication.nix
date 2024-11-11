@@ -1,8 +1,8 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   home.packages = with pkgs; [
-      telegram-desktop
-      slack
-      webcord
+    telegram-desktop
+    slack
+    whatsapp-for-linux
+    webcord
   ];
 }

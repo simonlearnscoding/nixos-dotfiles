@@ -6,12 +6,13 @@
     enable = true;
     settings = {
       PLATFORM_PROFILE_ON_BAT = "low-power";
-      CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_performance";
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
       CPU_ENERGY_PERF_POLICY_ON_AC = "balance_power";
       RUNTIME_PM_ON_AC = "auto";
       WIFI_PWR_ON_AC = "on";
-      CPU_MAX_PERF_ON_AC = "nn";
-      CPU_MAX_PERF_ON_BAT = "nn";
+      WIFI_PWR_ON_BAT = "low"; # Added for battery savings
+      CPU_MAX_PERF_ON_AC = "100"; # Adjusted for full performance on AC
+      CPU_MAX_PERF_ON_BAT = "50"; # Adjusted for balanced performance on battery
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
       CPU_BOOST_ON_BAT = 0;
       DISK_DEVICES = "sda sdb";

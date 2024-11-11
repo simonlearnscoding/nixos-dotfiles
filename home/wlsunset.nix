@@ -10,6 +10,21 @@
     latitude = 46.8182;
     longitude = 8.2275;
     temperature.day = 6500;
-    temperature.night = 3700;
+    temperature.night = 3400;
   };
 }
+# {
+#   config,
+#   lib,
+#   pkgs,
+#   ...
+# }: {
+#   services.gammastep = {
+#     enable = true;
+#     provider = "manual";
+#     latitude = 49.0;
+#     longitude = 8.4;
+#     temperature.night = 3500;
+#   };
+# }
+

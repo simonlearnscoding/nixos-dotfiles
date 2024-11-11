@@ -1,19 +1,18 @@
 {lib, ...}: let
-# TODO: I could replace this with env vars probably
+  # TODO: I could replace this with env vars probably
   wallpaper = ./../files/wallpapers/wallpaper.jpg;
 in
   with lib.hm.gvariant; {
     imports = [
       ./pop-shell.nix
-#     ./flameshot.nix
+      #     ./flameshot.nix
     ];
 
     dconf.settings = {
-
       "org/gnome/desktop/interface" = {
         # "cursor-theme" = "Yaru";
         "font-name" = "Roboto 11";
-        "icon-theme" = "Tela-circle-dark";
+        # "icon-theme" = "Adwaida";
         "color-scheme" = "prefer-dark";
         "document-font-name" = "Roboto 11";
         "enable-animations" = true;
@@ -75,7 +74,7 @@ in
 
       "org/gnome/desktop/peripherals/mouse" = {
         "speed" = 0.0;
-	"natural-scroll" = true;
+        "natural-scroll" = true;
         # "accel-profile" = flat;
       };
 
@@ -83,7 +82,7 @@ in
         "speed" = 0.4;
         "tap-to-click" = true;
         "two-finger-scrolling-enabled" = true;
-	"natural-scroll" = true;
+        "natural-scroll" = true;
       };
 
       "org/gnome/desktop/privacy" = {
@@ -119,8 +118,8 @@ in
         "switch-to-workspace-8" = ["<Super>8"];
         "switch-to-workspace-9" = ["<Super>9"];
         "toggle-maximized" = ["<Super>m"];
-	"switch-to-workspace-left" = ["<Control><Super>h"];
-	"switch-to-workspace-right" = ["<Control><Super>l"];
+        "switch-to-workspace-left" = ["<Control><Super>h"];
+        "switch-to-workspace-right" = ["<Control><Super>l"];
 
         # Move windows to other workspaces vertically
         "move-to-workspace-left" = ["<Super><Shift>h"];
@@ -139,16 +138,13 @@ in
         "center-new-windows" = true;
         "dynamic-workspaces" = true;
         "workspaces-only-on-primary" = false;
-        "disable-animations" = false;  # Ensure this is set to false
+        "disable-animations" = false; # Ensure this is set to false
         "edge-tiling" = false;
-	"overlay-key" = "<Super>";
+        "overlay-key" = "<Super>";
       };
 
-
-      
-
       "org/gnome/nautilus/preferences" = {
-       "default-folder-viewer" = "grid-view";
+        "default-folder-viewer" = "grid-view";
         "migrated-gtk-settings" = true;
         "search-filter-time-type" = "last_modified";
         "search-view" = "list-view";
@@ -162,7 +158,6 @@ in
 
       "org/gnome/settings-daemon/plugins/media-keys" = {
         "custom-keybindings" = [
-
           "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
           "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/"
           "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/"
@@ -174,18 +169,17 @@ in
           "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom10/"
         ];
       };
-	"org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom10" = {
-	  "binding" = "<Super>Tab";
-	  "command" = "ulauncher";
-	  "name" = "Ulauncher";
-	};
+      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom10" = {
+        "binding" = "<Super>Tab";
+        "command" = "ulauncher";
+        "name" = "Ulauncher";
+      };
 
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
         "binding" = "<Super>v";
         "command" = "neovide";
         "name" = "Neovide";
       };
-
 
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
         "binding" = "<Super>s";
@@ -222,12 +216,11 @@ in
         "name" = "Pomodoro";
       };
 
-
-"org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom9" = {
-  "binding" = "<Super>y";
-  "command" = "pop-shell-toggle";
-  "name" = "Toggle Window Tiling";
-};
+      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom9" = {
+        "binding" = "<Super>y";
+        "command" = "pop-shell-toggle";
+        "name" = "Toggle Window Tiling";
+      };
 
       "org/gnome/settings-daemon/plugins/power" = {
         "sleep-inactive-ac-type" = "nothing";
@@ -273,12 +266,12 @@ in
         "settings-version" = 2;
       };
 
-  "org/gnome/shell/extensions/blur-my-shell/custom-apps" = {
-    "blurred-apps" = [
-      "neovide"  # Add Neovide to blurred apps
-      # You can add more desktop entries of applications you want to blur here.
-    ];
-  };
+      "org/gnome/shell/extensions/blur-my-shell/custom-apps" = {
+        "blurred-apps" = [
+          "neovide" # Add Neovide to blurred apps
+          # You can add more desktop entries of applications you want to blur here.
+        ];
+      };
 
       "org/gnome/shell/extensions/blur-my-shell/dash-to-dock" = {
         "pipeline" = "pipeline_default_rounded";
@@ -337,8 +330,6 @@ in
         "gap-outer" = mkUint32 1;
         "tile-by-default" = true;
       };
-
-
 
       "org/gnome/shell/extensions/just-perfection" = {
         "accessibility-menu" = true;
@@ -437,16 +428,17 @@ in
         "enable-move-to-workspace-shortcuts" = true;
       };
 
-"org/gnome/shell/keybindings" = {
-  "toggle-overview" = ["<Super>d"]; # Super + D for Activities Overview
-};
+      "org/gnome/shell/keybindings" = {
+        "toggle-overview" = ["<Super>d"]; # Super + D for Activities Overview
+      };
       "org/gnome/shell/keybindings" = {
         "show-screen-recording-ui" = ["<Shift><Super>r"];
         "show-screenshot-ui" = ["<Shift><Super>S"];
         "switch-to-application-1" = [];
         "switch-to-application-2" = [];
         "switch-to-application-3" = [];
-        "switch-to-application-4" = []; "switch-to-application-5" = [];
+        "switch-to-application-4" = [];
+        "switch-to-application-5" = [];
         "switch-to-application-6" = [];
         "switch-to-application-7" = [];
         "switch-to-application-8" = [];
@@ -454,6 +446,5 @@ in
         "toggle-application-view" = ["<Super>a"];
         "toggle-message-tray" = ["<Super>c"];
       };
-
     };
   }
