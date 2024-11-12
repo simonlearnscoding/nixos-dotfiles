@@ -7,6 +7,7 @@
 }: {
   imports = [
     ./../modules/xserver.nix
+    ./../modules/stylix.nix
     ./../modules/printing.nix
     ./../modules/audio.nix
     ./../modules/bluetooth.nix
@@ -30,6 +31,9 @@
     ./../modules/devshells.nix
   ];
 
+  environment.systemPackages = [
+    pkgs.power-profiles-daemon
+  ];
   programs.zsh.enable = true;
   programs.gamemode.enable = true;
   programs.steam.enable = true;

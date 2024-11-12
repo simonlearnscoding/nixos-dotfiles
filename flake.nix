@@ -5,7 +5,10 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    stylix.url = "github:danth/stylix/release-24.05";
+    stylix = {
+      url = "github:danth/stylix/release-24.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     sops-nix.url = "github:Mic92/sops-nix";
     hyprland.url = "github:hyprwm/Hyprland";
     xremap-flake.url = "github:xremap/nix-flake";
@@ -51,6 +54,7 @@
       specialArgs = {inherit inputs;};
       modules = [
         ./hosts/laptop/configuration.nix
+        inputs.stylix.nixosModules.stylix
       ];
     };
 
@@ -59,7 +63,6 @@
         pkgs = pkgsFor "x86_64-linux";
         modules = [
           ./home/home.nix
-          inputs.stylix.homeModules.stylix
         ];
         extraSpecialArgs = {
           inherit inputs;
