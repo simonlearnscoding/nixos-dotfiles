@@ -1,16 +1,20 @@
 # users/ana/home.nix
 {pkgs, ...}: {
   # ...
+
+  # home.packages = with pkgs; [
+  #   cinnamon.nemo
+  # ];
   gtk = {
     enable = true;
 
     iconTheme = {
-      name = "WhiteSur-icon-theme";
+      name = "WhiteSur";
       package = pkgs.whitesur-icon-theme;
     };
 
     theme = {
-      name = "rose-pine-gtk";
+      name = "rose-pine";
       package = pkgs.rose-pine-gtk-theme;
     };
 
@@ -20,18 +24,15 @@
     # };
 
     gtk3.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
+      gtk-application-prefer-dark-theme = 1;
     };
 
     gtk4.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
+      gtk-application-prefer-dark-theme = 1;
     };
   };
 
+  # home.sessionVariables.GTK_THEME = "Tokyonight-Dark-B";
   home.sessionVariables.GTK_THEME = "rose-pine";
   # ...
 }

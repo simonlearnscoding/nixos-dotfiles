@@ -9,6 +9,7 @@ in {
     ./animations.nix
     ./touch-gestures.nix
     ./windowrules.nix
+    ./blur.nix
     ./monitors.nix
     # {inherit term editor file browser;}
   ];

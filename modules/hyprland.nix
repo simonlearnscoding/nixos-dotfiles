@@ -2,17 +2,13 @@
   # Add essential packages for system-level use
   environment.systemPackages = with pkgs; [
     hyprland # The Hyprland Wayland window manager
-    # hyprlock # Screen locker for Hyprland
-    # hypridle # Utility to manage idle states on Wayland with Hyprland
-    # hyprpicker # Color picker for Hyprland
-    # libnotify # Library for sending notifications
-    # rofi-wayland # Application launcher for Wayland
   ];
 
   # Enable Hyprland and configure Xwayland for compatibility with X11 applications
   programs.hyprland = {
     enable = true; # Enable the Hyprland window manager
     xwayland.enable = true; # Enable Xwayland to support X11 apps on Wayland
+    portalPackage = pkgs.xdg-desktop-portal-hyprland; # Specify Hyprland-specific portal
   };
 
   # Create a session file for Hyprland in the Wayland sessions directory
