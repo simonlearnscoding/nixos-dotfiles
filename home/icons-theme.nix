@@ -10,7 +10,7 @@
     };
 
     theme = {
-      name = "rose-pine";
+      name = "rose-pine-gtk";
       package = pkgs.rose-pine-gtk-theme;
     };
 

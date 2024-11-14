@@ -1,8 +1,8 @@
 {pkgs, ...}: {
   # Include user-specific packages via Home Manager
   home.packages = with pkgs; [
-    swaybg # Simple wallpaper utility for Wayland environments (alternative to hyprpaper)
-    hyprpaper # Wallpaper manager specifically designed for Hyprland
+    # swaybg # Simple wallpaper utility for Wayland environments (alternative to hyprpaper)
+    # hyprpaper # Wallpaper manager specifically designed for Hyprland
     hyprpanel
     # Grimblast: Enhanced screenshot tool for Wayland (commented out here, might be used later)
     ags

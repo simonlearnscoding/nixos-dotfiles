@@ -12,9 +12,15 @@
     image = ../files/wallpapers/wallpaper.jpg; # Set wallpaper directory
   };
 
-  # Additional Stylix configurations
-  stylix = {
-    windowRadius = 8; # Example: Adjust window border radius
-    padding = 8; # Example: Adjust padding around elements
+  programs.stylix = {
+    cursorTheme = {
+      name = "Numix-Cursor";
+      package = pkgs.numix-cursor-theme;
+    };
   };
+  # Additional Stylix configurations
+  # stylix = {
+  #   windowRadius = 8; # Example: Adjust window border radius
+  #   padding = 8; # Example: Adjust padding around elements
+  # };
 }

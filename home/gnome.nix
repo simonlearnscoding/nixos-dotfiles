@@ -10,10 +10,8 @@ in
 
     dconf.settings = {
       "org/gnome/desktop/interface" = {
-        # "cursor-theme" = "Yaru";
-        "font-name" = "Roboto 11";
-        # "icon-theme" = "Adwaida";
         "color-scheme" = "prefer-dark";
+        "font-name" = "Roboto 11";
         "document-font-name" = "Roboto 11";
         "enable-animations" = true;
         "enable-hot-corners" = false;
