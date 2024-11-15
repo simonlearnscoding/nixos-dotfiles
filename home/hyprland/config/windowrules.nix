@@ -5,6 +5,10 @@
     extraConfig = ''
       windowrulev2 = opacity 1.00 0.90,class:^(firefox)$
       windowrulev2 = opacity 1.00 0.90,class:^(Brave-browser)$
+      windowrulev2 = opacity, 0.80 0.80 class:^(Wofi)$
+      windowrulev2 = opacity, 0.80 0.80 class:^(wofi)$
+
+      # windowrulev2 = decoration,none, class:^(WebCord)$ #WebCord-Electron
       windowrulev2 = opacity 0.80 0.80,class:^(Steam)$
       windowrulev2 = opacity 0.80 0.80,class:^(steam)$
       windowrulev2 = opacity 0.80 0.80,class:^(steamwebhelper)$
@@ -56,9 +60,10 @@
       # windowrulev2 = pin ,class:^(WebCord)$ #WebCord-Electron
       windowrulev2 = float, workspace:specialworkspace
       windowrulev2 = float,class:^(Spotify)$
-      windowrulev2 = float,class:^(rofi)$
+      windowrulev2 = float,class:^(wofi)$
       windowrulev2 = float,class:^(slack)$
       windowrulev2 = suppressevent maximize,            class:(neovide)
+      windowrulev2 = float, class:^nwg-dock$
       windowrulev2 = float,class:^(telegram-desktop)$
 
 

@@ -23,15 +23,16 @@ in {
     "${mainMod}, delete, exit"
     "${mainMod}, G, togglefloating"
     "${mainMod}, M, fullscreen"
-    "${mainMod}, Return, exec, rofi -combi-modi 'window,drun' -show combi -modi combi"
+    "${mainMod}, Return, exec, wofi --show drun"
     "ALT, return, fullscreen"
     # "${mainMod}, backspace, exec, $scrPath/logoutlaunch.sh 1" # logout menu
     "${mainMod}, T, exec, kitty"
     "${mainMod}, F, exec, nautilus"
+    "${mainMod} SHIFT, F, exec, /home/simon/nixos-dotfiles/scripts/wofi-dir-script.sh"
     "${mainMod}, B, exec, firefox"
 
     # Rofi toggles
-    "${mainMod}, Tab, exec, pkill -x rofi ; rofi -show drun"
+    "${mainMod}, Tab, exec, wofi --show drun"
     "${mainMod}, SPACE, exec, pkill -x rofi ; rofi -show drun"
     "${mainMod}, a, exec, pkill -x rofi ; rofi -show window"
     "${mainMod}, ESCAPE, exec, pkill -x rofi ; rofi -show window"

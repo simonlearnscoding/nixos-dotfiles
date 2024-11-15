@@ -23,6 +23,7 @@ in {
     };
     extraConfig = ''
        monitor=,preferred,auto,auto
+       exec-once = nwg-dock-hyprland -d -hd 0
 
       exec-once = hyprpanel
        xwayland {

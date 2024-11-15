@@ -57,7 +57,10 @@ in {
 
   programs.fish.enable = false;
 
-  programs.zsh.initExtra = "source ~/.p10k.zsh";
+  programs.zsh.initExtra = "
+  source ~/.p10k.zsh
+  krabby random 
+  ";
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -87,6 +90,7 @@ in {
   };
 
   home.packages = with pkgs; [
+    krabby
     taskwarrior3
     taskwarrior-tui
     fzf
