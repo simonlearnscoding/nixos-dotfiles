@@ -11,7 +11,7 @@ in {
     ./user.nix
     ./icons-theme.nix
     ./wlsunset.nix
-    ./flatpak.nix
+    # ./flatpak.nix
     ./wofi.nix
     ./nwg-dock.nix
     ./music-production.nix
