@@ -17,17 +17,11 @@
     toggleRofiScript
   ];
 in {
-  wayland.windowManager.hyprland.settings.bindm = [
-    "${mainMod}, mouse:273, resizeactive" # Resize windows with Super + Right Click
-    "${mainMod}, mouse:272, movewindow"
-  ];
   wayland.windowManager.hyprland.settings.bind = [
     "${mainMod}, Q, exec, hyprctl dispatch killactive"
     "${mainMod}, V, exec, neovide"
     "${mainMod}, delete, exit"
     "${mainMod}, G, togglefloating"
-
-    "${mainMod}, BTN_LEFT, movewindow" # Drag windows with touchpad or mouse
     "${mainMod}, M, fullscreen"
     "${mainMod}, Return, exec, wofi --show drun"
     "ALT, return, fullscreen"
@@ -123,6 +117,7 @@ in {
     "${mainMod}, mouse_up, workspace, e-1"
 
     # Move/Resize windows with mainMod + LMB/RMB and dragging
+    "${mainMod}, mouse:272, movewindow"
     #TODO: fix this resize window option doesn't exist
     # "${mainMod}, mouse:273, resizewindow"
     #
