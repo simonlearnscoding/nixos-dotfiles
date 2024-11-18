@@ -24,7 +24,6 @@ in {
     ./gnome.nix
     #./neovim.nix
     ./sh.nix
-    ./syncthing.nix
     ./communication.nix
     ./ulauncher.nix
     ./media-tools.nix
