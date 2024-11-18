@@ -13,6 +13,7 @@ in {
     ./wlsunset.nix
     # ./flatpak.nix
     ./wofi.nix
+    ./sops.nix
     ./nwg-dock.nix
     ./music-production.nix
     ./info-fetchers.nix

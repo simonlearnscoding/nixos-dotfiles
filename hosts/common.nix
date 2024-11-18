@@ -11,6 +11,7 @@
     ./../modules/printing.nix
     ./../modules/audio.nix
     ./../modules/bluetooth.nix
+    ./../modules/sops.nix
     ./../modules/syncthing.nix
     ./../modules/gc.nix
     ./../modules/gdm.nix
