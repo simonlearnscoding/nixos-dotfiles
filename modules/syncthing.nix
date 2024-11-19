@@ -11,17 +11,24 @@
       "--config=/var/lib/syncthing/.config/syncthing"
       "--data=/var/lib/syncthing"
     ];
-    devices = {
-      "salzburg-server" = {id = SYNCTHING_SALZBURG_ID;};
-      "schweiz-server" = {id = SYNCTHING_SCHWEIZ_ID;};
-    };
-
-    # Inject secrets via environment variables
   };
+  # I gave up on trying to set this up with secrets
+  # settings.devices = {
+  #   "schweiz-server" = {
+  #     id = "${config.sops.secrets."SYNCTHING_SCHWEIZ_ID".path}";
+  #     name = "schweiz-server";
+  #   };
+  #
+  #   "salzburg-server" = {
+  #     id = "${config.sops.secrets."SYNCTHING_SCHWEIZ_ID".path}";
+  #     name = "schweiz-server";
+  #   };
+
+  # Inject secrets via environment variables
 
   # Example: Inject environment variables into Syncthing
-  systemd.services.syncthing.environment = {
-    SYNCTHING_SCHWEIZ_ID = "${config.sops.secrets."SYNCTHING_SCHWEIZ_ID".path}";
-    SYNCTHING_SALZBURG_ID = "${config.sops.secrets."SYNCTHING_SALZBURG_ID".path}";
-  };
+  # systemd.services.syncthing.environment = {
+  #   SYNCTHING_SCHWEIZ_ID = "${config.sops.secrets."SYNCTHING_SCHWEIZ_ID".path}";
+  #   SYNCTHING_SALZBURG_ID = "${config.sops.secrets."SYNCTHING_SALZBURG_ID".path}";
+  # };
 }
