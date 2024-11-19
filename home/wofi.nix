@@ -1,10 +1,10 @@
 { ... }: {
   programs.wofi = {
     enable = true;
-    # Define a custom configuration source for Wofi
-    config = {
-      source = "./configfiles/wofi";
-    };
   };
 
+  home.file.".config/wofi/" = {
+    source = builtins.path { path = ./configfiles/wofi; };
+    recursive = true;
+  };
 }
