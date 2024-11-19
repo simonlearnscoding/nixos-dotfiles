@@ -14,6 +14,7 @@ in {
     # ./flatpak.nix
     ./wofi.nix
     # ./sops.nix
+    ./taskwarrior.nix
     ./nwg-dock.nix
     ./music-production.nix
     ./info-fetchers.nix
