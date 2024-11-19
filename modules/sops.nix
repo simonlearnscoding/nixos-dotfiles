@@ -1,4 +1,9 @@
-{ config, pkgs, inputs, ... }: {
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     inputs.sops-nix.nixosModules.sops
   ];
@@ -14,7 +19,11 @@
   sops.age.keyFile = "/home/simon/.config/sops/age/keys.txt";
 
   # Declare secrets for NixOS
-  sops.secrets."db-password" = {};
+  sops.secrets."db-password" = {
+    owner = "simon"; # Specify the user
+    group = "users"; # Specify the group (optional)
+    mode = "0600"; # Restrict access to the owner only
+  };
 
   # Export the secret as an environment variable for system-level use
   environment.variables = {
