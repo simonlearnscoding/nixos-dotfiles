@@ -41,7 +41,7 @@ in {
     settings = {
       enable_audio_bell = false;
       font_family = "JetBrainsMono Nerd Font";
-      background_opacity = "0.9";
+      # background_opacity = "0.9";
       background_blur = "12";
       window_padding_width = "8";
       # window_padding_width = 8;

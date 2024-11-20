@@ -8,6 +8,7 @@
   homeDirectory = "/home/${username}";
 in {
   imports = [
+    ./ags.nix
     ./user.nix
     ./icons-theme.nix
     ./wlsunset.nix

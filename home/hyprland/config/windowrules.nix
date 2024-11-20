@@ -3,20 +3,20 @@
     # Keybindings
     # Window rules
     extraConfig = ''
-      windowrulev2 = opacity 1.00 0.90,class:^(firefox)$
+      windowrulev2 = opacity 0.98 0.85,class:^(firefox)$
       windowrulev2 = opacity 1.00 0.90,class:^(Brave-browser)$
-      windowrulev2 = opacity, 0.80 0.80 class:^(Wofi)$
-      windowrulev2 = opacity, 0.80 0.80 class:^(wofi)$
+      windowrulev2 = opacity, 0.85 0.85 class:^(Wofi)$
+      windowrulev2 = opacity, 0.85 0.85 class:^(wofi)$
 
-      # windowrulev2 = decoration,none, class:^(WebCord)$ #WebCord-Electron
       windowrulev2 = opacity 0.80 0.80,class:^(Steam)$
       windowrulev2 = opacity 0.80 0.80,class:^(steam)$
       windowrulev2 = opacity 0.80 0.80,class:^(steamwebhelper)$
       windowrulev2 = opacity 0.80 0.80,class:^(Spotify)$
       windowrulev2 = opacity 0.80 0.80,class:^(Code)$
       windowrulev2 = opacity 0.80 0.80,class:^(code-url-handler)$
-      windowrulev2 = opacity 1.00 0.80,class:^(kitty)$
-      windowrulev2 = opacity 0.90 0.90,class:^(org.kde.dolphin)$
+      windowrulev2 = opacity 1.00 0.90,class:^(kitty)$
+      windowrulev2 = opacity 0.95 0.90,class:^(neovide)$
+      windowrulev2 = opacity 0.85 0.85,class:^(org.gnome.Nautilus)$
       windowrulev2 = opacity 0.80 0.80,class:^(org.kde.ark)$
       windowrulev2 = opacity 0.80 0.80,class:^(nwg-look)$
       windowrulev2 = opacity 0.80 0.80,class:^(qt5ct)$
@@ -72,6 +72,8 @@
       windowrulev2 = noinitialfocus,class:^(xwaylandvideobridge)$
       windowrulev2 = maxsize 1 1,class:^(xwaylandvideobridge)$
       windowrulev2 = noblur,class:^(xwaylandvideobridge)$
+
+      windowrulev2 = float,class:^(org.gnome.Nautilus)$
     '';
   };
 }
