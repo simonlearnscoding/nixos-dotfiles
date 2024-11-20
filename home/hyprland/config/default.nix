@@ -26,6 +26,7 @@ in {
        exec-once = nwg-dock-hyprland -d -hd 0
 
       exec-once = hyprpanel
+      exec-once = ags
        xwayland {
          force_zero_scaling = true;
        }
