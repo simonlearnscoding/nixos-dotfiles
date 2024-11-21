@@ -14,7 +14,7 @@ in {
     ./wlsunset.nix
     # ./flatpak.nix
     ./wofi.nix
-    ./deluge.nix
+    # ./deluge.nix
     # ./sops.nix
     ./taskwarrior.nix
     ./nwg-dock.nix
