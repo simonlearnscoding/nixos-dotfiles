@@ -17,7 +17,20 @@
     toggleRofiScript
   ];
 in {
+  wayland.windowManager.hyprland.settings.bindm = [
+    # Scroll through existing workspaces
+    # "${mainMod}, mouse_down, workspace, e+1"
+    # "${mainMod}, mouse_up, workspace, e-1"
+    # Move/Resize windows with mainMod + LMB/RMB and dragging
+    "${mainMod}, mouse:272, movewindow"
+
+    #TODO: fix this resize window option doesn't exist
+    "${mainMod}, mouse:273, resizewindow"
+    #
+  ];
   wayland.windowManager.hyprland.settings.bind = [
+    "${mainMod}, mouse_down, workspace, e+1"
+    "${mainMod}, mouse_up, workspace, e-1"
     "${mainMod}, Q, exec, hyprctl dispatch killactive"
     "${mainMod}, V, exec, neovide"
     "${mainMod}, delete, exit"
@@ -38,10 +51,13 @@ in {
     "${mainMod}, ESCAPE, exec, pkill -x rofi ; rofi -show window"
     "${mainMod}, e, exec, pkill -x rofi ; rofi -show drun"
 
+    "SHIFT, J, exec, amixer set Master 15%-"
+    "SHIFT, K, exec, amixer set Master 15%+"
+
     # Audio controls
     ", F1, exec, amixer set Master toggle"
-    ", F2, exec, amixer set Master 20%-"
-    ", F3, exec, amixer set Master 20%+"
+    ", F2, exec, amixer set Master 15%-"
+    ", F3, exec, amixer set Master 15%+"
 
     ", XF86AudioMute, exec, amixer set Master toggle"
     ", XF86AudioMicMute, exec, amixer set Capture toggle"
@@ -112,15 +128,6 @@ in {
     # "${mainMod} SHIFT, k, movewindoworgroup, u"
     # "${mainMod} SHIFT, j, movewindoworgroup, d"
 
-    # Scroll through existing workspaces
-    "${mainMod}, mouse_down, workspace, e+1"
-    "${mainMod}, mouse_up, workspace, e-1"
-
-    # Move/Resize windows with mainMod + LMB/RMB and dragging
-    "${mainMod}, mouse:272, movewindow"
-    #TODO: fix this resize window option doesn't exist
-    # "${mainMod}, mouse:273, resizewindow"
-    #
     # Special workspaces (scratchpad)
     "${mainMod} ALT, S, movetoworkspacesilent, special"
     "${mainMod}, W, togglespecialworkspace"
