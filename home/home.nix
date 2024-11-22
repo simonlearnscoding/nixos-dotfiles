@@ -2,11 +2,13 @@
   pkgs,
   lib,
   inputs,
+  services,
   ...
 }: let
   username = "simon";
   homeDirectory = "/home/${username}";
 in {
+  # services.flatpak.enable = true;
   imports = [
     ./ags.nix
     ./user.nix
