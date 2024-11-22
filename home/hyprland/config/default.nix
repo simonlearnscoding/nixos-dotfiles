@@ -25,6 +25,7 @@ in {
        monitor=,preferred,auto,auto
        exec-once = nwg-dock-hyprland -d -hd 0
 
+      exec-once = ./../../scripts/battery-monitor.sh
       exec-once = hyprpanel
       exec-once = ags
        xwayland {
