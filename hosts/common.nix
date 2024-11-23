@@ -10,6 +10,7 @@
     ./../modules/stylix.nix
     ./../modules/printing.nix
     ./../modules/audio.nix
+    ./../modules/flatpak.nix
     ./../modules/bluetooth.nix
     ./../modules/sops.nix
     ./../modules/syncthing.nix

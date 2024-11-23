@@ -2,15 +2,22 @@
   pkgs,
   lib,
   inputs,
+  services,
   ...
 }: let
   username = "simon";
   homeDirectory = "/home/${username}";
 in {
+  home.packages = with pkgs; [
+    libnotify
+  ];
+
+  # services.flatpak.enable = true;
   imports = [
     ./ags.nix
     ./user.nix
     ./icons-theme.nix
+    ./lowBattery.nix
     ./wlsunset.nix
     # ./flatpak.nix
     ./wofi.nix

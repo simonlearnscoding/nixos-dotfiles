@@ -1,6 +1,11 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
+  environment.systemPackages = with pkgs; [
+    upower
+  ];
   services.power-profiles-daemon.enable = false;
   services.tlp = {
     enable = true;
