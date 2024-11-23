@@ -51,6 +51,7 @@
       windowrulev2 = float,class:^(io.gitlab.theevilskeleton.Upscaler)$ #Upscaler-Gtk
       windowrulev2 = float,class:^(pavucontrol)$
       windowrulev2 = float,class:^(blueman-manager)$
+      windowrulev2 = float,class:^(waypaper)$
       windowrulev2 = float,class:^(nm-applet)$
       windowrulev2 = float,class:^(nm-connection-editor)$
       windowrulev2 = float,class:^(org.kde.polkit-kde-authentication-agent-1)$
