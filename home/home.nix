@@ -17,6 +17,7 @@ in {
     ./ags.nix
     ./user.nix
     ./icons-theme.nix
+    ./monitor_servers.nix
     ./lowBattery.nix
     ./wlsunset.nix
     # ./flatpak.nix
