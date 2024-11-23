@@ -1,11 +1,14 @@
-{...}: {
+{
+  lib,
+  config,
+  ...
+}: {
   services.flatpak = {
     enable = true;
-    extraPkgs = pkgs:
-      with pkgs; [
-        flatpak
-        gnome3.gnome-software
-        gnome3.gnome-software-plugin-flatpak
-      ];
   };
+
+  environment.variables.XDG_DATA_DIRS = lib.mkForce [
+    "/var/lib/flatpak/exports/share"
+    "~/.local/share/flatpak/exports/share"
+  ];
 }
