@@ -4,6 +4,5 @@
     slack
     whatsapp-for-linux
     # webcord
-    vesktop
   ];
 }

@@ -1,8 +1,14 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    (pkgs.writeShellScriptBin "vesktop" ''
+    vesktop
+    (pkgs.writeShellScriptBin "discord" ''
       #!${pkgs.bash}/bin/bash
-      exec discord "$@"
+      exec vesktop "$@"
     '')
   ];
+
+  home.file.".config/vesktop" = {
+    source = builtins.path {path = ./configfiles/vesktop;};
+    recursive = true;
+  };
 }
