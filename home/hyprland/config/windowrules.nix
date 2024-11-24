@@ -16,7 +16,7 @@
       windowrulev2 = opacity 0.80 0.80,class:^(code-url-handler)$
       windowrulev2 = opacity 0.95 0.90,class:^(kitty)$
       windowrulev2 = opacity 0.95 0.90,class:^(neovide)$
-      windowrulev2 = opacity 0.85 0.85,class:^(org.gnome.Nautilus)$
+      windowrulev2 = opacity 0.80 0.80,class:^(org.gnome.Nautilus)$
       windowrulev2 = opacity 0.80 0.80,class:^(org.kde.ark)$
       windowrulev2 = opacity 0.80 0.80,class:^(nwg-look)$
       windowrulev2 = opacity 0.80 0.80,class:^(qt5ct)$
