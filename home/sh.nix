@@ -21,6 +21,7 @@
     cadd = "zoxide add";
     cdadd = "zoxide add";
     t = "task";
+    tt = "taskwarrior-tui";
     td = "task done";
     ta = "task add";
     tm = "task modify";
