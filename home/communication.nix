@@ -3,6 +3,7 @@
     telegram-desktop
     slack
     whatsapp-for-linux
-    webcord
+    # webcord
+    vesktop
   ];
 }

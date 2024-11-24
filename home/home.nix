@@ -16,6 +16,7 @@ in {
   imports = [
     ./ags.nix
     ./user.nix
+    ./discord.nix
     ./icons-theme.nix
     ./monitor_servers.nix
     ./lowBattery.nix
@@ -26,7 +27,7 @@ in {
     # ./sops.nix
     ./taskwarrior.nix
     ./nwg-dock.nix
-    ./music-production.nix
+    # ./music-production.nix
     ./info-fetchers.nix
     ./development/default.nix
     ./browser.nix
