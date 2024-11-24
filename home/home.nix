@@ -17,6 +17,7 @@ in {
     ./ags.nix
     ./user.nix
     ./discord.nix
+    ./spotify.nix
     ./icons-theme.nix
     ./monitor_servers.nix
     ./lowBattery.nix
