@@ -9,6 +9,7 @@
     ./../modules/xserver.nix
     ./../modules/stylix.nix
     ./../modules/printing.nix
+    ./../modules/extraHosts.nix
     ./../modules/audio.nix
     ./../modules/flatpak.nix
     ./../modules/bluetooth.nix
