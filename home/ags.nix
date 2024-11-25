@@ -4,7 +4,7 @@
     ags
   ];
 
-  home.file.".config/ags/" = {
+  home.file.".config/ags" = {
     source = builtins.path {path = ./configfiles/ags;};
     recursive = true;
   };
