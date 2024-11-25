@@ -3,6 +3,11 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     stylix = {
@@ -23,6 +28,7 @@
   outputs = {
     self,
     nixpkgs,
+    spicetify-nix,
     nixpkgs-unstable,
     home-manager,
     ...
@@ -63,6 +69,7 @@
         pkgs = pkgsFor "x86_64-linux";
         modules = [
           ./home/home.nix
+          spicetify-nix.homeManagerModules.default
         ];
         extraSpecialArgs = {
           inherit inputs;
