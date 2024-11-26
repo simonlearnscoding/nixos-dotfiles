@@ -8,7 +8,8 @@
     mkdir = "mkdir -p";
     l = "eza --icons";
     ls = "eza --icons";
-
+    fl = "y";
+    lf = "y";
     ll = "eza -lha --icons=auto --sort=name --group-directories-first";
     c = "z";
     lg = "ls | grep";
@@ -59,10 +60,18 @@ in {
 
   programs.fish.enable = false;
 
-  programs.zsh.initExtra = "
-  source ~/.p10k.zsh
-  krabby random 
-  ";
+  programs.zsh.initExtra = ''
+      source ~/.p10k.zsh
+      krabby random
+    function y() {
+    	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+    	yazi "$@" --cwd-file="$tmp"
+    	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+    		builtin cd -- "$cwd"
+    	fi
+    	rm -f -- "$tmp"
+    }
+  '';
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -113,6 +122,7 @@ in {
     kitty
     bat
     trash-cli
+    yazi
     zoxide
   ];
 }
