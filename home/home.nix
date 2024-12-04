@@ -10,7 +10,13 @@
 in {
   home.packages = with pkgs; [
     libnotify
+    jetbrains.webstorm
   ];
+
+  programs.jetbrains-remote = {
+    enable = true;
+    ides = [pkgs.jetbrains.webstorm];
+  };
 
   # services.flatpak.enable = true;
   imports = [
