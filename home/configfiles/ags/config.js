@@ -1,4 +1,11 @@
 const birthDate = new Date("1994-12-31T00:00:00Z"); // Your birth date
+// Import necessary AGS modules
+const { exec } = ags.util;
+
+// Define the script you want to run
+const scriptToRun =
+  "/home/simon/nixos-dotfiles/home/scripts/start_work_windu.sh"; // Replace with the path to your script
+
 const getCurrentDayPercentage = () => {
   const now = new Date();
   const currentDay = now.getDate(); // Current day of the month
@@ -14,9 +21,6 @@ const getCurrentMonthName = () => {
   const now = new Date();
   return now.toLocaleString("default", { month: "long" }); // Get month name (e.g., January, February)
 };
-
-// Create a Variable to hold the current month name
-const currentMonth = Variable({ value: "nov" });
 
 // Create a Variable to hold the calculated age
 const age = Variable("", {
@@ -67,13 +71,12 @@ const CenterWidget = (/** @type {number} */ monitor) =>
         hpack: "center",
         label: getCurrentMonthName(), // Bind the current month to the label
       }),
+
       endWidget: Widget.LevelBar({
         css: `
           background-color: #1f1d2e; /* Background of the bar */
           border-radius: 8px;       /* Round corners of the bar */
-          block {                  /* Style the filled portion */
-            background-color: #4caf50; /* Green fill for progress */
-          }
+          color: #4caf50; /* Green fill for progress */
         `,
         maxValue: 100,
         minValue: 0,
@@ -82,7 +85,35 @@ const CenterWidget = (/** @type {number} */ monitor) =>
     }),
   });
 
-// Configure the application to display both widgets
+// Create a widget to trigger the script on click
+
+const ScriptTriggerWidget = (/** @type {number} */ monitor) =>
+  Widget.Window({
+    monitor,
+    name: `scriptTrigger${monitor}`,
+    css: "background-color: rgba(255, 0, 0, 0.5);", // Temporary red background for visibility
+    anchor: ["top", "right"],
+    exclusivity: "exclusive",
+    layer: "bottom", // Ensure it's on top of other widgets
+    child: Widget.Label({
+      css: `
+          font-size: 24px;
+          font-weight: bold;
+          color: #ffffff;
+          padding: 8px;
+          border: 2px solid #4caf50;
+          border-radius: 8px;
+          cursor: pointer;
+        `,
+      hpack: "center",
+      label: "Run Script", // Text displayed on the widget
+      // on_click: () => {
+      //   console.log("Executing script:", scriptToRun); // Debugging log
+      //   exec(scriptToRun); // Execute the script on click
+      // },
+    }),
+  });
+
 App.config({
-  windows: [Bar(0), CenterWidget(0)],
+  windows: [Bar(0), CenterWidget(0), ScriptTriggerWidget(0)],
 });
