@@ -3,3 +3,4 @@ tags
 /result
 env.nix
 default-blocked-hosts.nix
+flake.lock
