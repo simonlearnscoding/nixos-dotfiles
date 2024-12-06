@@ -26,7 +26,7 @@ in {
     ./hyprpanel.nix
     ./spotify.nix
     ./icons-theme.nix
-    ./monitor_servers.nix
+    #./monitor_servers.nix
     ./lowBattery.nix
     ./wlsunset.nix
     # ./flatpak.nix
