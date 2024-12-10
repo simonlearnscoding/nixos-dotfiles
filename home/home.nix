@@ -10,6 +10,7 @@
 in {
   home.packages = with pkgs; [
     libnotify
+    ffmpeg
     jetbrains.webstorm
   ];
 
@@ -24,6 +25,7 @@ in {
     ./user.nix
     ./discord.nix
     ./hyprpanel.nix
+    ./obs-studio.nix
     ./spotify.nix
     ./icons-theme.nix
     #./monitor_servers.nix
