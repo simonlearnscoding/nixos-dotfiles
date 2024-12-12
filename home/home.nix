@@ -11,7 +11,7 @@ in {
   home.packages = with pkgs; [
     libnotify
     ffmpeg
-    jetbrains.webstorm
+    # jetbrains.webstorm
   ];
 
   programs.jetbrains-remote = {
