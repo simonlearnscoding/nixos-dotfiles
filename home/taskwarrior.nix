@@ -11,8 +11,10 @@
   # programs.taskwarrior.colorTheme = "solarized-dark-256";
 
   home.file.".taskrc" = {
-    source = builtins.path {path = ./configfiles/.taskrc;};
+    source = ./configfiles/.taskrc;
+    target = "${config.xdg.configHome}/.taskrc";
   };
+
   # programs.taskwarrior = {
   # enable = true;
 
