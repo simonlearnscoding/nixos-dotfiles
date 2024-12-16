@@ -35,6 +35,8 @@
     ./../modules/devshells.nix
   ];
 
+  virtualisation.waydroid.enable = true;
+
   environment.systemPackages = [
     pkgs.power-profiles-daemon
   ];
