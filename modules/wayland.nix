@@ -1,5 +1,5 @@
 {
-  inputs,
+  lib,
   pkgs,
   ...
 }: {
@@ -12,4 +12,9 @@
       # pkgs.xdg-desktop-portal-gtk
     ];
   };
+
+  environment.variables.XDG_DATA_DIRS = lib.mkForce [
+    "/var/lib/flatpak/exports/share"
+    "~/.local/share/flatpak/exports/share"
+  ];
 }
