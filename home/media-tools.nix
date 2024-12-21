@@ -7,12 +7,12 @@
   home.packages = with pkgs; [
     syncthing
     mpv
-    qutebrowser  # Minimal, keyboard-focused web browser
-    zathura      # PDF viewer
-    imv          # Lightweight image viewer
-    xdg-utils    # Ensures basic XDG functionality
-    viewnior     # Image viewer
-    audacious    # Audio player
+    qutebrowser # Minimal, keyboard-focused web browser
+    zathura # PDF viewer
+    imv # Lightweight image viewer
+    xdg-utils # Ensures basic XDG functionality
+    viewnior # Image viewer
+    audacious # Audio player
   ];
 
   # Enable XDG MIME application settings
@@ -20,12 +20,12 @@
 
   # Define default applications for file types
   xdg.mimeApps.defaultApplications = {
-    "video/*" = ["mpv.desktop"];          # Default video player
-    "audio/*" = ["audacious.desktop"];    # Default audio player
-    "image/*" = ["viewnior.desktop"];     # Default image viewer
+    "video/*" = ["mpv.desktop"]; # Default video player
+    "audio/*" = ["audacious.desktop"]; # Default audio player
+    "image/*" = ["viewnior.desktop"]; # Default image viewer
     "application/pdf" = ["zathura.desktop"]; # Default PDF viewer
     "text/html" = ["firefox.desktop"]; # Default browser for HTML links
-    "x-scheme-handler/http" = ["firefox.desktop"];  # For HTTP links
+    "x-scheme-handler/http" = ["firefox.desktop"]; # For HTTP links
     "x-scheme-handler/https" = ["firefox.desktop"]; # For HTTPS links
   };
 
