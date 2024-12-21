@@ -1,3 +1,4 @@
+# AMD GPU ONLY
 { config, pkgs, ... }:
 
 {
