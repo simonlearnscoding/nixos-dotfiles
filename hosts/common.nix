@@ -16,9 +16,8 @@
     ./../modules/sops.nix
     ./../modules/syncthing.nix
     ./../modules/gc.nix
-    ./../modules/gdm.nix
     ./../modules/wayland.nix
-    ./../modules/hyprland.nix
+    ./../modules/hyprlandWM.nix
     ./../modules/swap.nix
     ./../modules/fonts.nix
     ./../modules/environment-variables.nix
