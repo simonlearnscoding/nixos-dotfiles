@@ -10,7 +10,7 @@
   ];
   # programs.taskwarrior.colorTheme = "solarized-dark-256";
 
-  home.file.".taskrc" = ./configfiles/taskrc;
+  # home.file.".taskrc" = ./configfiles/taskrc;
 
   # programs.taskwarrior = {
   # enable = true;
