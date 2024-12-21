@@ -7,7 +7,6 @@
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
   services.openssh.enable = true;
-  networking.firewall.enable = false;
 
   environment.systemPackages = with pkgs; [
     home-manager

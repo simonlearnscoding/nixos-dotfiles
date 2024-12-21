@@ -3,6 +3,8 @@
   pkgs,
   ...
 }: {
+  networking.firewall.enable = false;
+  networking.networkmanager.enable = true;
   environment.systemPackages = with pkgs; [
     # `iw` - A command-line tool for configuring and managing WiFi devices.
     iw
