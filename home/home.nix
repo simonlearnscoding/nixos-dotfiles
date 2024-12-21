@@ -11,13 +11,7 @@ in {
   home.packages = with pkgs; [
     libnotify
     ffmpeg
-    # jetbrains.webstorm
   ];
-
-  programs.jetbrains-remote = {
-    enable = true;
-    ides = [pkgs.jetbrains.webstorm];
-  };
 
   # services.flatpak.enable = true;
   imports = [
