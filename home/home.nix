@@ -11,6 +11,7 @@ in {
   home.packages = with pkgs; [
     libnotify
     ffmpeg
+    teams-for-linux
   ];
 
   # services.flatpak.enable = true;
