@@ -17,4 +17,9 @@
     Type=Application               # Type of the desktop entry
     DesktopNames=Hyprland          # Name associated with this desktop session
   '';
+
+  # Remove decorations for QT applications
+  environment.sessionVariables = {
+    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+  };
 }

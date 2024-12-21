@@ -107,6 +107,19 @@ in {
     "${mainMod}, 8, workspace, 8"
     "${mainMod}, 9, workspace, 9"
     "${mainMod}, 0, workspace, 10"
+
+    # Move the focused application to the corresponding workspace
+    "${mainMod}Shift, 1, movetoworkspace, 1"
+    "${mainMod}Shift, 2, movetoworkspace, 2"
+    "${mainMod}Shift, 3, movetoworkspace, 3"
+    "${mainMod}Shift, 4, movetoworkspace, 4"
+    "${mainMod}Shift, 5, movetoworkspace, 5"
+    "${mainMod}Shift, 6, movetoworkspace, 6"
+    "${mainMod}Shift, 7, movetoworkspace, 7"
+    "${mainMod}Shift, 8, movetoworkspace, 8"
+    "${mainMod}Shift, 9, movetoworkspace, 9"
+    "${mainMod}Shift, 0, movetoworkspace, 10"
+
     "${mainMod} CTRL, j, workspace, r+1"
     "${mainMod} CTRL, k, workspace, r-1"
     "${mainMod} CTRL, right, workspace, r+1"
