@@ -52,8 +52,8 @@ in {
     "${mainMod}, ESCAPE, exec, pkill -x rofi ; rofi -show window"
     "${mainMod}, e, exec, pkill -x rofi ; rofi -show drun"
 
-    "ALT, SHIFT, J, exec, amixer set Master 15%-"
-    "ALT, SHIFT, K, exec, amixer set Master 15%+"
+    "ALT SHIFT, J, exec, amixer set Master 15%-"
+    "ALT SHIFT, K, exec, amixer set Master 15%+"
 
     # Audio controls
     ", F1, exec, amixer set Master toggle"
