@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.gdm.enable = false;
   # Excluding some GNOME applications from the default install
   environment.gnome.excludePackages =
     (with pkgs; [
