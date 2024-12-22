@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   # Include user-specific packages via Home Manager
   home.packages = with pkgs; [
     hyprpanel
@@ -8,8 +12,21 @@
     slurp # Selection tool for Wayland, often used with grim to capture selected screen regions
     wl-clip-persist # Clipboard manager for Wayland, keeps clipboard content after the app closes
     wf-recorder # Screen recording tool for Wayland, compatible with Hyprland
+    hyprcursor
+    inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default # Rose Pine cursor theme for Hyprland
     wl-clipboard
     glib # Core library providing data structure handling, portability, and utility functions
+
+    # some hyprpanel dependencies
+    # bluez-utils #appearently doesnt exist?
+    bluez
+    dart-sass
+    gvfs
+    libgtop
+    python3Packages.dbus-python
+
+    #gnome panel because hyprpanel is buggy af for now
+    nwg-panel
   ];
 
   # Configure the Dunst notification daemon to start automatically with the user session

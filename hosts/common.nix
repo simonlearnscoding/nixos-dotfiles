@@ -6,7 +6,6 @@
   ...
 }: {
   imports = [
-    ./../modules/xserver.nix
     ./../modules/stylix.nix
     ./../modules/printing.nix
     ./../modules/extraHosts.nix
@@ -21,7 +20,7 @@
     ./../modules/swap.nix
     ./../modules/fonts.nix
     ./../modules/environment-variables.nix
-    ./../modules/gnome.nix
+    # ./../modules/gnome.nix
     ./../modules/energy-management.nix
     ./../modules/hardware.nix
     ./../modules/bootloader.nix

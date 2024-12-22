@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  pkgs-unstable,
   ...
 }: let
   myAliases = {
@@ -39,12 +40,16 @@ in {
   # programs.stylix.targets.kitty.enable = true;
   programs.kitty = {
     enable = true;
+    package = pkgs-unstable.kitty;
     theme = "Rosé Pine";
     settings = {
       enable_audio_bell = false;
       font_family = "JetBrainsMono Nerd Font";
       # background_opacity = "0.9";
       background_blur = "12";
+      cursor_trail = "3";
+      cursor_trail_start_threshold = "2";
+      cursor_trail_decay = "0.1 0.4";
       window_padding_width = "8";
       # window_padding_width = 8;
     };
@@ -117,7 +122,7 @@ in {
     pokemon-colorscripts-mac
     neofetch
     ripgrep
-    kitty
+    pkgs-unstable.kitty
     bat
     trash-cli
     yazi

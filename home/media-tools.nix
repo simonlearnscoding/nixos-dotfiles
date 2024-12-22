@@ -10,6 +10,7 @@
     qutebrowser # Minimal, keyboard-focused web browser
     zathura # PDF viewer
     imv # Lightweight image viewer
+    bluetuith
     xdg-utils # Ensures basic XDG functionality
     viewnior # Image viewer
     audacious # Audio player

@@ -2,9 +2,12 @@
 {pkgs, ...}: {
   # ...
 
-  # home.packages = with pkgs; [
-  #   cinnamon.nemo
-  # ];
+  home.packages = with pkgs; [
+    gtk3
+    gtk4
+    gnome-themes-extra
+    whitesur-gtk-theme
+  ];
   gtk = {
     enable = true;
 

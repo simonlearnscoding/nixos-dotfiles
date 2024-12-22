@@ -38,12 +38,12 @@ in {
     ./browser.nix
     ./hyprland/default.nix
     #./atuin.nix // this is for sh history or something
-    # TODO: only load this if gnome is on
-    ./gnome.nix
+    # ./gnome.nix
     #./neovim.nix
     ./sh.nix
     ./communication.nix
-    ./ulauncher.nix
+    # not using ulauncher anymore
+    # ./ulauncher.nix
     ./media-tools.nix
     ./system-utilities.nix
   ];

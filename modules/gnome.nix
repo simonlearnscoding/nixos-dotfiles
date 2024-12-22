@@ -1,6 +1,17 @@
 {pkgs, ...}: {
   services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.displayManager.gdm.enable = false;
+  services.xserver.displayManager.gdm.enable = true;
+
+  # enable xserver stuff because I think
+  # gnome needs it to work properly
+  stylix.targets.gnome.enable = true;
+  services.xserver.videoDrivers = ["amdgpu"];
+  services.xserver.enable = true;
+  services.xserver.xkb = {
+    layout = "us";
+    variant = "";
+  };
+  # services.ly.enable = true;
   # Excluding some GNOME applications from the default install
   environment.gnome.excludePackages =
     (with pkgs; [

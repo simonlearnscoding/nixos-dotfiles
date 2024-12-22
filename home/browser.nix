@@ -1,6 +1,6 @@
 {pkgs, ...}: {
+  # Install packages
   home.packages = with pkgs; [
-    brave
     firefox
     google-chrome
   ];

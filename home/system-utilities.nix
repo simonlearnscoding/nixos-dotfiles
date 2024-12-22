@@ -6,7 +6,7 @@
     xdg-utils
     libsecret
     brightnessctl
-    gnome.gnome-keyring
-    gnome.nautilus
+    gnome-keyring
+    nautilus
   ];
 }

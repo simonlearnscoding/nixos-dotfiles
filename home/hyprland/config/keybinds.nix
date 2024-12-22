@@ -33,8 +33,10 @@ in {
     "${mainMod}, mouse_up, workspace, e-1"
     "${mainMod}, Q, exec, hyprctl dispatch killactive"
     "${mainMod}, V, exec, neovide"
+    "${mainMod}, D, overview:toggle"
     "${mainMod}, delete, exit"
     "${mainMod}, G, togglefloating"
+    "${mainMod}, W, exec, waypaper"
     "${mainMod}, M, fullscreen"
     "${mainMod}, Return, exec, /home/simon/nixos-dotfiles/home/scripts/wofi.sh"
     "${mainMod}, Tab, exec, /home/simon/nixos-dotfiles/home/scripts/wofi.sh"
@@ -144,7 +146,7 @@ in {
 
     # Special workspaces (scratchpad)
     "${mainMod} ALT, S, movetoworkspacesilent, special"
-    "${mainMod}, W, togglespecialworkspace"
+    # "${mainMod}, S, togglespecialworkspace"
     # "${mainMod}, SHIFT, W, movetoworkspace, special"
 
     # Toggle Layout

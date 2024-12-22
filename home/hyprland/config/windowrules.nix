@@ -60,7 +60,6 @@
                   windowrulev2 = float,class:^(org.kde.polkit-kde-authentication-agent-1)$
                   windowrulev2 = float,class:^(org.kde.dolphin)$
                   windowrulev2 = size 60%,class:^(org.kde.dolphin)$
-                  windowrulev2 = float,class:^(WebCord)$ #WebCord-Electron
                   # windowrulev2 = pin ,class:^(WebCord)$ #WebCord-Electron
                   windowrulev2 = float, workspace:specialworkspace
                   windowrulev2 = float,class:^(Spotify)$

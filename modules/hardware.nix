@@ -1,6 +1,3 @@
-# AMD GPU ONLY
-{ config, pkgs, ... }:
-
 {
   # Enable virtual input devices support
   hardware.uinput.enable = true;
@@ -12,7 +9,6 @@
   hardware = {
     opengl = {
       enable = true;             # Enable OpenGL for graphics rendering
-      driSupport = true;         # Enable Direct Rendering Infrastructure (DRI) support
       driSupport32Bit = true;    # Enable 32-bit DRI support for compatibility with certain applications
     };
   };
