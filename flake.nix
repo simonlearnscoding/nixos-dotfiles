@@ -71,10 +71,10 @@
     };
 
     homeConfigurations = {
-      simon = home-manager.lib.homeManagerConfiguration {
+      pc = home-manager.lib.homeManagerConfiguration {
         pkgs = pkgsFor "x86_64-linux";
         modules = [
-          ./home/home.nix
+          ./home/hosts/pc.nix
           spicetify-nix.homeManagerModules.default
         ];
         extraSpecialArgs = {
