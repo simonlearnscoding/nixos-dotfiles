@@ -30,7 +30,7 @@
   ];
 
   home.file.".config/nwg-panel" = {
-    source = builtins.path {path = ./configfiles/nwg-panel;};
+    source = builtins.path {path = ./../configfiles/nwg-panel;};
     recursive = true;
   };
 
