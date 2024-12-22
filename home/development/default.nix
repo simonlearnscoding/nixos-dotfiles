@@ -16,7 +16,7 @@
     tealdeer
     nixd
     monolith
-    mongodb-compass
+    (pkgs-unstable.mongodb-compass)
     fd
     tokei
     mdcat
