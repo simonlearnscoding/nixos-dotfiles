@@ -1,9 +1,4 @@
 {pkgs, ...}: {
-  # removing this crashes ags for some reason?
-  environment.systemPackages = with pkgs; [
-    hyprland
-  ];
-
   # services.xserver.displayManager.sddm.enable = true;
   programs.hyprland.enable = true; # Enable the Hyprland window manager
 
