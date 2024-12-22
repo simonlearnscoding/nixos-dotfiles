@@ -3,13 +3,12 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
-
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     stylix = {
       url = "github:danth/stylix/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -36,6 +35,9 @@
     pkgsFor = system:
       import nixpkgs {
         inherit system;
+        config = {
+          allowUnfree = true;
+        };
         overlays = [
           inputs.hyprpanel.overlay # Adding HyprPanel overlay here
         ];
@@ -44,6 +46,9 @@
     pkgsForUnstable = system:
       import nixpkgs-unstable {
         inherit system;
+        config = {
+          allowUnfree = true;
+        };
       };
   in {
     nixosConfigurations.pc = nixpkgs.lib.nixosSystem {
