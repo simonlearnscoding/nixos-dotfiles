@@ -9,13 +9,9 @@
     pass-git-helper
     xh
     progress
-    noti
     topgrade
-    gitkraken
     tealdeer
     nixd
-    monolith
-    (pkgs-unstable.mongodb-compass)
     fd
     tokei
     mdcat
@@ -26,7 +22,6 @@
     tre-command
     felix-fm
     cmatrix
-    cava
     figlet
     python3
     nodejs_20
@@ -35,7 +30,6 @@
     gh
     git
     github-copilot-cli
-    neovide
     lazygit
     zsh
     oh-my-zsh

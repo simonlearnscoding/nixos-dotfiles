@@ -71,6 +71,28 @@
     };
 
     homeConfigurations = {
+      laptop = home-manager.lib.homeManagerConfiguration {
+        pkgs = pkgsFor "x86_64-linux";
+        modules = [
+          ./home/hosts/laptop.nix
+          spicetify-nix.homeManagerModules.default
+        ];
+        extraSpecialArgs = {
+          inherit inputs;
+          pkgs-unstable = pkgsForUnstable "x86_64-linux";
+        };
+      };
+
+      server = home-manager.lib.homeManagerConfiguration {
+        pkgs = pkgsFor "x86_64-linux";
+        modules = [
+          ./home/hosts/server.nix
+        ];
+        extraSpecialArgs = {
+          inherit inputs;
+          pkgs-unstable = pkgsForUnstable "x86_64-linux";
+        };
+      };
       pc = home-manager.lib.homeManagerConfiguration {
         pkgs = pkgsFor "x86_64-linux";
         modules = [
