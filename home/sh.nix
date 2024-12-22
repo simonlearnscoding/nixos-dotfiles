@@ -102,8 +102,6 @@ in {
 
   home.packages = with pkgs; [
     krabby
-    taskwarrior3
-    taskwarrior-tui
     fzf
     jq
     eza

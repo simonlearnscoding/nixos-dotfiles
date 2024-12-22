@@ -11,13 +11,8 @@ in {
   home.packages = with pkgs; [
     libnotify
     ffmpeg
-    jetbrains.webstorm
+    teams-for-linux
   ];
-
-  programs.jetbrains-remote = {
-    enable = true;
-    ides = [pkgs.jetbrains.webstorm];
-  };
 
   # services.flatpak.enable = true;
   imports = [

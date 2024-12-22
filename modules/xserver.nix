@@ -4,7 +4,7 @@
   ...
 }: {
   # Configure keymap in X11
-  services.xserver.videoDrivers = ["amd"];
+  services.xserver.videoDrivers = ["amdgpu"];
 
   services.xserver.enable = true;
   services.xserver.xkb = {
