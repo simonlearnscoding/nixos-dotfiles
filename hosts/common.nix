@@ -6,41 +6,22 @@
   ...
 }: {
   imports = [
-    ./../modules/stylix.nix
-    ./../modules/printing.nix
-    ./../modules/extraHosts.nix
-    ./../modules/audio.nix
-    ./../modules/flatpak.nix
-    ./../modules/bluetooth.nix
     ./../modules/sops.nix
     ./../modules/syncthing.nix
     ./../modules/gc.nix
-    ./../modules/wayland.nix
-    ./../modules/hyprlandWM.nix
     ./../modules/swap.nix
     ./../modules/fonts.nix
     ./../modules/environment-variables.nix
     # ./../modules/gnome.nix
-    ./../modules/energy-management.nix
     ./../modules/hardware.nix
     ./../modules/bootloader.nix
     ./../modules/networking.nix
-    ./../modules/light.nix
     ./../modules/gnupg.nix
     ./../modules/user.nix
     ./../modules/system.nix
     ./../modules/locale.nix
     ./../modules/devshells.nix
   ];
-
-  virtualisation.waydroid.enable = true;
-
-  environment.systemPackages = [
-    pkgs.power-profiles-daemon
-  ];
-  programs.zsh.enable = true;
-  programs.gamemode.enable = true;
-  programs.steam.enable = true;
 
   environment.sessionVariables = {
     FLAKE = "/home/simon/nixos-dotfiles";

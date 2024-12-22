@@ -8,6 +8,7 @@
     #     inputs.xremap-flake.nixosModules.default
     ./hardware-configuration.nix
     ./../common.nix
+    ./../gui.nix
   ];
 
   networking.hostName = "simon-pc";

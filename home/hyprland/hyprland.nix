@@ -29,6 +29,11 @@
     nwg-panel
   ];
 
+  home.file.".config/nwg-panel" = {
+    source = builtins.path {path = ./configfiles/nwg-panel;};
+    recursive = true;
+  };
+
   # Configure the Dunst notification daemon to start automatically with the user session
   # services.dunst.enable = true;
   #
