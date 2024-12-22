@@ -4,6 +4,9 @@
   lib,
   ...
 }: {
+  home.packages = with pkgs; [
+    wlsunset
+  ];
   services.wlsunset = {
     enable = true;
     # Switzerland's latitude and longitude
