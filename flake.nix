@@ -75,6 +75,7 @@
       specialArgs = {inherit inputs;};
       modules = [
         ./hosts/server/configuration.nix
+        inputs.stylix.nixosModules.stylix
       ];
     };
     homeConfigurations = {
