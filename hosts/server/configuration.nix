@@ -10,6 +10,7 @@
     ./../common.nix
   ];
 
+  programs.zsh.enable = true;
   networking.hostName = "simon-server";
   programs.gamemode.enable = true;
 
