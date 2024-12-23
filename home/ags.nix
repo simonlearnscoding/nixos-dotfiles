@@ -1,6 +1,6 @@
-{pkgs, ...}: {
+{pkgs-unstable, ...}: {
   # Include user-specific packages via Home Manager
-  home.packages = with pkgs; [
+  home.packages = with pkgs-unstable; [
     ags
   ];
 

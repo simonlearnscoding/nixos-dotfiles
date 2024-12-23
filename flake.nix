@@ -70,6 +70,13 @@
       ];
     };
 
+    nixosConfigurations.server = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux"; # Specify the system type here
+      specialArgs = {inherit inputs;};
+      modules = [
+        ./hosts/server/configuration.nix
+      ];
+    };
     homeConfigurations = {
       laptop = home-manager.lib.homeManagerConfiguration {
         pkgs = pkgsFor "x86_64-linux";
