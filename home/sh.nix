@@ -11,6 +11,7 @@
     ls = "eza --icons";
     fl = "y";
     lf = "y";
+    open = "xdg-open";
     ll = "eza -lha --icons=auto --sort=name --group-directories-first";
     c = "z";
     lg = "ls | grep";
@@ -37,6 +38,10 @@ in {
     enableZshIntegration = true;
   };
 
+  programs.ssh.extraConfig = ''
+    ServerAliveInterval 30
+    ServerAliveCountMax 3
+  '';
   # programs.stylix.targets.kitty.enable = true;
   programs.kitty = {
     enable = true;
@@ -66,16 +71,23 @@ in {
   programs.fish.enable = false;
 
   programs.zsh.initExtra = ''
-      source ~/.p10k.zsh
-      krabby random
-    function y() {
-    	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-    	yazi "$@" --cwd-file="$tmp"
-    	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-    		builtin cd -- "$cwd"
-    	fi
-    	rm -f -- "$tmp"
+        source ~/.p10k.zsh
+        krabby random
+
+
+    function fzf() {
+      local selected_file
+      selected_file=$(command fzf) || return
+      xdg-open "$selected_file"
     }
+      function y() {
+      	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+      	yazi "$@" --cwd-file="$tmp"
+      	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+      		builtin cd -- "$cwd"
+      	fi
+      	rm -f -- "$tmp"
+      }
   '';
   programs.zsh = {
     enable = true;

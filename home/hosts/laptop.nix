@@ -12,6 +12,13 @@ in {
     libnotify
     ffmpeg
     teams-for-linux
+
+    # trying to install bfme
+    wine64
+    # appearently I need these
+    cdrtools
+    libmpg123
+    gnutls
   ];
 
   # services.flatpak.enable = true;
@@ -54,12 +61,4 @@ in {
     inherit homeDirectory;
     stateVersion = "24.05";
   };
-
-  # Optionally, you can add your Neovim configuration here
-  #   xdg.configFile."nvim" = {
-  #     source = ./configfiles/nvim;
-  #   };
-  #   xdg.configFile."hypr" = {
-  #source = ./configfiles/hypr;
-  #     };
 }
