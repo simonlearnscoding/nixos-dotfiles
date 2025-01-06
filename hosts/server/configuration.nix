@@ -15,6 +15,7 @@ in {
 
   environment.systemPackages = with pkgs; [
     xorg.xauth
+    firefox
   ];
   networking.interfaces.enp1s0.ipv4.addresses = [
     {
