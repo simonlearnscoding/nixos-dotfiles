@@ -10,6 +10,7 @@ in {
     #     inputs.xremap-flake.nixosModules.default
     ./hardware-configuration.nix
     ./../common.nix
+    ./../serverstuff.nix
   ];
 
   networking.interfaces.enp1s0.ipv4.addresses = [
