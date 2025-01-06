@@ -14,7 +14,7 @@ in {
   ];
 
   environment.systemPackages = with pkgs; [
-    xauth
+    xorg.xauth
   ];
   networking.interfaces.enp1s0.ipv4.addresses = [
     {
