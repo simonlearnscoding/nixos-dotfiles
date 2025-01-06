@@ -26,13 +26,6 @@
     # theme = "catppuccin-macchiato";
   };
 
-  hardware = {
-    opengl = {
-      enable = true; # Enable OpenGL for graphics rendering
-      driSupport32Bit = true; # Enable 32-bit DRI support for compatibility with certain applications
-    };
-  };
-
   virtualisation.waydroid.enable = true;
   environment.systemPackages = [
     pkgs.power-profiles-daemon
