@@ -12,6 +12,8 @@ in {
     libnotify
     ffmpeg
     teams-for-linux
+    deluge
+    filezilla
   ];
 
   # services.flatpak.enable = true;

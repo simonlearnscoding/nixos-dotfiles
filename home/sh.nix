@@ -88,6 +88,8 @@ in {
       	fi
       	rm -f -- "$tmp"
       }
+
+        eval "$(direnv hook zsh)"
   '';
   programs.zsh = {
     enable = true;

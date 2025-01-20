@@ -12,9 +12,12 @@ in {
     libnotify
     ffmpeg
     teams-for-linux
-
+    deluge
     # trying to install bfme
+    direnv
     wine64
+    mongodb
+    mongodb-tools
     # appearently I need these
     cdrtools
     libmpg123
