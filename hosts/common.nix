@@ -27,6 +27,7 @@
     FLAKE = "/home/simon/nixos-dotfiles";
   };
 
+  programs.zsh.enable = true;
   hardware = {
     opengl = {
       enable = true; # Enable OpenGL for graphics rendering

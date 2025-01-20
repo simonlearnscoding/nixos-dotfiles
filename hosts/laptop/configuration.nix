@@ -14,7 +14,6 @@
   networking.hostName = "simon-laptop";
   programs.gamemode.enable = true;
   programs.steam.enable = true;
-  programs.zsh.enable = true;
   # environment.sessionVariables = {
   #   FLAKE = "/home/simon/.nixos";
   # };
