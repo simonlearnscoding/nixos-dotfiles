@@ -20,6 +20,7 @@ in {
     mongodb-tools
     # appearently I need these
     cdrtools
+    devenv
     libmpg123
     gnutls
   ];

@@ -7,6 +7,7 @@ in {
     ffmpeg
     syncthing
     unzip
+    devenv
     libsecret
   ];
 

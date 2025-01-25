@@ -12,6 +12,7 @@ in {
     libnotify
     ffmpeg
     teams-for-linux
+    devenv
   ];
 
   # services.flatpak.enable = true;
