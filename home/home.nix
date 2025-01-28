@@ -11,7 +11,6 @@ in {
   home.packages = with pkgs; [
     libnotify
     ffmpeg
-    teams-for-linux
     deluge
     filezilla
   ];
@@ -26,7 +25,6 @@ in {
     ./spotify.nix
     ./icons-theme.nix
     #./monitor_servers.nix
-    ./lowBattery.nix
     ./wlsunset.nix
     # ./flatpak.nix
     ./wofi.nix

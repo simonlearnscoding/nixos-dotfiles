@@ -1,21 +1,13 @@
-{
-  pkgs,
-  inputs,
-  pkgs-unstable,
-  ...
-}: {
+{ pkgs, lib, config, pkgs-unstable, ... }: {
+  # Common development tools for both desktop and server
   home.packages = with pkgs; [
     yarn
     pass-git-helper
     xh
     progress
-    noti
     topgrade
-    gitkraken
     tealdeer
     nixd
-    monolith
-    (pkgs-unstable.mongodb-compass)
     fd
     tokei
     mdcat
@@ -26,7 +18,6 @@
     tre-command
     felix-fm
     cmatrix
-    cava
     figlet
     python3
     nodejs_20
@@ -35,12 +26,20 @@
     gh
     git
     github-copilot-cli
-    neovide
     lazygit
     zsh
     oh-my-zsh
     sqlite
-  ];
+  ]
+  ++ lib.mkIf config.isDesktop (with pkgs; [
+    # Desktop-specific development tools
+    noti
+    gitkraken
+    monolith
+    (pkgs-unstable.mongodb-compass) # MongoDB GUI
+    cava
+    neovide
+  ]);
 
   programs.neovim = {
     defaultEditor = true;
@@ -64,20 +63,17 @@
 
       # For JavaScript/TypeScript
       nodePackages.typescript-language-server # TypeScript and JavaScript LSP
-      #typescript-language-server  # TypeScript and JavaScript LSP
       nodePackages.prettier # JavaScript/TypeScript formatter
       tailwindcss-language-server
 
       # For Lua
       lua-language-server # Lua LSP
       stylua # Lua code formatter
-      #     emmet_ls
       texlab
 
       # For Nix
       nixpkgs-fmt # Nix formatter
       alejandra
-      # nil
       nixd
     ];
   };

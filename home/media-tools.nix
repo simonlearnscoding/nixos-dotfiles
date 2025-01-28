@@ -5,9 +5,7 @@
 }: {
   # Install necessary applications
   home.packages = with pkgs; [
-    syncthing
     mpv
-    qutebrowser # Minimal, keyboard-focused web browser
     zathura # PDF viewer
     imv # Lightweight image viewer
     bluetuith
