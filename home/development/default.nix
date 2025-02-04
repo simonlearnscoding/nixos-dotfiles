@@ -40,6 +40,7 @@
     zsh
     oh-my-zsh
     sqlite
+    (import ./vscode-js-debug.nix {inherit pkgs;})
   ];
 
   programs.neovim = {
