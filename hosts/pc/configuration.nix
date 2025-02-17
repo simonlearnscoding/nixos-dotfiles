@@ -14,9 +14,9 @@
   networking.hostName = "simon-pc";
   programs.gamemode.enable = true;
   programs.steam.enable = true;
-  # environment.sessionVariables = {
-  #   FLAKE = "/home/simon/.nixos";
-  # };
+  # whats dbus?
+  services.dbus.enable = true;
+  programs.nix-ld.enable = true;
 
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 }

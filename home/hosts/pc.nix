@@ -10,9 +10,17 @@
 in {
   home.packages = with pkgs; [
     libnotify
+    blocky
     ffmpeg
+    bitwig-studio
+    zoom
+    postman
+    teamviewer
     teams-for-linux
+    jetbrains.webstorm
     devenv
+    direnv
+    anki
   ];
 
   # services.flatpak.enable = true;

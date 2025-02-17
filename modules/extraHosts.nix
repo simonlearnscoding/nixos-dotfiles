@@ -1,27 +1,61 @@
 {
   config,
-  lib,
   pkgs,
+  lib,
   ...
 }: let
-  blockedHostsFile = ./blocked-hosts.txt;
+  # Path to the hosts file
+  hostsFile = ./blocked-hosts.txt;
 
-  # Read the file and split it into a list of strings
-  blockedHosts =
-    if builtins.pathExists blockedHostsFile
-    then builtins.filter (line: line != "") (builtins.splitString "\n" (builtins.readFile blockedHostsFile))
-    else [];
+  # Read the contents of the hosts file
+  hostsContents = lib.strings.fileContents hostsFile;
+
+  # Function to clean up the hosts file
+  cleanHosts = lib.strings.concatMapStringsSep "\n" (
+    line: let
+      cleanedLine = lib.strings.removeSuffix "\n" (lib.strings.removeSuffix "\r" line);
+    in
+      if lib.strings.hasPrefix "#" cleanedLine || cleanedLine == ""
+      then ""
+      else cleanedLine
+  ) (lib.strings.splitString "\n" hostsContents);
+
+  # Encrypted password (replace with your encrypted string)
+  encryptedPassword = "U2FsdGVkX1+Ix8JxGh7jzbipzrnTyvVs+kqD3QE1nUM=";
+
+  # Script to unlock the file
+  unlockScript = pkgs.writeShellScriptBin "unlock-hosts" ''
+    echo "Enter the password to unlock ${hostsFile}:"
+    read -s password
+
+    # Decrypt the stored password
+    stored_password=$(echo "${encryptedPassword}" | ${pkgs.openssl}/bin/openssl enc -d -aes-256-cbc -a -k "encryption_key")
+
+    if [ "$password" == "$stored_password" ]; then
+      ${pkgs.toybox}/bin/toybox chattr -i ${hostsFile}
+      echo "File unlocked."
+    else
+      echo "Incorrect password."
+    fi
+  '';
 in {
-  options.blockedHosts = lib.mkOption {
-    type = lib.types.listOf lib.types.str;
-    description = "List of domains to block by redirecting to localhost.";
-    default = blockedHosts;
-  };
+  # Add the cleaned hosts to networking.extraHosts
+  networking.extraHosts = cleanHosts;
 
-  # Generate extraHosts based on blockedHosts
-  config.networking.extraHosts =
-    lib.concatMapStrings (host: ''
-      127.0.0.1 ${host}
-    '')
-    config.blockedHosts;
+  # Make the hosts file immutable on system activation
+  system.activationScripts.makeHostsImmutable = lib.mkAfter ''
+    echo "Setting immutable flag on ${hostsFile}..."
+    ${pkgs.toybox}/bin/toybox chattr +i ${hostsFile}
+    echo "Immutable flag set."
+  '';
+
+  # Restrict sudo access to the file
+  security.sudo.configFile = ''
+    # Prevent root from modifying the blocked-hosts.txt file
+    root ALL=(ALL) !/bin/chmod, !/bin/chown, !/bin/rm, !/bin/mv, !/bin/cp, !/bin/chattr ${hostsFile}
+    root ALL=(ALL) !${pkgs.toybox}/bin/toybox chattr ${hostsFile}
+  '';
+
+  # Add the unlock script and toybox to the system environment
+  environment.systemPackages = [pkgs.openssl unlockScript pkgs.toybox];
 }
