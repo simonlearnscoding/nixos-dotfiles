@@ -4,17 +4,18 @@
   pkgs,
   ...
 }: let
-  # Check if the file exists, and if not, use an empty list as a fallback
-  defaultBlockedHosts =
-    if builtins.pathExists ./default-blocked-hosts.nix
-    then import ./default-blocked-hosts.nix
-    else [
-    ];
+  blockedHostsFile = ./blocked-hosts.txt;
+
+  # Read the file and split it into a list of strings
+  blockedHosts =
+    if builtins.pathExists blockedHostsFile
+    then builtins.filter (line: line != "") (builtins.splitString "\n" (builtins.readFile blockedHostsFile))
+    else [];
 in {
   options.blockedHosts = lib.mkOption {
     type = lib.types.listOf lib.types.str;
     description = "List of domains to block by redirecting to localhost.";
-    default = defaultBlockedHosts;
+    default = blockedHosts;
   };
 
   # Generate extraHosts based on blockedHosts
