@@ -6,6 +6,7 @@
 }: {
   home.packages = with pkgs; [
     yarn
+    deno
     pass-git-helper
     xh
     progress
@@ -40,7 +41,6 @@
     zsh
     oh-my-zsh
     sqlite
-    (import ./vscode-js-debug.nix {inherit pkgs;})
   ];
 
   programs.neovim = {
@@ -56,29 +56,22 @@
       gnumake
       nodejs_20
       python3
+      # Add debugpy explicitly
+      python3Packages.debugpy
 
-      # For Python
-      pyright # Python LSP
-      black # Python code formatter
-      isort # Python import sorter
-      ruff # Python linter
-
-      # For JavaScript/TypeScript
-      nodePackages.typescript-language-server # TypeScript and JavaScript LSP
-      #typescript-language-server  # TypeScript and JavaScript LSP
-      nodePackages.prettier # JavaScript/TypeScript formatter
+      # Language servers and formatters
+      pyright
+      black
+      isort
+      ruff
+      nodePackages.typescript-language-server
+      nodePackages.prettier
       tailwindcss-language-server
-
-      # For Lua
-      lua-language-server # Lua LSP
-      stylua # Lua code formatter
-      #     emmet_ls
+      lua-language-server
+      stylua
       texlab
-
-      # For Nix
-      nixpkgs-fmt # Nix formatter
+      nixpkgs-fmt
       alejandra
-      # nil
       nixd
     ];
   };

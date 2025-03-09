@@ -1,6 +1,5 @@
 {
   description = "A very basic flake";
-
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
