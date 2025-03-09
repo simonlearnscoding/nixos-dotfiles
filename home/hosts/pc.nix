@@ -14,6 +14,7 @@ in {
     ffmpeg
     bitwig-studio
     zoom
+    redis
     postman
     teamviewer
     teams-for-linux
