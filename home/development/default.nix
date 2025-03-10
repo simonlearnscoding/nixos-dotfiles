@@ -12,11 +12,9 @@
     progress
     noti
     topgrade
-    gitkraken
     tealdeer
     nixd
     monolith
-    (pkgs-unstable.mongodb-compass)
     fd
     tokei
     mdcat
@@ -36,7 +34,6 @@
     gh
     git
     github-copilot-cli
-    neovide
     lazygit
     zsh
     oh-my-zsh

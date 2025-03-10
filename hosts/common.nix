@@ -25,7 +25,6 @@
     ./../modules/bootloader.nix
     ./../modules/networking.nix
     ./../modules/gnupg.nix
-    ./../modules/user.nix
     ./../modules/system.nix
     ./../modules/locale.nix
     ./../modules/devshells.nix
