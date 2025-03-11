@@ -24,6 +24,7 @@
     ./../modules/hardware.nix
     ./../modules/bootloader.nix
     ./../modules/networking.nix
+    ./../modules/user.nix
     ./../modules/gnupg.nix
     ./../modules/system.nix
     ./../modules/locale.nix
