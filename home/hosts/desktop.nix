@@ -21,7 +21,7 @@
     postman
     anki
     teamviewer
-    (pkgs-unstable.mongodb-compass)
+    # (pkgs-unstable.mongodb-compass)
     nwg-dock
   ];
 
