@@ -29,7 +29,6 @@
   imports = [
     ./../ags.nix
     ./../wlsunset.nix
-    ./../discord.nix
     ./../hyprpanel.nix
     ./../obs-studio.nix
     ./../spotify.nix
