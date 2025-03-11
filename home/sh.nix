@@ -6,6 +6,7 @@
 }: let
   myAliases = {
     nom = "nix";
+    oil = "./../scripts/oil.sh";
     mkdir = "mkdir -p";
     l = "eza --icons";
     ls = "eza --icons";
