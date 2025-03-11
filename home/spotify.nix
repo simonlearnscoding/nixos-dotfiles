@@ -3,15 +3,12 @@
   inputs,
   ...
 }: {
-  # home.packages = with pkgs; [
-  # spotify
-  # ];
   programs.spicetify = let
     spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
   in {
     enable = true;
-    spicetifyPackage = inputs.nixpkgs-unstable.legacyPackages."${pkgs.system}".spicetify-cli; # added this
-    enabledExtensions = with inputs.spicetify-nix.legacyPackages.${pkgs.system}.extensions; [
+    spicetifyPackage = inputs.nixpkgs-unstable.legacyPackages."${pkgs.system}".spicetify-cli;
+    enabledExtensions = with spicePkgs.extensions; [
       adblock
       hidePodcasts
       shuffle

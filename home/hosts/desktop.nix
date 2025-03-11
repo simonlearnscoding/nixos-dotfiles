@@ -31,7 +31,7 @@
     ./../wlsunset.nix
     ./../hyprpanel.nix
     ./../obs-studio.nix
-    ./../spotify.nix
+    # ./../spotify.nix
     ./../icons-theme.nix
     ./../wofi.nix
     ./../nwg-dock.nix
