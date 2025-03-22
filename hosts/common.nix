@@ -5,15 +5,21 @@
   inputs,
   ...
 }: {
-  virtualisation.docker = {
+  virtualisation.podman = {
     enable = true;
-    rootless = {
-      enable = true;
-      setSocketVariable = true;
-    };
+    dockerCompat = true;
+    defaultNetwork.settings.dns_enabled = true;
   };
+  # virtualisation.docker = {
+  #   enable = true;
+  #   rootless = {
+  #     enable = true;
+  #     setSocketVariable = true;
+  #   };
+  # };
 
   imports = [
+    ./../modules/user.nix
     ./../modules/sops.nix
     ./../modules/syncthing.nix
     ./../modules/gc.nix
@@ -48,5 +54,11 @@
     # Allow access to the eReader (idVendor=1f3a, idProduct=1006) for MTP
     ATTR{idVendor}=="1f3a", ATTR{idProduct}=="1006", MODE="0666"
   '';
+
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
+
+  # Add distrobox to the system packages so that it is installed and available.
+  environment.systemPackages = with pkgs; [
+    distrobox
+  ];
 }
