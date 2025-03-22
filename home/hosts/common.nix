@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  pkgs-unstable,
   inputs,
   ...
 }: {
@@ -9,8 +10,8 @@
     ffmpeg
     direnv
     devenv
-    mongodb
-    mongodb-tools
+    # pkgs-unstable.mongodb
+    # mongodb-tools
     redis
     unzip
     syncthing
