@@ -24,6 +24,7 @@
   imports = [
     # ./../sops.nix
     ./../info-fetchers.nix
+    ./../atuin.nix
     ./../taskwarrior.nix
     ./../system-utilities.nix
     ./../development/default.nix
