@@ -63,7 +63,6 @@ window {
   border: 0.16em solid @lavender;
   border-radius: 0.1em;
   background-color: @base;
-  animation: slideIn 0.5s ease-in-out both;
 }
 
 /* Slide In */
@@ -83,18 +82,20 @@ window {
   padding: 10px;
   border: none;
   background-color: @base;
-  animation: fadeIn 0.5s ease-in-out both;
 }
 
-/* Fade In */
 @keyframes fadeIn {
   0% {
     opacity: 0;
   }
-
   100% {
     opacity: 1;
   }
+}
+
+/* Apply a smooth bezier curve (e.g., ease-out with slight bounce) */
+#inner-box, #input, #text {
+  animation: fadeIn 0.3s cubic-bezier(0.2, 0.8, 0.4, 1) both;
 }
 
 /* Outer Box */
@@ -115,13 +116,27 @@ window {
 
 /* Input */
 #input {
-  margin: 5px 20px;
-  padding: 10px;
-  border: none;
-  border-radius: 0.1em;
+  margin: 4px 20px;
+  padding: 12px 16px; /* More padding for better touch/click */
+  border: 1px solid @surface1; /* Subtle border */
+  border-radius: 0.5em; /* Match window rounding */
   color: @text;
-  background-color: @base;
-  animation: fadeIn 0.5s ease-in-out both;
+  background-color: @surface0; /* Slightly lighter than base */
+  transition: border 0.2s ease-out;
+}
+
+#input:focus {
+  border-color: @lavender; /* Soft lavender focus */
+  outline: none; /* Remove default outline */
+}
+
+#input::placeholder {
+  color: @overlay1;
+  opacity: 0.7;
+}
+
+#input image {
+  color: @mauve; /* Better icon color */
 }
 
 #input image {
@@ -138,18 +153,60 @@ window {
   margin: 5px;
   border: none;
   color: @text;
-  animation: fadeIn 0.5s ease-in-out both;
 }
 
 #entry {
   background-color: @base;
+  border-radius: 0.3em; /* Rounded corners for entries */
+  transition: background-color 0.15s ease-out;
+}
+
+#entry:hover {
+  background-color: @surface0; /* Subtle hover */
+}
+
+#entry:selected {
+  /* background-color: @surface1; /* Better visibility */ */
+  border: none; /* Remove border (or keep if preferred) */
+}
+
+#entry:selected #text {
+  color: @mauve; /* Ensure readability */
+  font-weight: bold; /* Optional emphasis */
 }
 
 #entry arrow {
   border: none;
   color: @lavender;
 }
+#entry {
+  animation: fadeIn 0.2s ease-out both;
+  animation-delay: calc(var(--position) * 0.05s); /* Staggered delay */
+}
+#keyhint {
+  color: @overlay1;
+  font-size: 0.9em;
+  padding: 8px;
+}
+window {
+  background-color: transparentize(@base, 0.1); /* Slight transparency */
+}
 
+#inner-box, #outer-box {
+  background-color: transparentize(@base, 0.05);
+}
+#outer-box {
+  margin: 5px;
+  padding: 15px; /* More breathing room */
+}
+
+#inner-box {
+  padding: 0; /* Let entries handle padding */
+}
+
+#text {
+  margin: 8px 12px; /* Consistent spacing */
+}
 /* Selected Entry */
 #entry:selected {
   border: 0.11em solid @lavender;

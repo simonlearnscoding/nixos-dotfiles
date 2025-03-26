@@ -15,6 +15,8 @@
     viewnior # Image viewer
     audacious # Audio player
   ];
+  services.blueman-applet.enable = true;
+  fonts.fontconfig.enable = true;
 
   # Enable XDG MIME application settings
   xdg.mimeApps.enable = true;

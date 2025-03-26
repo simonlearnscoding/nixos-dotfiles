@@ -7,6 +7,7 @@
 }: {
   home.packages = with pkgs; [
     libnotify
+    sqlite
     ffmpeg
     direnv
     devenv
@@ -20,6 +21,8 @@
     deluge
     libmpg123
     gnutls
+
+    
   ];
 
   imports = [

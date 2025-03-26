@@ -14,6 +14,7 @@
   networking.hostName = "simon-pc";
   programs.gamemode.enable = true;
   programs.steam.enable = true;
+  # services.logmein-hamachi.enable = true;
   # whats dbus?
   services.dbus.enable = true;
   programs.nix-ld.enable = true;

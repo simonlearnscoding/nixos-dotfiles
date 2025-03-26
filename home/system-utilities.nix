@@ -4,8 +4,10 @@
     blueman
     unzip
     xdg-utils
+    networkmanagerapplet
+
     libsecret
-    brightnessctl
+    # do I still need this?
     gnome-keyring
     nautilus
   ];

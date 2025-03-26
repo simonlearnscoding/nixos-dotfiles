@@ -20,8 +20,8 @@
 
   imports = [
     ./../modules/user.nix
-    ./../modules/sops.nix
-    ./../modules/syncthing.nix
+    # ./../modules/sops.nix
+    # ./../modules/syncthing.nix
     ./../modules/gc.nix
     ./../modules/swap.nix
     ./../modules/fonts.nix

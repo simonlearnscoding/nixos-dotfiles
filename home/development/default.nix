@@ -38,6 +38,12 @@
     zsh
     oh-my-zsh
     sqlite
+
+    # for java development here
+    jdk17 # Java 17 for Spring Boot
+    gradle # Build tool
+    spring-boot-cli # Optional for project generation
+    maven # Build tool
   ];
 
   programs.neovim = {
@@ -47,6 +53,7 @@
     enable = true;
     package = pkgs-unstable.neovim-unwrapped;
     extraPackages = with pkgs-unstable; [
+      jdt-language-server
       sqlite
       ripgrep
       gcc

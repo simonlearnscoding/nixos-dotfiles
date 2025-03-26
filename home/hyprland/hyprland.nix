@@ -15,6 +15,12 @@
     hyprcursor
     inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default # Rose Pine cursor theme for Hyprland
     wl-clipboard
+    wlinhibit # User-space inhibitor
+    hyprlock # lock screen
+    hyprsunset # bluelight filter I think
+
+    hypridle # User-level service
+    hyprpicker # color picker I think
     glib # Core library providing data structure handling, portability, and utility functions
 
     # some hyprpanel dependencies

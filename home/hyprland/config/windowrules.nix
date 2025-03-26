@@ -6,6 +6,7 @@
                   windowrulev2 = opacity 0.98 0.85,class:^(firefox)$
                   windowrulev2 = opacity 1.00 0.90,class:^(Brave-browser)$
                   windowrulev2 = opacity, 0.85 0.85 class:^(Wofi)$
+                  windowrulev2 = opacity, 0.85 0.85 class:^(org.telegram.desktop)$
                   windowrulev2 = opacity, 0.85 0.85 class:^(wofi)$
             windowrulev2 = stayfocused, class:^(com\.bitwig\.BitwigStudi)$, xwayland:1
       #     windowrulev2 = noinitialfocus, class:^(com\.bitwig\.BitwigStudi)$, xwayland:1
@@ -67,7 +68,7 @@
                   windowrulev2 = float,class:^(slack)$
                   windowrulev2 = suppressevent maximize,            class:(neovide)
                   windowrulev2 = float, class:^nwg-dock$
-                  windowrulev2 = float,class:^(telegram-desktop)$
+                  # windowrulev2 = float,class:^(telegram-desktop)$
 
 
                   windowrulev2 = opacity 0.0 override,class:^(xwaylandvideobridge)$

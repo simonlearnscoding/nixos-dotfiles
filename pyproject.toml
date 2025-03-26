@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "nixos-dotfiles"
+version = "0.1.0"
+description = "NixOS configuration and dotfiles"
+authors = ["Your Name <you@example.com>"]
+package-mode = false  # This disables packaging; Poetry is only used for dependency management.
+
+[tool.poetry.dependencies]
+python = "^3.9"
+setproctitle = "^1.3.5"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

@@ -75,7 +75,6 @@ in {
         source ~/.p10k.zsh
         krabby random
 
-
     function fzf() {
       local selected_file
       selected_file=$(command fzf) || return
@@ -97,6 +96,16 @@ in {
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
+    
+    history = {
+      expireDuplicatesFirst = true;
+      ignoreDups = true;
+      ignoreSpace = true;
+      save = 20000;
+      size = 20000;
+      share = true;
+      path = "${config.xdg.dataHome}/zsh/history";
+    };
   };
 
   home.file.".p10k.zsh".source = ./p10k-config/p10k.zsh;

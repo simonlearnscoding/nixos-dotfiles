@@ -6,28 +6,40 @@
   ...
 }: {
   home.packages = with pkgs; [
-    teams-for-linux
-    gitkraken
-    neovide
-    webcord
     wine64
     spotify
-    hyprpanel
-    wofi
-    zoom
     blocky
+
+    # development tools
+    neovide
+    code-cursor
+    gitkraken
     filezilla
-    bitwig-studio
     postman
+
+    bitwig-studio
+
+    # logmein-hamachi
     anki
-    teamviewer
+
+    # setup stuff
+    wofi
+    hyprpanel
+    gnome-bluetooth # needed for ax-shell
+    swappy # this one is for editing snapshots
+
     (pkgs-unstable.mongodb-compass)
-    nwg-dock
+    # dependencies for ags
+    material-design-icons
+    gnome-shell
+    gjs # for gnome-shell (depen)
+    # nwg-dock
   ];
 
   # services.flatpak.enable = true;
   imports = [
     ./../ags.nix
+    ./../ax-shell.nix
     ./../wlsunset.nix
     ./../hyprpanel.nix
     ./../obs-studio.nix
@@ -44,4 +56,15 @@
     ./../media-tools.nix
     ./../lowBattery.nix
   ];
+
+  # ax shell setup
+
+  programs.ax-shell = {
+    enable = true;
+    blurEnabled = true;
+    extraPythonPackages = with pkgs.python3Packages; [
+      # Changed from withPackages to python3Packages
+      # add any additional packages here
+    ];
+  };
 }

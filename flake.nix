@@ -13,7 +13,7 @@
       url = "github:danth/stylix/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    sops-nix.url = "github:Mic92/sops-nix";
+    # sops-nix.url = "github:Mic92/sops-nix";
     hyprland.url = "github:hyprwm/Hyprland";
     xremap-flake.url = "github:xremap/nix-flake";
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
