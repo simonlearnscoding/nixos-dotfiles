@@ -1,8 +1,10 @@
-{config, pkgs, lib }:
-
 {
-
-environment.systemPackages = (lib.mapAttrsToList (name: value: (pkgs.writeShellScriptBin name value)) {
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
+  environment.systemPackages = lib.mapAttrsToList (name: value: (pkgs.writeShellScriptBin name value)) {
     python = "nix-ld-run poetry run -C ~/.config/python/ python $@";
     python3 = "nix-ld-run poetry run -C ~/.config/python/ python $@";
     pyinit = "mkdir -p ~/.config/python/ && poetry init -C ~/.config/python/";
@@ -19,10 +21,10 @@ environment.systemPackages = (lib.mapAttrsToList (name: value: (pkgs.writeShellS
     npx = "corepack npx $@";
 
     nix-ld-run = ''
-        LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$NIX_LD_LIBRARY_PATH" LD="$NIX_LD" $@
+      LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$NIX_LD_LIBRARY_PATH" LD="$NIX_LD" $@
     '';
-});
-programs.nix-ld.enable = true;
-programs.nix-ld.libraries = [];
+  };
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = [];
   # Put libraries here that you need to use for python libraries
-  }
+}
