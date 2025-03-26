@@ -10,6 +10,7 @@ in {
     #     inputs.xremap-flake.nixosModules.default
     ./hardware-configuration.nix
     ./../common.nix
+    ./../../modules/ci-user.nix
     ./../serverstuff.nix
   ];
 
