@@ -17,8 +17,9 @@
     src = pkgs.fetchFromGitHub {
       owner = "simonlearnscoding";
       repo = "server-dashboard";
-      rev = "main"; # Consider pinning to specific rev in production
-      hash = "sha256-...";
+
+      rev = "main"; # Override in main flake if needed
+      hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="; # Auto-updated
     };
 
     buildPhase = ''
