@@ -2,5 +2,7 @@
 {...}: {
   imports = [
     ./../modules/plex.nix
+
+    ./../modules/syncthing.nix
   ];
 }
