@@ -1,12 +1,16 @@
-{ config, lib, pkgs, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   # Configurable parameters
   siteName = "simone-muscas-site";
   domain = "simone-muscas.com";
   port = 3000;
   repoUrl = "git@github.com:simonlearnscoding/server-dashboard.git";
   user = "simon";
-  
+
   # Derivation building the app
   websiteApp = pkgs.buildNpmPackage rec {
     name = "server-dashboard";
@@ -14,26 +18,26 @@ let
       owner = "simonlearnscoding";
       repo = "server-dashboard";
       rev = "main"; # Consider pinning to specific rev in production
+      hash = "sha256-...";
     };
-    
-    
+
     buildPhase = ''
       npm run build
     '';
-    
+
     installPhase = ''
       mkdir -p $out
       cp -r package.json package-lock.json node_modules dist $out/
     '';
-    
+
     meta.mainProgram = "npm";
   };
 in {
   # Systemd service using built package
   systemd.services.${siteName} = {
     description = "Production service for ${domain}";
-    wantedBy = [ "multi-user.target" ];
-    
+    wantedBy = ["multi-user.target"];
+
     serviceConfig = {
       Type = "simple";
       User = user;
@@ -49,25 +53,33 @@ in {
   # Cloudflare tunnel configuration
   services.cloudflared.tunnels.${siteName} = {
     credentialsFile = config.age.secrets.cloudflare-tunnel-creds.path;
-    ingress."${domain}" = { service = "http://localhost:${toString port}"; };
+    ingress."${domain}" = {service = "http://localhost:${toString port}";};
     default = "http_status:404";
   };
 
   # CI/CD user setup
   users.users.ci-deployer = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = ["wheel"];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 ..." # Add CI/CD public key
     ];
   };
 
   # Security: Least privilege for CI/CD
-  security.sudo.extraRules = [{
-    users = [ "ci-deployer" ];
-    commands = [ 
-      { command = "${config.system.build.nixos-rebuild}/bin/nixos-rebuild"; options = [ "NOPASSWD" ]; }
-      { command = "systemctl restart ${siteName}"; options = [ "NOPASSWD" ]; }
-    ];
-  }];
+  security.sudo.extraRules = [
+    {
+      users = ["ci-deployer"];
+      commands = [
+        {
+          command = "${config.system.build.nixos-rebuild}/bin/nixos-rebuild";
+          options = ["NOPASSWD"];
+        }
+        {
+          command = "systemctl restart ${siteName}";
+          options = ["NOPASSWD"];
+        }
+      ];
+    }
+  ];
 }
