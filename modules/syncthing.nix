@@ -4,25 +4,21 @@
   pkgs,
   ...
 }: {
-  systemd.services.syncthing = {
-    serviceConfig.User = lib.mkForce "simon";
-    # Inject secrets as environment variables
-    # environment = {
-    #   SYNCTHING_SCHWEIZ_ID = ''${config.sops.secrets."SYNCTHING_SCHWEIZ_ID".path}'';
-    #   SYNCTHING_SALZBURG_ID = ''${config.sops.secrets."SYNCTHING_SALZBURG_ID".path}'';
-    # };
-  };
-
   services.syncthing = {
     enable = true;
     openDefaultPorts = true;
+    dataDir = "/home/simon/Sync";
+    configDir = "/home/simon/.config/syncthing";
+    user = "simon";
+    settings.options.natEnabled = false;
+    guiAddress = "0.0.0.0:8384";
     settings.gui.address = "0.0.0.0:8384";
-    extraFlags = [
-      "--no-browser"
-      "--gui-address=127.0.0.1:8384"
-      "--config=/home/simon/.config/syncthing"
-      "--data=/home/simon/"
-    ];
+    # extraFlags = [
+    #   "--no-browser"
+    #   "--gui-address=0.0.0.1:8384"
+    #   #   "--config=/home/simon/.config/syncthing"
+    #   #   "--data=/home/simon/"
+    # ];
   };
 }
 # I gave up on trying to set this up with secrets
