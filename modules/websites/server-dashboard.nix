@@ -1,54 +1,73 @@
 { config, lib, pkgs, ... }:
-
 let
+  # Configurable parameters
   siteName = "simone-muscas-site";
-  repoUrl = "git@github.com:simonlearnscoding/server-dashboard.git";
-  tunnelId = "b02ec08a-126a-4fe1-acae-0dd7b690447e";
-  credentialsPath = "/etc/cloudflared/simone-tunnel.json";
   domain = "simone-muscas.com";
   port = 3000;
-  sitePath = "/home/simon/code";
+  repoUrl = "git@github.com:simonlearnscoding/server-dashboard.git";
+  user = "simon";
+  
+  # Derivation building the app
+  websiteApp = pkgs.buildNpmPackage rec {
+    name = "server-dashboard";
+    src = pkgs.fetchFromGitHub {
+      owner = "simonlearnscoding";
+      repo = "server-dashboard";
+      rev = "main"; # Consider pinning to specific rev in production
+    };
+    
+    
+    buildPhase = ''
+      npm run build
+    '';
+    
+    installPhase = ''
+      mkdir -p $out
+      cp -r package.json package-lock.json node_modules dist $out/
+    '';
+    
+    meta.mainProgram = "npm";
+  };
 in {
+  # Systemd service using built package
   systemd.services.${siteName} = {
-    description = "Simone Muscas Server Website";
+    description = "Production service for ${domain}";
     wantedBy = [ "multi-user.target" ];
-
+    
     serviceConfig = {
       Type = "simple";
-      WorkingDirectory = sitePath;
-
-      ExecStart = ''
-        ${pkgs.bash}/bin/bash -c '
-          if [ ! -d server-dashboard ]; then
-            git clone ${repoUrl}
-          else
-            cd server-dashboard && git pull
-          fi
-          cd server-dashboard
-          npm install
-          npm run build
-          npm start
-        '
-      '';
-
+      User = user;
+      Group = user;
+      WorkingDirectory = "${websiteApp}";
+      ExecStart = "${pkgs.nodejs}/bin/npm start";
       Restart = "on-failure";
-      User = "simon";
-      Environment = "NODE_ENV=production";
+      Environment = "NODE_ENV=production PORT=${toString port}";
+      EnvironmentFile = config.age.secrets."${siteName}-env".path;
     };
   };
 
-  services.cloudflared = {
-    enable = true;
-    tunnels = {
-      "${tunnelId}" = {
-        credentialsFile = credentialsPath;
-        ingress = {
-          "${domain}" = {
-            service = "http://localhost:${toString port}";
-          };
-        };
-        default = "http_status:404";
-      };
-    };
+  # Cloudflare tunnel configuration
+  services.cloudflared.tunnels.${siteName} = {
+    credentialsFile = config.age.secrets.cloudflare-tunnel-creds.path;
+    ingress."${domain}" = { service = "http://localhost:${toString port}"; };
+    default = "http_status:404";
   };
+
+  # CI/CD user setup
+  users.users.ci-deployer = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" ];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 ..." # Add CI/CD public key
+    ];
+  };
+
+  # Security: Least privilege for CI/CD
+  security.sudo.extraRules = [{
+    users = [ "ci-deployer" ];
+    commands = [ 
+      { command = "${config.system.build.nixos-rebuild}/bin/nixos-rebuild"; options = [ "NOPASSWD" ]; }
+      { command = "systemctl restart ${siteName}"; options = [ "NOPASSWD" ]; }
+    ];
+  }];
 }
