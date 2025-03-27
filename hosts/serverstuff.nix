@@ -1,8 +1,8 @@
 # hosts/common.nix
 {...}: {
   imports = [
-    ./../modules/plex.nix
-
+    ./../modules/cloudflare-tunnel.nix
     ./../modules/syncthing.nix
+    ./../modules/plex.nix
   ];
 }
