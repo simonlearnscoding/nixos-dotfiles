@@ -25,14 +25,14 @@
     # setup stuff
     wofi
     hyprpanel
-    gnome-bluetooth # needed for ax-shell
+    # gnome-bluetooth # needed for ax-shell
     swappy # this one is for editing snapshots
 
     (pkgs-unstable.mongodb-compass)
     # dependencies for ags
-    material-design-icons
-    gnome-shell
-    gjs # for gnome-shell (depen)
+    # material-design-icons
+    # gnome-shell
+    # gjs # for gnome-shell (depen)
     # nwg-dock
   ];
 
@@ -57,13 +57,4 @@
   ];
 
   # ax shell setup
-
-  programs.ax-shell = {
-    enable = true;
-    blurEnabled = true;
-    extraPythonPackages = with pkgs.python3Packages; [
-      # Changed from withPackages to python3Packages
-      # add any additional packages here
-    ];
-  };
 }
