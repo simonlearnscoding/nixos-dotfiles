@@ -39,7 +39,6 @@
   # services.flatpak.enable = true;
   imports = [
     ./../ags.nix
-    ./../ax-shell.nix
     ./../wlsunset.nix
     ./../hyprpanel.nix
     ./../obs-studio.nix
