@@ -14,8 +14,10 @@
   # Derivation building the app for Next.js
   websiteApp = pkgs.buildNpmPackage rec {
     name = "server-dashboard";
-    src = inputs.server-dashboard.src;
+    src = inputs.server-dashboard;
     # Ensure the build script runs next build
+
+    npmDepsHash = "sha256-EC8o+25so3UYHAdxyprPgxllzB5jwYpDxUDwRMfn7xc=";
     buildPhase = ''
       npm run build
     '';
@@ -84,4 +86,5 @@ in {
 }
 # sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
 # sha256-yvws17MOL7fngs73hbwo0Tzaes3/G1HoqQV3LXARq7A=
+# Add this line with the correct hash from the error:
 
