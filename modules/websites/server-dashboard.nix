@@ -8,7 +8,6 @@
   siteName = "simone-muscas-site";
   domain = "simone-muscas.com";
   port = 3000;
-  repoUrl = "git@github.com:simonlearnscoding/server-dashboard.git";
   user = "simon";
 
   # Derivation building the app for Next.js
@@ -58,7 +57,7 @@ in {
   # Cloudflare tunnel configuration remains unchanged
   services.cloudflared.tunnels.${siteName} = {
     credentialsFile = config.age.secrets.cloudflare-tunnel-creds.path;
-    ingress."${domain}" = { service = "http://localhost:${toString port}"; };
+    ingress."${domain}" = {service = "http://localhost:${toString port}";};
     default = "http_status:404";
   };
 
@@ -88,3 +87,6 @@ in {
     }
   ];
 }
+# sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
+# sha256-yvws17MOL7fngs73hbwo0Tzaes3/G1HoqQV3LXARq7A=
+
