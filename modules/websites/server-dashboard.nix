@@ -10,30 +10,31 @@
   port = 3000;
   user = "simon";
 
-  # Derivation building the app for Next.js
-  websiteApp = pkgs.buildNpmPackage rec {
+  # Build the Docker image from the repository context (which must contain a Dockerfile)
+  dockerImage = pkgs.dockerTools.buildImage {
     name = "server-dashboard";
-    src = pkgs.fetchFromGitHub {
-      owner = "simonlearnscoding";
-      repo = "server-dashboard";
-      rev = "main"; # Override in main flake if needed
-      hash = "sha256-yvws17MOL7fngs73hbwo0Tzaes3/G1HoqQV3LXARq7A="; # Auto-updated
+    tag = "latest";
+    # Use the entire repository as the Docker build context.
+    # This assumes you have a Dockerfile at the repository root.
+    contents = ./.;
+    config = {
+      # The image should run your Next.js app.
+      # Ensure your package.json defines a "start" script like "next start -p 3000"
+      Cmd = [ "npm" "start" ];
+      Env = [
+        "NODE_ENV=production"
+        "PORT=${toString port}"
+      ];
+      ExposedPorts = {
+        "3000/tcp" = {};
+      };
     };
-
-    # Ensure the build script runs next build
-    buildPhase = ''
-      npm run build
-    '';
-
-    installPhase = ''
-      mkdir -p $out
-      cp -r package.json package-lock.json node_modules .next public $out/
-    '';
-
-    meta.mainProgram = "npm";
   };
+
+  # We'll refer to the Docker image tarball built by dockerTools.
+  dockerImagePath = dockerImage;
 in {
-  # Systemd service using the built Next.js package
+  # Systemd service which loads and runs the Docker image
   systemd.services.${siteName} = {
     description = "Production service for ${domain}";
     wantedBy = ["multi-user.target"];
@@ -42,22 +43,20 @@ in {
       Type = "simple";
       User = user;
       Group = user;
-      WorkingDirectory = "${websiteApp}";
-      # Using npm start, which should be defined as "next start -p 3000" in package.json
-      ExecStart = "${pkgs.nodejs}/bin/npm start";
+      # The command below loads the image from the tarball then runs a container.
+      # Note: This requires the docker daemon and proper permissions.
+      ExecStart = ''
+        ${pkgs.docker}/bin/docker load -i ${dockerImagePath} && \
+        ${pkgs.docker}/bin/docker run --rm -p ${toString port}:3000 server-dashboard:latest
+      '';
       Restart = "on-failure";
-      Environment = [
-        "NODE_ENV=production"
-        "PORT=${toString port}"
-      ];
-      # EnvironmentFile = config.age.secrets."${siteName}-env".path;
     };
   };
 
   # Cloudflare tunnel configuration remains unchanged
   services.cloudflared.tunnels.${siteName} = {
     credentialsFile = config.age.secrets.cloudflare-tunnel-creds.path;
-    ingress."${domain}" = {service = "http://localhost:${toString port}";};
+    ingress."${domain}" = { service = "http://localhost:${toString port}" };
     default = "http_status:404";
   };
 
@@ -87,6 +86,3 @@ in {
     }
   ];
 }
-# sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
-# sha256-yvws17MOL7fngs73hbwo0Tzaes3/G1HoqQV3LXARq7A=
-
