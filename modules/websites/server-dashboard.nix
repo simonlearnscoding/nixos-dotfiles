@@ -11,30 +11,30 @@
   repoUrl = "git@github.com:simonlearnscoding/server-dashboard.git";
   user = "simon";
 
-  # Derivation building the app
+  # Derivation building the app for Next.js
   websiteApp = pkgs.buildNpmPackage rec {
     name = "server-dashboard";
     src = pkgs.fetchFromGitHub {
       owner = "simonlearnscoding";
       repo = "server-dashboard";
-
       rev = "main"; # Override in main flake if needed
       hash = "sha256-yvws17MOL7fngs73hbwo0Tzaes3/G1HoqQV3LXARq7A="; # Auto-updated
     };
 
+    # Ensure the build script runs next build
     buildPhase = ''
       npm run build
     '';
 
     installPhase = ''
       mkdir -p $out
-      cp -r package.json package-lock.json node_modules dist $out/
+      cp -r package.json package-lock.json node_modules .next public $out/
     '';
 
     meta.mainProgram = "npm";
   };
 in {
-  # Systemd service using built package
+  # Systemd service using the built Next.js package
   systemd.services.${siteName} = {
     description = "Production service for ${domain}";
     wantedBy = ["multi-user.target"];
@@ -44,17 +44,21 @@ in {
       User = user;
       Group = user;
       WorkingDirectory = "${websiteApp}";
+      # Using npm start, which should be defined as "next start -p 3000" in package.json
       ExecStart = "${pkgs.nodejs}/bin/npm start";
       Restart = "on-failure";
-      Environment = "NODE_ENV=production PORT=${toString port}";
+      Environment = [
+        "NODE_ENV=production"
+        "PORT=${toString port}"
+      ];
       # EnvironmentFile = config.age.secrets."${siteName}-env".path;
     };
   };
 
-  # Cloudflare tunnel configuration
+  # Cloudflare tunnel configuration remains unchanged
   services.cloudflared.tunnels.${siteName} = {
     credentialsFile = config.age.secrets.cloudflare-tunnel-creds.path;
-    ingress."${domain}" = {service = "http://localhost:${toString port}";};
+    ingress."${domain}" = { service = "http://localhost:${toString port}"; };
     default = "http_status:404";
   };
 
