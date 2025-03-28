@@ -20,7 +20,7 @@
     config = {
       # The image should run your Next.js app.
       # Ensure your package.json defines a "start" script like "next start -p 3000"
-      Cmd = [ "npm" "start" ];
+      Cmd = ["npm" "start"];
       Env = [
         "NODE_ENV=production"
         "PORT=${toString port}"
@@ -56,7 +56,7 @@ in {
   # Cloudflare tunnel configuration remains unchanged
   services.cloudflared.tunnels.${siteName} = {
     credentialsFile = config.age.secrets.cloudflare-tunnel-creds.path;
-    ingress."${domain}" = { service = "http://localhost:${toString port}" };
+    ingress."${domain}" = {service = "http://localhost:${toString port}";};
     default = "http_status:404";
   };
 
