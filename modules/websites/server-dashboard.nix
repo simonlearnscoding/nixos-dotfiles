@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }: let
   # Configurable parameters
@@ -10,31 +11,24 @@
   port = 3000;
   user = "simon";
 
-  # Build the Docker image from the repository context (which must contain a Dockerfile)
-  dockerImage = pkgs.dockerTools.buildImage {
+  # Derivation building the app for Next.js
+  websiteApp = pkgs.buildNpmPackage rec {
     name = "server-dashboard";
-    tag = "latest";
-    # Use the entire repository as the Docker build context.
-    # This assumes you have a Dockerfile at the repository root.
-    contents = ./.;
-    config = {
-      # The image should run your Next.js app.
-      # Ensure your package.json defines a "start" script like "next start -p 3000"
-      Cmd = ["npm" "start"];
-      Env = [
-        "NODE_ENV=production"
-        "PORT=${toString port}"
-      ];
-      ExposedPorts = {
-        "3000/tcp" = {};
-      };
-    };
-  };
+    src = inputs.server-dashboard.src;
+    # Ensure the build script runs next build
+    buildPhase = ''
+      npm run build
+    '';
 
-  # We'll refer to the Docker image tarball built by dockerTools.
-  dockerImagePath = dockerImage;
+    installPhase = ''
+      mkdir -p $out
+      cp -r package.json package-lock.json node_modules .next public $out/
+    '';
+
+    meta.mainProgram = "npm";
+  };
 in {
-  # Systemd service which loads and runs the Docker image
+  # Systemd service using the built Next.js package
   systemd.services.${siteName} = {
     description = "Production service for ${domain}";
     wantedBy = ["multi-user.target"];
@@ -43,13 +37,15 @@ in {
       Type = "simple";
       User = user;
       Group = user;
-      # The command below loads the image from the tarball then runs a container.
-      # Note: This requires the docker daemon and proper permissions.
-      ExecStart = ''
-        ${pkgs.docker}/bin/docker load -i ${dockerImagePath} && \
-        ${pkgs.docker}/bin/docker run --rm -p ${toString port}:3000 server-dashboard:latest
-      '';
+      WorkingDirectory = "${websiteApp}";
+      # Using npm start, which should be defined as "next start -p 3000" in package.json
+      ExecStart = "${pkgs.nodejs}/bin/npm start";
       Restart = "on-failure";
+      Environment = [
+        "NODE_ENV=production"
+        "PORT=${toString port}"
+      ];
+      # EnvironmentFile = config.age.secrets."${siteName}-env".path;
     };
   };
 
@@ -86,3 +82,6 @@ in {
     }
   ];
 }
+# sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
+# sha256-yvws17MOL7fngs73hbwo0Tzaes3/G1HoqQV3LXARq7A=
+

@@ -1,6 +1,10 @@
 {
   description = "A very basic flake";
   inputs = {
+    server-dashboard = {
+      url = "github:simonlearnscoding/server-dashboard";
+      flake = false;
+    };
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
