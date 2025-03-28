@@ -19,7 +19,7 @@
       repo = "server-dashboard";
 
       rev = "main"; # Override in main flake if needed
-      hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="; # Auto-updated
+      hash = "sha256-yvws17MOL7fngs73hbwo0Tzaes3/G1HoqQV3LXARq7A="; # Auto-updated
     };
 
     buildPhase = ''
@@ -47,7 +47,7 @@ in {
       ExecStart = "${pkgs.nodejs}/bin/npm start";
       Restart = "on-failure";
       Environment = "NODE_ENV=production PORT=${toString port}";
-      EnvironmentFile = config.age.secrets."${siteName}-env".path;
+      # EnvironmentFile = config.age.secrets."${siteName}-env".path;
     };
   };
 
@@ -77,7 +77,7 @@ in {
           options = ["NOPASSWD"];
         }
         {
-          command = "systemctl restart ${siteName}";
+          command = "/run/current-system/ws/bin/systemctl restart ${siteName}";
           options = ["NOPASSWD"];
         }
       ];
