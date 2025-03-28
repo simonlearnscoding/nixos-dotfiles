@@ -14,6 +14,7 @@
   # Derivation building the app for Next.js
   websiteApp = pkgs.buildNpmPackage rec {
     name = "server-dashboard";
+    dontSandbox = true;
     src = inputs.server-dashboard.src;
     # Ensure the build script runs next build
     buildPhase = ''
