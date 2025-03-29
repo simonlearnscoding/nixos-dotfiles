@@ -1508,6 +1508,7 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "pre-commit-hooks": "pre-commit-hooks_2",
         "rose-pine-hyprcursor": "rose-pine-hyprcursor",
+        "server-dashboard": "server-dashboard",
         "spicetify-nix": "spicetify-nix",
         "stylix": "stylix",
         "xremap-flake": "xremap-flake"
@@ -1530,6 +1531,22 @@
       "original": {
         "owner": "ndom91",
         "repo": "rose-pine-hyprcursor",
+        "type": "github"
+      }
+    },
+    "server-dashboard": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1743150709,
+        "narHash": "sha256-Ib8OjfYcg5/N7SL+hDbTsfnlJfmADJ3qvgTTJTfoxHU=",
+        "owner": "simonlearnscoding",
+        "repo": "server-dashboard",
+        "rev": "a8e57bd73ba91e215d1f5c3574fe040e21fa494a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "simonlearnscoding",
+        "repo": "server-dashboard",
         "type": "github"
       }
     },
