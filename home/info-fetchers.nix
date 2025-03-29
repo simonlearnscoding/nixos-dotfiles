@@ -3,6 +3,7 @@
     neofetch # System information tool with visual output
     onefetch # Git repository information tool with visual output
     ipfetch # Displays public IP information
+    powertop # Power consumption and system diagnostics tool
     cpufetch # CPU information fetcher
     ramfetch # RAM usage fetcher
     starfetch # System information with customizable star-shaped ASCII art
