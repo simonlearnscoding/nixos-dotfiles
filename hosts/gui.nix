@@ -8,7 +8,6 @@
   imports = [
     ./../modules/stylix.nix
 
-    ./../modules/syncthing.nix
     ./../modules/printing.nix
     ./../modules/extraHosts.nix
     ./../modules/audio.nix
