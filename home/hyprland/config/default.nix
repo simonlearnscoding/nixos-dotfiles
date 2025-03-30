@@ -58,7 +58,7 @@ in {
 
       exec-once = ./../../scripts/battery-monitor.sh
       exec-once = hyprpanel
-      # exec-once = waybar
+      exec-once = waybar -c ~/.config/waybar/config.json
       exec-once = ags
        exec-once = nwg-panel
        xwayland {

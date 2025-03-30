@@ -13,7 +13,7 @@
   ];
 
   home.file.".config/waybar/" = {
-    source = builtins.path {path = ./configfiles/waybar;};
+    source = builtins.path {path = ./../configfiles/waybar;};
     recursive = true;
   };
 }
