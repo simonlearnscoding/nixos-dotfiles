@@ -1537,11 +1537,11 @@
     "server-dashboard": {
       "flake": false,
       "locked": {
-        "lastModified": 1743153194,
-        "narHash": "sha256-DdrfDYnAqH0xHNF9IW3wunAdx7ytCFKKRjXMcjxKaxY=",
+        "lastModified": 1743150709,
+        "narHash": "sha256-Ib8OjfYcg5/N7SL+hDbTsfnlJfmADJ3qvgTTJTfoxHU=",
         "owner": "simonlearnscoding",
         "repo": "server-dashboard",
-        "rev": "9fa0d25fd3c8463ae50860a38c1eba47c3a1f853",
+        "rev": "a8e57bd73ba91e215d1f5c3574fe040e21fa494a",
         "type": "github"
       },
       "original": {

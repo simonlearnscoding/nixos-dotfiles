@@ -5,21 +5,9 @@
   inputs,
   ...
 }: {
-  virtualisation.podman = {
-    enable = true;
-    dockerCompat = true;
-    defaultNetwork.settings.dns_enabled = true;
-  };
-  # virtualisation.docker = {
-  #   enable = true;
-  #   rootless = {
-  #     enable = true;
-  #     setSocketVariable = true;
-  #   };
-  # };
-
   imports = [
     ./../modules/user.nix
+    ./../modules/docker.nix
     # ./../modules/sops.nix
     ./../modules/gc.nix
     ./../modules/swap.nix
