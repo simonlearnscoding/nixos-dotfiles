@@ -101,7 +101,7 @@
     },
     "layer": "top",
     "modules-left": ["hyprland/workspaces", "custom/music"],
-    "modules-center": ["custom/music", "clock"],
+    "modules-center": ["clock"],
     "modules-right": [
       "network",
       "bluetooth",
