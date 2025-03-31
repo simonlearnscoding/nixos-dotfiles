@@ -7,7 +7,6 @@
     socat # Required for Hyprland workspace events
     jq # For JSON processing
     playerctl
-    swaylock
     waybar
     wlogout
   ];
