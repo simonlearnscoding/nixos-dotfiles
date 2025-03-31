@@ -1,24 +1,24 @@
 {
-    "label" : "[s]hutdown",
+    "label" : "shutdown",
     "action" : "systemctl poweroff",
-    "text" : "Shutdown",
+    "text" : "[S]hutdown",
     "keybind" : "s"
 }
 {
-    "label" : "[r]eboot",
+    "label" : "reboot",
     "action" : "systemctl reboot",
-    "text" : "Reboot",
+    "text" : "[R]eboot",
     "keybind" : "r"
 }
 {
-    "label" : "s[u]spend",
+    "label" : "suspend",
     "action" : "systemctl suspend",
-    "text" : "Suspend",
+    "text" : "S[u]spend",
     "keybind" : "u"
 }
 {
-    "label" : "[h]ibernate",
+    "label" : "hibernate",
     "action" : "systemctl hibernate",
-    "text" : "Hibernate",
+    "text" : "[H]ibernate",
     "keybind" : "h"
 }
