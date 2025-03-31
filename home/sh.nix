@@ -7,6 +7,7 @@
   myAliases = {
     nom = "nix";
     oil = "./../scripts/oil.sh";
+    docker-compose = "podman compose";
     mkdir = "mkdir -p";
     l = "eza --icons";
     ls = "eza --icons";
@@ -96,7 +97,7 @@ in {
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-    
+
     history = {
       expireDuplicatesFirst = true;
       ignoreDups = true;
