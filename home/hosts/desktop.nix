@@ -11,7 +11,7 @@
     blocky
 
     # development tools
-    neovide
+    (pkgs-unstable.neovide)
     code-cursor
     gitkraken
     filezilla
