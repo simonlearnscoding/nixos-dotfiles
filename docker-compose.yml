@@ -1,0 +1,24 @@
+services:
+  plex:
+    image: lscr.io/linuxserver/plex:latest
+    container_name: plex
+    network_mode: host
+    init: false # Critical for NixOS
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - VERSION=docker
+      - PLEX_CLAIM=claim-EyU8D_k3dNNswjFWaLsd
+      - ADVERTISE_IP=https://plex.simone-muscas.com
+      - TRANSCODE_DIR=/transcode
+    volumes:
+      - /home/simon/.config/plex:/config
+      - /mnt/drive/series:/tv
+      - /mnt/drive/movies:/movies
+      - /var/lib/plex/transcode:/transcode # NixOS-friendly
+    cap_add:
+      - SYS_ADMIN # Required for s6
+    security_opt:
+      - apparmor:unconfined # Bypass NixOS restrictions
+    restart: unless-stopped
