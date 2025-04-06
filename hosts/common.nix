@@ -29,6 +29,7 @@
   };
 
   programs.zsh.enable = true;
+  services.tailscale.enable = true;
   hardware = {
     opengl = {
       enable = true; # Enable OpenGL for graphics rendering
