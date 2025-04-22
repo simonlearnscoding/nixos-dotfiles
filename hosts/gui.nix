@@ -7,7 +7,7 @@
 }: {
   imports = [
     ./../modules/stylix.nix
-
+    ./../modules/waydroid.nix
     ./../modules/printing.nix
     ./../modules/extraHosts.nix
     ./../modules/audio.nix
