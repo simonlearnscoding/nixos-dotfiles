@@ -8,7 +8,7 @@
   imports = [
     ./../modules/user.nix
     ./../modules/docker.nix
-    # ./../modules/sops.nix
+    ./../modules/sops.nix
     ./../modules/gc.nix
     ./../modules/swap.nix
     ./../modules/fonts.nix

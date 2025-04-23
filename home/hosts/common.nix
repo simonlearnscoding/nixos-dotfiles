@@ -21,12 +21,9 @@
     deluge
     libmpg123
     gnutls
-
-    
   ];
 
   imports = [
-    # ./../sops.nix
     ./../info-fetchers.nix
     ./../atuin.nix
     ./../taskwarrior.nix
