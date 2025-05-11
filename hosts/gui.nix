@@ -7,7 +7,7 @@
 }: {
   imports = [
     ./../modules/stylix.nix
-
+    ./../modules/waydroid.nix
     ./../modules/printing.nix
     ./../modules/extraHosts.nix
     ./../modules/audio.nix
@@ -28,8 +28,12 @@
   };
 
   virtualisation.waydroid.enable = true;
+  virtualisation.libvirtd.enable = true;
+  users.users.simon.extraGroups = ["libvirtd" "kvm"];
+  programs.virt-manager.enable = true;
   environment.systemPackages = [
     pkgs.power-profiles-daemon
+    pkgs.android-studio
   ];
   programs.gamemode.enable = true;
   programs.steam.enable = true;

@@ -5,11 +5,16 @@
   pkgs-unstable,
   ...
 }: {
+  # I need to permit insecure packages because of logseq for now
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-27.3.11"
+  ];
   home.packages = with pkgs; [
     wine64
     spotify
     blocky
 
+    logseq
     # development tools
     (pkgs-unstable.neovide)
     code-cursor
