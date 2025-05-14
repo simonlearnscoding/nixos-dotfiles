@@ -9,6 +9,7 @@
     libnotify
     sqlite
     ffmpeg
+    dysk
     direnv
     devenv
     # pkgs-unstable.mongodb
