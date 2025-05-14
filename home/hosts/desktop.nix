@@ -14,6 +14,7 @@
     spotify
     blocky
 
+    libremines
     logseq
     # development tools
     (pkgs-unstable.neovide)
