@@ -6,6 +6,7 @@
 }: let
   myAliases = {
     nom = "nix";
+    df = "dysk";
     oil = "./../scripts/oil.sh";
     docker-compose = "podman compose";
     mkdir = "mkdir -p";
