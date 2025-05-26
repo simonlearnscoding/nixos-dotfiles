@@ -13,6 +13,7 @@
     wine64
     spotify
     blocky
+    libreoffice
 
     libremines
     logseq
