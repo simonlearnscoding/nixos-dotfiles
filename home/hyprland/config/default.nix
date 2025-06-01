@@ -52,18 +52,17 @@ in {
       # };
     };
     extraConfig = ''
-         monitor=,preferred,auto,auto
-         exec-once = nwg-dock-hyprland -d -hd 0
-         exec-once = /home/simon/nixos-dotfiles/home/scripts/battery-monitor.sh
-        exec-once = hyprpanel
-         exec-once = hypridle
-         exec-once = ags
-      #  exec-once = nwg-panel
-
-         exec-once = waybar -c /home/simon/.config/waybar/config.json
-         xwayland {
-           force_zero_scaling = true;
-         }
+      monitor=,preferred,auto,auto
+      # exec-once = nwg-dock-hyprland -d -hd 0
+      exec-once = hyprpanel
+      exec-once = hypridle
+      exec-once = ags
+      exec-once = nwg-panel
+      exec-once = waybar -c /home/simon/.config/waybar/config.json
+      exec-once = /home/simon/nixos-dotfiles/home/scripts/battery-monitor.sh
+      xwayland {
+        force_zero_scaling = true;
+      }
     '';
   };
   systemd.user.services.ax-shell = {};
