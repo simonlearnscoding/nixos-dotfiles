@@ -52,18 +52,18 @@ in {
       # };
     };
     extraConfig = ''
-      # exec-once = ${pkgs.uwsm}/bin/uwsm --app ${pkgs.python3}/bin/python3 ~/.config/Ax-Shell/main.py
-       monitor=,preferred,auto,auto
-       # exec-once = nwg-dock-hyprland -d -hd 0
+         monitor=,preferred,auto,auto
+         exec-once = nwg-dock-hyprland -d -hd 0
+         exec-once = /home/simon/nixos-dotfiles/home/scripts/battery-monitor.sh
+        exec-once = hyprpanel
+         exec-once = hypridle
+         exec-once = ags
+      #  exec-once = nwg-panel
 
-      exec-once = ./../../scripts/battery-monitor.sh
-      exec-once = hyprpanel
-      exec-once = waybar -c ~/.config/waybar/config.json
-      exec-once = ags
-       exec-once = nwg-panel
-       xwayland {
-         force_zero_scaling = true;
-       }
+         exec-once = waybar -c /home/simon/.config/waybar/config.json
+         xwayland {
+           force_zero_scaling = true;
+         }
     '';
   };
   systemd.user.services.ax-shell = {};

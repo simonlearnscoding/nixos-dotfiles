@@ -6,10 +6,10 @@
       "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
     "battery": {
-      "format": "{icon} {capacity}%", // This adds percentage next to icon
-      "format-alt": "{icon} {capacity}%", // For alternative view
-      "format-charging": "󰂄 {capacity}%", // Charging state
-      "format-plugged": "󰂄 {capacity}%", // Plugged-in state
+      "format": "{icon} {capacity}%",
+      "format-alt": "{icon} {capacity}%",
+      "format-charging": "󰂄 {capacity}%",
+      "format-plugged": "󰂄 {capacity}%",
       "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󱟢"],
       "states": {
         "critical": 15,
@@ -60,7 +60,7 @@
     },
     "custom/lock": {
       "format": "",
-      "on-click": "swaylock",
+      "on-click": "hyprlock",
       "tooltip": false
     },
     "custom/mic": {
