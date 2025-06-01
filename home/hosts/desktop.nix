@@ -15,8 +15,9 @@
     blocky
     libreoffice
 
-    libremines
-    logseq
+    entr # for watching files and running commands
+    libremines # for playing minesweeper
+    logseq # notetaking like obsidian but better
     # development tools
     (pkgs-unstable.neovide)
     code-cursor
