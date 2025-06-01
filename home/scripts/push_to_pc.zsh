@@ -5,7 +5,7 @@ set -euo pipefail
 
 # === Settings ===
 remote_host="simon-pc"
-remote_script="/home/simon/nixos-dotfiles/home/scripts/sync_and_dev.zsh"
+remote_script="/home/simon/nixos-dotfiles/home/scripts/sync_and_dev.sh"
 
 # === Git checks ===
 
