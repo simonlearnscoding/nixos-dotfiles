@@ -13,9 +13,10 @@
   };
 
   programs.stylix = {
-    cursorTheme = {
-      name = "Numix-Cursor";
-      package = pkgs.numix-cursor-theme;
+    cursor = {
+      name = "rose-pine-cursor";
+      package = pkgs.rose-pine-cursor;
+      size = 24;
     };
   };
   # Additional Stylix configurations
