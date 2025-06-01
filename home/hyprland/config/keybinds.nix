@@ -54,13 +54,13 @@ in {
     "${mainMod}, ESCAPE, exec, pkill -x rofi ; rofi -show window"
     "${mainMod}, e, exec, pkill -x rofi ; rofi -show drun"
 
-    "ALT SHIFT, J, exec, amixer set Master 15%-"
-    "ALT SHIFT, K, exec, amixer set Master 15%+"
+    "ALT SHIFT, J, exec, amixer set Master 10%-"
+    "ALT SHIFT, K, exec, amixer set Master 10%+"
 
     # Audio controls
     ", F1, exec, amixer set Master toggle"
-    ", F2, exec, amixer set Master 15%-"
-    ", F3, exec, amixer set Master 15%+"
+    ", F2, exec, amixer set Master 10%-"
+    ", F3, exec, amixer set Master 10%+"
 
     ", XF86AudioMute, exec, amixer set Master toggle"
     ", XF86AudioMicMute, exec, amixer set Capture toggle"
@@ -69,8 +69,8 @@ in {
 
     ", XF86MonBrightnessUp, exec, brightnessctl set +10%"
     ", XF86MonBrightnessDown, exec, brightnessctl set 10%-"
-    ", XF86AudioLowerVolume, exec, amixer set Master 15%-"
-    ", XF86AudioRaiseVolume,  exec, amixer set Master 15%+"
+    ", XF86AudioLowerVolume, exec, amixer set Master 10%-"
+    ", XF86AudioRaiseVolume,  exec, amixer set Master 10%+"
     ", XF86AudioPlay, exec, playerctl play-pause"
     ", XF86AudioPause, exec, playerctl play-pause"
     ", XF86AudioNext, exec, playerctl next"

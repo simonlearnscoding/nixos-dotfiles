@@ -19,7 +19,6 @@
     hyprlock # lock screen
     hyprsunset # bluelight filter I think
 
-    hypridle # User-level service
     hyprpicker # color picker I think
     glib # Core library providing data structure handling, portability, and utility functions
 

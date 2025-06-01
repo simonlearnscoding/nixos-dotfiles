@@ -5,14 +5,14 @@
 }: {
   imports = [
     ./hyprland.nix
-    ./swaylock.nix
+    #./swaylock.nix
     ./waybar.nix
     ./wlogout.nix
     ./config/default.nix
     ./hyprlock.nix
     ./swww.nix
+    ./hypridle.nix
     ./variables.nix
-    # inputs.hyprland.homeManagerModules.default
   ];
 
   home.packages = with pkgs; [

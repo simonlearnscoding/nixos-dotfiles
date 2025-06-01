@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  home.packages = [pkgs.hyprlock];
+  home.packages = [pkgs.hyprlock pkgs.manrope];
   xdg.configFile."hypr/hyprlock.conf".text = ''
     $red = rgb(f38ba8)
     $yellow = rgb(f9e2af)
@@ -15,7 +15,8 @@
 
     $accent = $lavender
     $accentAlpha = $mauveAlpha
-    $font = JetBrainsMono Nerd Font
+    $font = "Manrope"
+
 
     # GENERAL
     general {
@@ -26,9 +27,9 @@
     # BACKGROUND
     background {
       monitor =
-      path = ~/Pictures/wallpapers/others/cat-leaves.png
+      path = /home/simon/nixos-dotfiles/files/wallpapers/evening-sky.png
       color = $base
-      blur_passes = 0
+      blur_passes = 4
     }
 
     # TIME
@@ -36,10 +37,10 @@
       monitor =
       text = cmd[update:30000] echo "<b><big> $(date +"%R") </big></b>"
       color = $text
-      font_size = 110
+      font_size = 80
       font_family = $font
-      shadow_passes = 3
-      shadow_size = 3
+      shadow_passes = 1
+      shadow_size = 1
 
       position = 0, -100
       halign = center
@@ -51,7 +52,7 @@
       monitor =
       text = cmd[update:43200000] echo "$(date +"%A, %d %B %Y")"
       color = $text
-      font_size = 18
+      font_size = 24
       font_family = $font
       position = 0, -300
       halign = center
@@ -62,7 +63,7 @@
 
     image {
       monitor =
-      path = ~/Pictures/pp/pp.png
+      path = /home/simon/nixos-dotfiles/files/wallpapers/wanderer.jpg
       size = 125
       border_color = $accent
 
