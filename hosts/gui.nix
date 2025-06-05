@@ -27,6 +27,14 @@
     # theme = "catppuccin-macchiato";
   };
 
+  environment.sessionVariables = {
+    XDG_DATA_DIRS = [
+      "${config.system.path}/share"
+      "/var/lib/flatpak/exports/share"
+      "$HOME/.local/share/flatpak/exports/share"
+    ];
+  };
+
   virtualisation.waydroid.enable = true;
   virtualisation.libvirtd.enable = true;
   users.users.simon.extraGroups = ["libvirtd" "kvm"];
