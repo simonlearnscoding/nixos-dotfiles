@@ -20,7 +20,6 @@
     logseq # notetaking like obsidian but better
     # development tools
     (pkgs-unstable.neovide)
-    code-cursor
     gitkraken
     filezilla
     postman
