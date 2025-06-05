@@ -25,7 +25,7 @@
     filezilla
     postman
 
-    bitwig-studio
+    # bitwig-studio -- installing it with flatpak for now
 
     # logmein-hamachi
     anki
