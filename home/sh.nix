@@ -14,6 +14,7 @@
     ls = "eza --icons";
     fl = "y";
     lf = "y";
+    nivm = "nvim";
     open = "xdg-open";
     ll = "eza -lha --icons=auto --sort=name --group-directories-first";
     c = "z";
