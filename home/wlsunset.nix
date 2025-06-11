@@ -6,6 +6,7 @@
 }: {
   home.packages = with pkgs; [
     wlsunset
+    hyprsunset # seems like wlsunset is not doing its job on the pc?
   ];
   services.wlsunset = {
     enable = true;
