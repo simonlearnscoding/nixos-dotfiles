@@ -58,7 +58,7 @@ in {
       exec-once = hypridle
       exec-once = ags
       exec-once = nwg-panel
-      exec-once = waybar -c /home/simon/.config/waybar/config.json
+      exec-once = /home/simon/nixos-dotfiles/home/scripts/start_waybar.sh
       exec-once = /home/simon/nixos-dotfiles/home/scripts/battery-monitor.sh
       xwayland {
         force_zero_scaling = true;
