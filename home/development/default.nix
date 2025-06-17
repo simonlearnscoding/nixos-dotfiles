@@ -6,6 +6,7 @@
 }: {
   home.packages = with pkgs; [
     yarn
+    imagemagick
     deno
     pass-git-helper
     xh
@@ -39,15 +40,22 @@
     oh-my-zsh
     sqlite
 
+    rainfrog # a tui for db connections
+    google-java-format
     # for java development here
     jdk17 # Java 17 for Spring Boot
     gradle # Build tool
     spring-boot-cli # Optional for project generation
     maven # Build tool
+    nodePackages.mermaid-cli
   ];
 
   programs.neovim = {
     defaultEditor = true;
+    extraLuaPackages = ps:
+      with ps; [
+        magick
+      ];
     withNodeJs = true;
     withPython3 = true;
     enable = true;
@@ -55,6 +63,8 @@
     extraPackages = with pkgs-unstable; [
       jdt-language-server
       sqlite
+      imagemagick
+      google-java-format
       ripgrep
       gcc
       gnumake
