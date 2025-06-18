@@ -3,6 +3,7 @@
     font-awesome
     jetbrains-mono
     fantasque-sans-mono
+    lm_sensors
 
     socat # Required for Hyprland workspace events
     jq # For JSON processing

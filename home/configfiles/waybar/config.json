@@ -70,6 +70,11 @@
       "on-click": "amixer set Capture toggle; pkill -RTMIN+9 waybar",
       "format": "{}"
     },
+    "custom/cpu_temp": {
+      "format": "{}°C ",
+      "interval": 5,
+      "exec": "sensors | awk '/Tctl:/ {print int($2)}'"
+    },
     "custom/music": {
       "escape": true,
       "exec": "playerctl metadata --format='{{ title }}'",
@@ -105,6 +110,7 @@
       "network",
       "bluetooth",
       "cpu",
+      "custom/cpu_temp",
       "memory",
       "backlight",
       "battery",
