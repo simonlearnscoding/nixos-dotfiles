@@ -9,6 +9,7 @@
     libnotify
     sqlite
     ffmpeg
+    dysk
     direnv
     devenv
     # pkgs-unstable.mongodb
@@ -21,12 +22,9 @@
     deluge
     libmpg123
     gnutls
-
-    
   ];
 
   imports = [
-    # ./../sops.nix
     ./../info-fetchers.nix
     ./../atuin.nix
     ./../taskwarrior.nix

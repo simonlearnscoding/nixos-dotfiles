@@ -180,8 +180,8 @@ window {
   color: @lavender;
 }
 #entry {
-  animation: fadeIn 0.2s ease-out both;
-  animation-delay: calc(var(--position) * 0.05s); /* Staggered delay */
+  animation: fadeIn 0.1s ease-out both;
+  animation-delay: calc(var(--position) * 0.03s); /* Staggered delay */
 }
 #keyhint {
   color: @overlay1;

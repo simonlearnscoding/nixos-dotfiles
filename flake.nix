@@ -17,7 +17,7 @@
       url = "github:danth/stylix/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.url = "github:Mic92/sops-nix";
     hyprland.url = "github:hyprwm/Hyprland";
     xremap-flake.url = "github:xremap/nix-flake";
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
@@ -34,6 +34,7 @@
     spicetify-nix,
     nixpkgs-unstable,
     home-manager,
+    sops-nix,
     ...
   } @ inputs: let
     pkgsFor = system:
@@ -61,6 +62,7 @@
       modules = [
         ./hosts/pc/configuration.nix
         inputs.stylix.nixosModules.stylix
+        sops-nix.nixosModules.sops
       ];
     };
 
@@ -70,6 +72,7 @@
       modules = [
         ./hosts/laptop/configuration.nix
         inputs.stylix.nixosModules.stylix
+        sops-nix.nixosModules.sops
       ];
     };
 
@@ -79,6 +82,7 @@
       modules = [
         ./hosts/server/configuration.nix
         inputs.stylix.nixosModules.stylix
+        sops-nix.nixosModules.sops
       ];
     };
     homeConfigurations = {

@@ -6,6 +6,7 @@
 }: let
   myAliases = {
     nom = "nix";
+    df = "dysk";
     oil = "./../scripts/oil.sh";
     docker-compose = "podman compose";
     mkdir = "mkdir -p";
@@ -13,6 +14,7 @@
     ls = "eza --icons";
     fl = "y";
     lf = "y";
+    nivm = "nvim";
     open = "xdg-open";
     ll = "eza -lha --icons=auto --sort=name --group-directories-first";
     c = "z";

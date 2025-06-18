@@ -5,19 +5,26 @@
   pkgs-unstable,
   ...
 }: {
+  # I need to permit insecure packages because of logseq for now
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-27.3.11"
+  ];
   home.packages = with pkgs; [
     wine64
     spotify
     blocky
+    libreoffice
 
+    entr # for watching files and running commands
+    libremines # for playing minesweeper
+    logseq # notetaking like obsidian but better
     # development tools
     (pkgs-unstable.neovide)
-    code-cursor
     gitkraken
     filezilla
     postman
 
-    bitwig-studio
+    # bitwig-studio -- installing it with flatpak for now
 
     # logmein-hamachi
     anki
