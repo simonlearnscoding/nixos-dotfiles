@@ -4,6 +4,6 @@
     ./../modules/syncthing.nix
     ./../modules/websites/default.nix
     ./../modules/plex.nix
-    ./../modules/nginx.nix
+    # ./../modules/nginx.nix
   ];
 }
