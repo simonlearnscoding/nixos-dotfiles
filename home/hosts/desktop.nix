@@ -61,6 +61,7 @@
     ./../communication.nix
     ./../media-tools.nix
     ./../lowBattery.nix
+    ./../scripts.nix
   ];
 
   # ax shell setup

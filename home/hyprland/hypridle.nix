@@ -9,23 +9,20 @@
         after_sleep_cmd = hyprctl dispatch dpms on
     }
 
-    # Lock the screen
     listener {
         timeout = 300
-        on-timeout = loginctl lock-session
+        on-timeout = bash -c '[ ! -f /tmp/disable-idle ] && loginctl lock-session'
     }
 
-    # Turn off screen
     listener {
         timeout = 320
-        on-timeout = hyprctl dispatch dpms off
+        on-timeout = bash -c '[ ! -f /tmp/disable-idle ] && hyprctl dispatch dpms off'
         on-resume = hyprctl dispatch dpms on
     }
 
-    # Suspend the system
     listener {
         timeout = 900
-        on-timeout = systemctl suspend
+        on-timeout = bash -c '[ ! -f /tmp/disable-idle ] && systemctl suspend'
     }
   '';
 }

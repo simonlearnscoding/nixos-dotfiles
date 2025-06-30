@@ -70,6 +70,13 @@
       "on-click": "amixer set Capture toggle; pkill -RTMIN+9 waybar",
       "format": "{}"
     },
+
+    "custom/idle-toggle": {
+      "exec": "/home/simon/scripts/idle_status.sh",
+      "on-click": "/home/simon/scripts/toggle_idle.sh",
+      "return-type": "json",
+      "interval": 3
+    },
     "custom/cpu_temp": {
       "format": "{}°C ",
       "interval": 5,
@@ -116,6 +123,7 @@
       "battery",
       "pulseaudio",
       "custom/mic",
+      "custom/idle-toggle",
       "custom/lock",
       "custom/power"
     ],
