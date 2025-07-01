@@ -20,6 +20,7 @@
     logseq # notetaking like obsidian but better
     # development tools
     (pkgs-unstable.neovide)
+    (pkgs-unstable.wlr-which-key)
     gitkraken
     filezilla
     postman
