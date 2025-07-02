@@ -49,7 +49,7 @@ in {
 
     # Rofi toggles
     "${mainMod}, Return, exec, /home/simon/nixos-dotfiles/home/scripts/wofi.sh"
-    "${mainMod}, SPACE, exec, pkill -x rofi ; rofi -show drun"
+    "${mainMod}, SPACE, exec, /home/simon/scripts/toggle-wk.sh"
     "${mainMod}, a, exec, pkill -x rofi ; rofi -show window"
     "${mainMod}, ESCAPE, exec, pkill -x rofi ; rofi -show window"
     "${mainMod}, e, exec, pkill -x rofi ; rofi -show drun"

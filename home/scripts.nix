@@ -12,4 +12,9 @@
     source = ./scripts/idle_status.sh;
     executable = true;
   };
+
+  home.file."scripts/toggle-wk.sh" = {
+    source = ./scripts/toggle-wk.sh;
+    executable = true;
+  };
 }
