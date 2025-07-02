@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  pkgs-unstable,
+  ...
+}: let
   term = "kitty";
   editor = "nvim";
   file = "nautilus";
@@ -24,17 +28,18 @@ in {
     XCURSOR_THEME = "rose-pine-cursor";
   };
   wayland.windowManager.hyprland = {
+    package = pkgs-unstable.hyprland;
     plugins = [
       # this makes it like paperwm but I dont want it for now
       # pkgs.hyprlandPlugins.hyprscroller
 
       # this is for touch gestures, gotta try on laptop
-      pkgs.hyprlandPlugins.hyprgrass
+      pkgs-unstable.hyprlandPlugins.hyprgrass
 
       # overview of workspaces
-      pkgs.hyprlandPlugins.hyprspace
+      pkgs-unstable.hyprlandPlugins.hyprspace
 
-      pkgs.hyprlandPlugins.hypr-dynamic-cursors
+      pkgs-unstable.hyprlandPlugins.hypr-dynamic-cursors
     ];
 
     enable = true;

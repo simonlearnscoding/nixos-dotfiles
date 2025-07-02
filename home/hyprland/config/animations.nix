@@ -39,7 +39,6 @@
         # rose pine colors
         # "col.active_border" = "rgb(eb6f92) rgb(9ccfd8) 45deg";
         "col.inactive_border" = "0x00000000";
-        border_part_of_window = false;
         no_border_on_floating = false;
       };
 

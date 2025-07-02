@@ -1,18 +1,14 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   # Fonts
   fonts = {
     packages = with pkgs; [
-      # Include JetBrainsMono Nerd Font
-      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+      # ✅ Include JetBrainsMono Nerd Font (new style)
+      pkgs.nerd-fonts.jetbrains-mono
 
-      # Include General Sans from a local directory
+      # ✅ Include General Sans from a local directory
       (pkgs.stdenv.mkDerivation {
         pname = "general-sans";
         version = "1.0.0";
-        
-        # Path to the extracted General Sans font folder
         src = ./../files/fonts/general-sans;
 
         installPhase = ''
@@ -25,9 +21,9 @@
     # Font configuration
     fontconfig = {
       defaultFonts = {
-        serif = [ "Liberation Serif" "Vazirmatn" ];
-        sansSerif = [ "Ubuntu" "General Sans" "Vazirmatn" ];  # General Sans as default sans-serif
-        monospace = [ "JetBrainsMono" ];
+        serif = ["Liberation Serif" "Vazirmatn"];
+        sansSerif = ["Ubuntu" "General Sans" "Vazirmatn"];
+        monospace = ["JetBrainsMono Nerd Font"]; # 👈 Make sure the name matches the actual installed font
       };
     };
   };

@@ -6,7 +6,7 @@
 }: {
   home.packages = with pkgs; [
     glib
-    gnome.gnome-settings-daemon
+    gnome-settings-daemon
     gtk3
     gtk4
     gnome-themes-extra

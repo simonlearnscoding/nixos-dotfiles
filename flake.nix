@@ -5,7 +5,7 @@
       url = "github:simonlearnscoding/server-dashboard";
       flake = false;
     };
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     spicetify-nix = {
@@ -23,7 +23,7 @@
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

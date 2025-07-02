@@ -11,7 +11,7 @@
     ffmpeg
     dysk
     direnv
-    devenv
+    (pkgs-unstable.devenv)
     # pkgs-unstable.mongodb
     # mongodb-tools
     redis
