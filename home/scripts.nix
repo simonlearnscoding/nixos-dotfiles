@@ -3,6 +3,18 @@
   pkgs,
   ...
 }: {
+  home.file."scripts/start-waybar.sh" = {
+    source = ./scripts/toggle-waybar.sh;
+    executable = true;
+  };
+  home.file."scripts/toggle-waybar.sh" = {
+    source = ./scripts/toggle-waybar.sh;
+    executable = true;
+  };
+  home.file."scripts/toggle_hyprsunset.sh" = {
+    source = ./scripts/toggle_hyprsunset.sh;
+    executable = true;
+  };
   home.file."scripts/toggle_idle.sh" = {
     source = ./scripts/toggle_idle.sh;
     executable = true;
