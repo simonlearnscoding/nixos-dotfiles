@@ -68,8 +68,8 @@ in {
     ", F4, exec, amixer set Capture toggle"
     ", 190, exec, amixer set Capture toggle"
 
-    ", XF86MonBrightnessUp, exec, brightnessctl set +10%"
-    ", XF86MonBrightnessDown, exec, brightnessctl set 10%-"
+    ", XF86MonBrightnessUp, exec, light -A 10"
+    ", XF86MonBrightnessDown, exec, light -U 10"
     ", XF86AudioLowerVolume, exec, amixer set Master 10%-"
     ", XF86AudioRaiseVolume,  exec, amixer set Master 10%+"
     ", XF86AudioPlay, exec, playerctl play-pause"
@@ -78,8 +78,8 @@ in {
     ", XF86AudioPrev, exec, playerctl previous"
 
     # Brightness controls
-    ", XF86MonBrightnessUp, exec, $scrPath/brightnesscontrol.sh i"
-    ", XF86MonBrightnessDown, exec, $scrPath/brightnesscontrol.sh d"
+    ", XF86MonBrightnessUp, exec, light -A 10"
+    ", XF86MonBrightnessDown, exec, light -U 10"
 
     # Screenshot/Screencapture
     "${mainMod}, P, exec, pin"
