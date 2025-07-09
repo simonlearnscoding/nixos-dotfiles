@@ -38,7 +38,6 @@ in {
     "${mainMod}, G, togglefloating"
     "${mainMod}, W, exec, waypaper"
     "${mainMod}, M, fullscreen"
-    "${mainMod}, Return, exec, /home/simon/nixos-dotfiles/home/scripts/wofi.sh"
     "${mainMod}, Tab, exec, /home/simon/nixos-dotfiles/home/scripts/wofi.sh"
     "ALT, return, fullscreen"
     # "${mainMod}, backspace, exec, $scrPath/logoutlaunch.sh 1" # logout menu
@@ -48,7 +47,6 @@ in {
     "${mainMod}, B, exec, firefox"
 
     # Rofi toggles
-    "${mainMod}, Return, exec, /home/simon/nixos-dotfiles/home/scripts/wofi.sh"
     "${mainMod}, SPACE, exec, /home/simon/scripts/toggle-wk.sh"
     "${mainMod}, return, exec, /home/simon/scripts/toggle-wk.sh"
     "${mainMod}, a, exec, pkill -x rofi ; rofi -show window"
