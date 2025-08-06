@@ -2,6 +2,7 @@
 {
   config,
   pkgs,
+  lib,
   inputs,
   ...
 }: {
@@ -19,7 +20,7 @@
     ./../modules/energy-management.nix
     ./../modules/light.nix
   ];
-
+  security.lsm = lib.mkForce []; #NOTE: what does this do?
   boot.plymouth = {
     enable = true;
     font = "${pkgs.jetbrains-mono}/share/fonts/truetype/JetBrainsMono-Regular.ttf";
