@@ -58,6 +58,7 @@ in {
       background_blur = "12";
       cursor_trail = "3";
       cursor_trail_start_threshold = "2";
+      confirm_os_window_close = "-1";
       cursor_trail_decay = "0.1 0.4";
       window_padding_width = "8";
       # window_padding_width = 8;
