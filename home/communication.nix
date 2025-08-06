@@ -9,7 +9,7 @@
     pkgs-unstable.discord
     teams-for-linux
     telegram-desktop
-    slack
+    pkgs-unstable.slack
     whatsapp-for-linux
   ];
 }
