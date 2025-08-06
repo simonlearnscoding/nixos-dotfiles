@@ -6,7 +6,6 @@
   # Install necessary applications
   home.packages = with pkgs; [
     mpv
-    qutebrowser # Minimal, keyboard-focused web browser
     zathura # PDF viewer
     imv # Lightweight image viewer
     bluetuith
@@ -20,6 +19,11 @@
   # Enable XDG MIME application settings
   xdg.mimeApps.enable = true;
 
+  # doing this in the hope that clicking on
+  # links in slack etc. will open in firefox
+  home.sessionVariables = {
+    BROWSER = "firefox";
+  };
   # Define default applications for file types
   xdg.mimeApps.defaultApplications = {
     "video/*" = ["mpv.desktop"]; # Default video player
