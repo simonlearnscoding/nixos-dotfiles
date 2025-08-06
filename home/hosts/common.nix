@@ -7,6 +7,7 @@
 }: {
   home.packages = with pkgs; [
     libnotify
+    ncdu # shows disk usage per folder
     sqlite
     ffmpeg
     dysk
@@ -23,6 +24,13 @@
     libmpg123
     gnutls
   ];
+  programs = {
+    direnv = {
+      enable = true;
+      enableBashIntegration = true; # see note on other shells below
+      nix-direnv.enable = true;
+    };
+  };
 
   imports = [
     ./../info-fetchers.nix
