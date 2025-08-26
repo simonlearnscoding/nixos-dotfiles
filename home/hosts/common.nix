@@ -25,6 +25,11 @@
     gnutls
   ];
   programs = {
+
+    awscli = {
+      enable = true;
+      package = pkgs.awscli2; # v2 is recommended
+    };
     direnv = {
       enable = true;
       enableBashIntegration = true; # see note on other shells below
@@ -36,6 +41,7 @@
     ./../info-fetchers.nix
     ./../atuin.nix
     ./../taskwarrior.nix
+    ./../nvf/nvf.nix
     ./../system-utilities.nix
     ./../development/default.nix
 

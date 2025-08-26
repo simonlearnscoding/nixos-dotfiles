@@ -1,10 +1,8 @@
 {
   description = "A very basic flake";
   inputs = {
-    server-dashboard = {
-      url = "github:simonlearnscoding/server-dashboard";
-      flake = false;
-    };
+    # I dont think I need this anymore
+    nvf.url = "github:notashelf/nvf";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -19,7 +17,9 @@
     };
     sops-nix.url = "github:Mic92/sops-nix";
     hyprland.url = "github:hyprwm/Hyprland";
+    # I am not using this right now
     xremap-flake.url = "github:xremap/nix-flake";
+    # I dont know if I am using this right now
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     home-manager = {
@@ -35,6 +35,7 @@
     nixpkgs-unstable,
     home-manager,
     sops-nix,
+    nvf,
     ...
   } @ inputs: let
     pkgsFor = system:
@@ -91,6 +92,7 @@
         modules = [
           ./home/hosts/laptop.nix
           spicetify-nix.homeManagerModules.default
+          nvf.homeManagerModules.default # <- adds nvf module
         ];
         extraSpecialArgs = {
           inherit inputs;
