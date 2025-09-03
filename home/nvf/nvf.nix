@@ -12,6 +12,7 @@
 
   programs.nvf = {
     enable = true;
+
     settings = {
       vim.navigation.harpoon = {
         enable = true;
@@ -22,23 +23,50 @@
           file4 = "<leader>4";
         };
       };
+
       vim.utility.yanky-nvim.enable = true;
       vim.visuals.highlight-undo.enable = true;
       vim.languages.markdown.extensions.markview-nvim.enable = true;
       vim.utility.yanky-nvim.setupOpts.ring.storage = "memory";
       vim.utility.undotree.enable = true;
+
+      # ---------------- Obsidian.nvim ----------------
       vim.notes.obsidian = {
         enable = true;
         setupOpts = {
+          ui = {enable = false;};
+          preferred_link_style = "markdown";
+
           workspaces = [
             {
               name = "personal";
-              path = "~/projects";
+              path = "~/projects/pages";
             }
           ];
+
+          note_id_func.__raw = ''
+            function(title)
+              local suffix = ""
+              if title ~= nil then
+                suffix = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
+              else
+                for _ = 1, 4 do
+                  suffix = suffix .. string.char(math.random(65, 90))
+                end
+              end
+              return tostring(os.time()) .. "-" .. suffix
+            end
+          '';
+
+          follow_url_func.__raw = ''
+            function(url)
+              vim.fn.jobstart({ "xdg-open", url })
+            end
+          '';
         };
       };
 
+      # ---------------- Neo-tree ----------------
       vim.filetree.neo-tree = {
         enable = true;
         setupOpts = {
@@ -119,6 +147,25 @@
           ];
         };
       };
+
+      # ---------------- Telescope + Projects ----------------
+
+      vim.projects.project-nvim = {
+        enable = true;
+        setupOpts = {
+          detection_methods = ["lsp" "pattern"]; # use both LSP root and file patterns
+          patterns = [".git" "package.json" "flake.nix" "Makefile"]; # adjust to your stack
+        };
+      };
+
+      vim.telescope = {
+        enable = true;
+        mappings.findFiles = "<leader>ff";
+        mappings.liveGrep = "<leader>fw";
+        mappings.findProjects = "<leader>fp"; # Project picker
+      };
+
+      # ---------------- other plugins & visuals ----------------
       vim.utility.motion.leap.mappings.leapForwardTo = "s";
       vim.utility.motion.leap.mappings.leapBackwardTo = "S";
       vim.dashboard.alpha.enable = false;
@@ -131,7 +178,6 @@
       vim = {
         assistant = {
           copilot.enable = true;
-
           copilot.setupOpts.suggestion.auto_trigger = true;
           copilot.mappings = {
             suggestion.accept = "<C-s>";
@@ -140,9 +186,7 @@
           copilot.setupOpts.suggestion.enabled = true;
         };
 
-        visuals = {
-          rainbow-delimiters.enable = true;
-        };
+        visuals.rainbow-delimiters.enable = true;
 
         terminal.toggleterm = {
           enable = true;
@@ -165,14 +209,12 @@
           transparent = true;
         };
 
-        autocomplete = {
-          blink-cmp = {
-            enable = true;
-            friendly-snippets.enable = true;
-          };
+        autocomplete.blink-cmp = {
+          enable = true;
+          friendly-snippets.enable = true;
         };
 
-        # now add the lazy plugins
+        # ---------------- Lazy plugins ----------------
         lazy.plugins = {
           telescope = {
             package = "telescope";
@@ -196,6 +238,7 @@
                 action = "<cmd>Telescope oldfiles<cr>";
                 desc = "Old files";
               }
+              # <leader>fp removed here to avoid conflict
             ];
           };
 
@@ -236,9 +279,14 @@
           };
         };
 
-        # custom keymaps (non-plugin specific or always-on)
-
+        # ---------------- Keymaps ----------------
         keymaps = [
+          {
+            mode = "n";
+            key = "<leader>fo";
+            action = "<cmd>Telescope oldfiles<cr>";
+            desc = "Find old files";
+          }
           {
             mode = "n";
             key = "<leader>r";
@@ -251,7 +299,6 @@
             action = "<cmd>lua require('smart-splits').move_cursor_left()<cr>";
             desc = "Move to left split";
           }
-
           {
             mode = "n";
             key = "<leader>u";
@@ -353,6 +400,68 @@
             key = "<leader>q";
             action = "<cmd>update<cr><cmd>q<cr>";
             desc = "Save and Quit";
+          }
+
+          # ---- Obsidian leader keymaps ----
+          {
+            mode = "n";
+            key = "<leader>on";
+            action = "<cmd>ObsidianNew<cr>";
+            desc = "Obsidian: New note";
+          }
+          {
+            mode = "n";
+            key = "<leader>oi";
+            action = "<cmd>ObsidianIndex<cr>";
+            desc = "Obsidian: Index";
+          }
+          {
+            mode = "n";
+            key = "<leader>ot";
+            action = "<cmd>ObsidianToday<cr>";
+            desc = "Obsidian: Today";
+          }
+          {
+            mode = "n";
+            key = "<leader>oy";
+            action = "<cmd>ObsidianYesterday<cr>";
+            desc = "Obsidian: Yesterday";
+          }
+          {
+            mode = "n";
+            key = "<leader>od";
+            action = "<cmd>ObsidianDailies<cr>";
+            desc = "Obsidian: Browse dailies";
+          }
+          {
+            mode = "n";
+            key = "<leader>os";
+            action = "<cmd>ObsidianSearch<cr>";
+            desc = "Obsidian: Search";
+          }
+          {
+            mode = "n";
+            key = "<leader>oq";
+            action = "<cmd>ObsidianQuickSwitch<cr>";
+            desc = "Obsidian: Quick switch";
+          }
+          {
+            mode = "n";
+            key = "<leader>ow";
+            action = "<cmd>ObsidianWorkspace<cr>";
+            desc = "Obsidian: Switch workspace";
+          }
+          {
+            mode = "n";
+            key = "<leader>ob";
+            action = "<cmd>ObsidianBacklinks<cr>";
+            desc = "Obsidian: Backlinks";
+          }
+          {
+            mode = "n";
+            key = "<leader>op";
+            action = "<cmd>ObsidianPasteImg<cr>";
+            desc = "Obsidian: Paste image";
           }
         ];
       };
