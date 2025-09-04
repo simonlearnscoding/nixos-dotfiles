@@ -4,11 +4,11 @@
     blueman
     unzip
     xdg-utils
-    networkmanagerapplet
 
-    libsecret
     # do I still need this?
+    libsecret
     gnome-keyring
+
     nautilus
   ];
 }
