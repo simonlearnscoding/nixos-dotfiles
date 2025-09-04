@@ -11,7 +11,7 @@
 
     # `wpa_supplicant` - Essential for managing WiFi connections, often used with NetworkManager.
     wpa_supplicant
-
+    networkmanager_dmenu
     # `networkmanager` - A service to manage network connections, including Ethernet and WiFi.
     networkmanager
   ];
