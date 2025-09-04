@@ -45,7 +45,7 @@
         "ethernet": "󰈀",
         "disconnected": "󰖪"
       },
-      "on-click": "nm-connection-editor",
+      "on-click": "networkmanager_dmenu --dmenu 'wofi -dmenu' --style '/home/simon/nixos-dotfiles/home/configfiles/wofi/src/macchiato/style.css'",
       "interval": 5,
       "tooltip": false
     },
