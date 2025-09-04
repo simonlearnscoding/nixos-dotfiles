@@ -50,7 +50,8 @@ in {
   programs.kitty = {
     enable = true;
     package = pkgs-unstable.kitty;
-    theme = "Rosé Pine";
+    # themeFile = "Rosé Pine";
+    themeFile = "Catppuccin-Mocha";
     settings = {
       enable_audio_bell = false;
       font_family = "JetBrainsMono Nerd Font";
