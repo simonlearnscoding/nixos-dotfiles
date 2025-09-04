@@ -7,6 +7,7 @@
   imports = [
     #     inputs.xremap-flake.nixosModules.default
     ./hardware-configuration.nix
+    ./../../modules/vm-module.nix
     ./../common.nix
     ./../gui.nix
   ];
