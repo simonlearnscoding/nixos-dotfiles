@@ -8,12 +8,14 @@
   # I need to permit insecure packages because of logseq for now
   nixpkgs.config.permittedInsecurePackages = [
     "electron-27.3.11"
+    "dotnet-runtime-7.0.20" # needed for Vintage Story
   ];
   home.packages = with pkgs; [
     wine64
     spotify
     blocky
     libreoffice
+    vintagestory
 
     entr # for watching files and running commands
     libremines # for playing minesweeper

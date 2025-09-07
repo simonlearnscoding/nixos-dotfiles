@@ -6,6 +6,7 @@
   imports = [
     ./hyprland.nix
     #./swaylock.nix
+    ./swaync.nix
     ./waybar.nix
     ./wlogout.nix
     ./config/default.nix

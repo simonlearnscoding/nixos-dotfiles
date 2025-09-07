@@ -4,132 +4,95 @@
   pkgs,
   ...
 }: let
-  # Your username - change if different
   username = "simon";
 in {
-  options = {
-    virtualisation.windows-vm = {
-      enable = lib.mkEnableOption "Windows VM configuration for Ableton and light gaming";
-      user = lib.mkOption {
-        type = lib.types.str;
-        default = username;
-        description = "User to add to libvirt group";
-      };
-      memoryAllocation = lib.mkOption {
-        type = lib.types.int;
-        default = 12;
-        description = "GB of RAM to allocate to VM";
-      };
-      cpuCores = lib.mkOption {
-        type = lib.types.int;
-        default = 6;
-        description = "Number of CPU cores to allocate to VM";
-      };
+  options.virtualisation.windows-vm = {
+    enable = lib.mkEnableOption "Windows VM configuration for Ableton and light gaming";
+
+    user = lib.mkOption {
+      type = lib.types.str;
+      default = username;
+      description = "User to add to libvirt group";
+    };
+
+    memoryAllocation = lib.mkOption {
+      type = lib.types.int;
+      default = 12;
+      description = "GB of RAM to allocate to VM";
+    };
+
+    cpuCores = lib.mkOption {
+      type = lib.types.int;
+      default = 6;
+      description = "Number of CPU cores to allocate to VM";
     };
   };
 
   config = lib.mkIf config.virtualisation.windows-vm.enable {
-    # Kernel configuration for performance and IOMMU
+    environment.systemPackages = with pkgs; [
+      swtpm
+      virt-manager
+      virt-viewer
+      win-virtio
+      win-spice
+      qemu_kvm
+      OVMF
+      adwaita-icon-theme
+      virtio-win
+      spice
+      spice-gtk
+      spice-protocol
+      virglrenderer
+      mesa
+      looking-glass-client
+      usbutils
+    ];
+
     boot = {
       kernelModules = ["kvm-amd" "vfio" "vfio_iommu_type1" "vfio_pci"];
       kernelParams = [
         "amd_iommu=on"
         "iommu=pt"
         "hugepagesz=2M"
-        "hugepages=2048" # 4GB huge pages (2048 * 2MB)
-        "isolcpus=1-5" # Isolate cores for VM (adjust based on your cpuCores setting)
+        "hugepages=2048"
+        "isolcpus=1-5"
       ];
       extraModprobeConfig = "options kvm_amd nested=1";
     };
 
-    # Virtualization setup
-    virtualisation = {
-      libvirtd = {
-        enable = true;
-        qemu = {
-          package = pkgs.qemu_kvm;
-          runAsRoot = true;
-          swtpm.enable = true;
-          ovmf = {
-            enable = true;
-            packages = [pkgs.OVMFFull.fd];
-          };
+    virtualisation.libvirtd = {
+      enable = true;
+      qemu = {
+        package = pkgs.qemu_kvm;
+        runAsRoot = true;
+        swtpm.enable = true;
+        ovmf = {
+          enable = true;
+          packages = [pkgs.OVMFFull.fd];
         };
-        onBoot = "ignore";
-        onShutdown = "shutdown";
       };
-      spiceUSBRedirection.enable = true;
+      onBoot = "ignore";
+      onShutdown = "shutdown";
     };
 
-    # System packages
-    environment.systemPackages = with pkgs; [
-      # Virtualization tools
-      virt-manager
-      virt-viewer
-      qemu_kvm
-      OVMF
-      swtpm
+    users.users.${config.virtualisation.windows-vm.user}.extraGroups = ["libvirtd" "kvm" "input"];
 
-      # SPICE for better VM display
-      spice
-      spice-gtk
-      spice-protocol
+    services.spice-vdagentd.enable = true;
+    services.qemuGuest.enable = true;
 
-      # VirtIO drivers for Windows
-      virtio-win
+    services.udev.extraRules = ''
+      SUBSYSTEM=="usb", GROUP="libvirtd", MODE="0660"
+      SUBSYSTEM=="usb_device", GROUP="libvirtd", MODE="0660"
+    '';
 
-      # VirGL for 3D acceleration
-      virglrenderer
-      mesa
-
-      # Utilities
-      looking-glass-client # Alternative display method
-      usbutils # For USB device management
-    ];
-
-    # User permissions
-    users.users.${config.virtualisation.windows-vm.user} = {
-      extraGroups = ["libvirtd" "kvm" "input"];
-    };
-
-    # Services
-    services = {
-      # SPICE agent for better integration
-      spice-vdagentd.enable = true;
-
-      # QEMU guest agent (if you want Linux VMs too)
-      qemuGuest.enable = true;
-
-      # USB device management
-      udev.extraRules = ''
-        # Allow libvirt access to USB devices
-        SUBSYSTEM=="usb", GROUP="libvirtd", MODE="0660"
-        SUBSYSTEM=="usb_device", GROUP="libvirtd", MODE="0660"
-      '';
-    };
-
-    # Systemd services for hugepages
-    systemd.services.create-hugepages = {
-      description = "Create hugepages for VM performance";
-      after = ["systemd-udev-settle.service"];
-      wantedBy = ["multi-user.target"];
-      serviceConfig = {
-        Type = "oneshot";
-        ExecStart = "${pkgs.bash}/bin/bash -c 'echo 2048 > /proc/sys/vm/nr_hugepages'";
-        RemainAfterExit = true;
-      };
-    };
-
-    # Environment variables
     environment.sessionVariables = {
       VIRTIO_WIN = "${pkgs.virtio-win}/share/virtio-win";
       LIBVIRT_DEFAULT_URI = "qemu:///system";
     };
 
-    # XML template for the Windows VM (for reference)
+    # XML template for the Windows VM with TPM
     environment.etc."libvirt/qemu/windows-vm-template.xml" = {
       text = ''
-        <!-- Windows VM Template for Ableton and Gaming -->
         <domain type='kvm'>
           <name>windows-ableton</name>
           <memory unit='GiB'>${toString config.virtualisation.windows-vm.memoryAllocation}</memory>
@@ -174,6 +137,12 @@ in {
               <target dev='vda' bus='virtio'/>
               <boot order='1'/>
             </disk>
+
+            <!-- TPM device for Windows 11 -->
+            <tpm model='tpm-crb'>
+              <backend type='emulator' version='2.0'/>
+            </tpm>
+
             <controller type='usb' index='0' model='qemu-xhci' ports='15'/>
             <controller type='pci' index='0' model='pcie-root'/>
             <controller type='pci' index='1' model='pcie-root-port'/>
@@ -186,11 +155,9 @@ in {
               <model type='virtio' heads='1' primary='yes'>
                 <acceleration accel3d='yes'/>
               </model>
-              <driver name='qemu'/>
             </video>
             <graphics type='spice' port='-1' autoport='yes' listen='127.0.0.1'>
               <listen type='address' address='127.0.0.1'/>
-              <image compression='off'/>
               <gl enable='yes'/>
             </graphics>
             <sound model='ich9'/>
