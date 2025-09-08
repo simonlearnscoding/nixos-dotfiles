@@ -15,29 +15,40 @@
 }
 
 #workspaces {
-  border-radius: 6px; /* Smaller corner radius */
+  border-radius: 6px;
+  /* Smaller corner radius */
   background-color: #313244;
-  margin-top: 8px; /* Reduced horizontal margin */
-  margin-left: 12px; /* Reduced horizontal margin */
+  margin-top: 8px;
+  /* Reduced horizontal margin */
+  margin-left: 12px;
+  /* Reduced horizontal margin */
   margin-right: 10px;
-  padding-top: 4px; /* Top/bottom padding for container */
-  padding-right: 4px; /* Reduced horizontal margin */
-  padding-left: 4px; /* Reduced horizontal margin */
+  padding-top: 4px;
+  /* Top/bottom padding for container */
+  padding-right: 4px;
+  /* Reduced horizontal margin */
+  padding-left: 4px;
+  /* Reduced horizontal margin */
 }
 
 #workspaces button {
   color: #b4befe;
-  padding: 4px 8px; /* More compact padding */
+  padding: 4px 8px;
+  /* More compact padding */
   transition: all 0.2s ease-in-out;
-  border-radius: 4px; /* Subtle rectangular rounding */
-  font-size: 12px; /* Smaller font size */
+  border-radius: 4px;
+  /* Subtle rectangular rounding */
+  font-size: 12px;
+  /* Smaller font size */
 }
 
 #workspaces button.active {
   color: #89dceb;
   background-color: #45475a;
-  box-shadow: none; /* Remove inset shadow */
-  border-bottom: 2px solid #89dceb; /* Bottom border instead */
+  box-shadow: none;
+  /* Remove inset shadow */
+  border-bottom: 2px solid #89dceb;
+  /* Bottom border instead */
 }
 
 #workspaces button.urgent {
@@ -52,9 +63,11 @@
   0% {
     opacity: 1;
   }
+
   50% {
     opacity: 0.5;
   }
+
   100% {
     opacity: 1;
   }
@@ -62,10 +75,13 @@
 
 #custom-mic {
   color: #f0c6c6;
-} /* Catppuccin Pink */
+}
+
+/* Catppuccin Pink */
 
 #custom-mic.muted {
-  color: #f38ba8; /* Use hex color instead of @red */
+  color: #f38ba8;
+  /* Use hex color instead of @red */
   opacity: 0.4;
 }
 
@@ -83,6 +99,7 @@
 #pulseaudio,
 #custom-mic,
 #custom-lock,
+#custom-notifications,
 #custom-power {
   border-radius: 6px;
   background-color: #313244;
@@ -98,9 +115,11 @@
   padding-right: 14px;
   padding-left: 9px;
 }
+
 #bluetooth {
   padding-right: 10px;
 }
+
 #clock {
   color: #89b4fa;
 }
@@ -122,8 +141,7 @@
 }
 
 #backlight,
-#battery {
-}
+#battery {}
 
 /* #pulseaudio { */
 /*   color: #eba0ac; */
@@ -139,59 +157,86 @@
   color: #b4befe;
   padding-right: 15px;
 }
+
 #custom-power {
   padding-right: 16px;
   margin-right: 14px;
   color: #f38ba8;
 }
 
-#tray {
-}
+#tray {}
+
 /* CPU */
 #cpu {
   color: #8aadf4;
-} /* Catppuccin Blue */
+}
+
+/* Catppuccin Blue */
 #cpu.critical {
   color: #ed8796;
-} /* Red when overloaded */
+}
+
+/* Red when overloaded */
 
 /* Memory */
 #memory {
   color: #c6a0f6;
-} /* Catppuccin Lavender */
+}
+
+/* Catppuccin Lavender */
 #memory.warning {
   color: #eed49f;
-} /* Yellow when medium usage */
+}
+
+/* Yellow when medium usage */
 #memory.critical {
   color: #ed8796;
-} /* Red when high usage */
+}
+
+/* Red when high usage */
 
 /* Lock/Power */
 #custom-lock {
   color: #91d7e3;
-} /* Catppuccin Sapphire */
+}
+
+/* Catppuccin Sapphire */
 #custom-power {
   color: #f5a97f;
-} /* Catppuccin Peach */
+}
+
+/* Catppuccin Peach */
 
 /* PulseAudio */
 #pulseaudio {
   color: #f0c6c6;
-} /* Catppuccin Pink */
+}
+
+/* Catppuccin Pink */
 #pulseaudio.muted {
   color: #6e738d;
-} /* Catppuccin Overlay1 */
+}
+
+/* Catppuccin Overlay1 */
 
 /* Battery */
 #battery {
   color: #a6da95;
-} /* Green */
+}
+
+/* Green */
 #battery.charging {
   color: #8aadf4;
-} /* Blue */
+}
+
+/* Blue */
 #battery.warning {
   color: #eed49f;
-} /* Yellow */
+}
+
+/* Yellow */
 #battery.critical {
   color: #ed8796;
-} /* Red */
+}
+
+/* Red */

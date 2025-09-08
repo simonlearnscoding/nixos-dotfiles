@@ -59,7 +59,7 @@ in {
     extraConfig = ''
       monitor=,preferred,auto,auto
       # exec-once = nwg-dock-hyprland -d -hd 0
-      exec-once = hyprpanel
+      # exec-once = hyprpanel
       exec-once = hypridle
       exec-once = ags
       exec-once = nwg-panel

@@ -5,6 +5,7 @@
 }: {
   imports = [
     ./hyprland.nix
+    ./swayosd.nix
     #./swaylock.nix
     ./swaync.nix
     ./waybar.nix

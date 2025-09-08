@@ -34,7 +34,7 @@
 
     # setup stuff
     wofi
-    hyprpanel
+    # hyprpanel
     # gnome-bluetooth # needed for ax-shell
     swappy # this one is for editing snapshots
 
@@ -50,7 +50,7 @@
   imports = [
     ./../ags.nix
     ./../wlsunset.nix
-    ./../hyprpanel.nix
+    # ./../hyprpanel.nix
     ./../obs-studio.nix
     # ./../spotify.nix
     ./../icons-theme.nix

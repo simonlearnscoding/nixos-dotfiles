@@ -6,6 +6,7 @@ in {
   services.xserver.enable = false;
   # services.xserver.displayManager.sddm.enable = true;
   programs.hyprland.enable = true; # Enable the Hyprland window manager
+  programs.hyprland.withUWSM = true; # Enable the Hyprland window manager
 
   # enable greetd to start a session without hyprland
   services.greetd = {

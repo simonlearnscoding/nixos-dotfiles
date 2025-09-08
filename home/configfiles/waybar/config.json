@@ -5,6 +5,13 @@
       "format": "{icon} ",
       "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
+
+"custom/notifications": {
+  "format": "",
+  "on-click": "swaync-client -t",   
+  "on-click-right": "swaync-client -d",
+  "tooltip": false
+},
     "battery": {
       "format": "{icon} {capacity}%",
       "format-alt": "{icon} {capacity}%",
@@ -125,6 +132,7 @@
       "custom/mic",
       "custom/idle-toggle",
       "custom/lock",
+      "custom/notifications",
       "custom/power"
     ],
     "position": "top",
