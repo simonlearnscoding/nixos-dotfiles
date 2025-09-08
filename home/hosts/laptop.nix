@@ -9,7 +9,7 @@
   homeDirectory = "/home/${username}";
 in {
   imports = [
-    ./../lowBattery.nix
+    ./../battery-monitor.nix
     ./common.nix
     ./desktop.nix
   ];

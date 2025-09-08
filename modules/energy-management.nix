@@ -6,6 +6,9 @@
   environment.systemPackages = with pkgs; [
     upower
   ];
+
+  # needed for the battery low script
+  services.upower.enable = true;
   services.power-profiles-daemon.enable = false;
   services.tlp = {
     enable = true;
