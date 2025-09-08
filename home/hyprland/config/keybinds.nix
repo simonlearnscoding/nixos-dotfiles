@@ -75,7 +75,7 @@ in {
     ", XF86AudioMute, exec, swayosd-client --output-volume mute-toggle"
     # Microphone controls
 
-    ", XF86AudioMicMute, exec, swayosd-client --input-volume mute-toggle"
+    ", XF86AudioMicMute, exec, swayosd-client --input-volume mute-toggle && ~/nixos-dotfiles/home/scripts/toggle-mic-mute-led.sh"
     # Media controls
     ", XF86AudioPlay, exec, playerctl play-pause"
     ", XF86AudioPause, exec, playerctl play-pause"
