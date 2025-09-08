@@ -15,6 +15,7 @@
     forwardX11 = true;
   };
 
+  programs.ssh.startAgent = true;
   environment.systemPackages = with pkgs; [
     home-manager
   ];
