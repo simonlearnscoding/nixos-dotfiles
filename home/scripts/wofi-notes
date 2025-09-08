@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+# Direct search with quick actions - launches nvim in kitty
+OBSIDIAN_VAULT="$HOME/projects/pages"
+DAILY_NOTE_FORMAT="%Y-%m-%d.md"
+
+# Wofi configuration
+CONFIG="/home/simon/nixos-dotfiles/home/configfiles/wofi/config/config"
+STYLE="/home/simon/nixos-dotfiles/home/configfiles/wofi/src/macchiato/style.css"
+WOFI_CMD="wofi --conf \"$CONFIG\" --style \"$STYLE\" --dmenu --prompt '🔍 Obsidian > ' --width 800 --height 500"
+
+# Kitty terminal command
+KITTY_CMD="kitty --single-instance --class=obsidian-nvim nvim"
+
+# Toggle implementation
+if [[ $(pidof wofi) ]]; then
+    pkill wofi
+    exit 0
+fi
+
+# Get list of notes (sorted by modification time, newest first)
+NOTE_LIST=$(find "$OBSIDIAN_VAULT" -type f -name "*.md" -printf "%T@ %p\n" | 
+            sort -nr | 
+            awk '{print substr($0, index($0,$2))}' |
+            sed -e "s|$OBSIDIAN_VAULT/||" -e 's/\.md$//')
+
+# Add special entries at the top
+OPTIONS="00 new note\n001 today's note\n$NOTE_LIST"
+
+# Show interface and get selection
+SELECTED=$(echo -e "$OPTIONS" | eval "$WOFI_CMD")
+
+# Handle selection
+case "$SELECTED" in
+    "00 new note")
+        NOTE_NAME=$(echo -e "" | eval "$WOFI_CMD --prompt '✏️ Note name > '")
+        [ -n "$NOTE_NAME" ] && $KITTY_CMD "$OBSIDIAN_VAULT/${NOTE_NAME}.md"
+        ;;
+    "001 today's note")
+        TODAY=$(date +"$DAILY_NOTE_FORMAT")
+        $KITTY_CMD "$OBSIDIAN_VAULT/$TODAY"
+        ;;
+    "")
+        # No selection made
+        exit 0
+        ;;
+    *)
+        # Regular note selected
+        $KITTY_CMD "$OBSIDIAN_VAULT/${SELECTED}.md"
+        ;;
+esac

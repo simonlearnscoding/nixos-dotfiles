@@ -46,6 +46,7 @@ in {
     "${mainMod}, mouse_down, workspace, e+1"
     "${mainMod}, mouse_up, workspace, e-1"
     "${mainMod}, Q, exec, hyprctl dispatch killactive"
+    "${mainMod}, N, exec, /home/simon/nixos-dotfiles/home/scripts/wofi-notes"
     "${mainMod}, V, exec, neovide"
     "${mainMod}, D, overview:toggle"
     "${mainMod}, delete, exit"
