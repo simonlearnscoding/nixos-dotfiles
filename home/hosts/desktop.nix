@@ -63,6 +63,7 @@
     ./../hyprland/default.nix
     ./../communication.nix
     ./../media-tools.nix
+    ./../sunset-at-night.nix
     ./../scripts.nix
   ];
 
