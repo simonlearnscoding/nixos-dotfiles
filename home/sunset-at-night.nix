@@ -14,7 +14,7 @@
       ExecStart = "${pkgs.bash}/bin/bash -c ''
         hour=$(date +%H)
         if (( hour >= 20 || hour < 7 )); then
-          hyprsunset -t 3700
+          hyprsunset -t 3000
         else
           hyprsunset -d
         fi

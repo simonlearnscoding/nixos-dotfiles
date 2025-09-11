@@ -1,36 +1,27 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
-  gesturesConfig = ''
-    # Four-finger swipe for workspace switching
-    swipe right 4 hyprctl dispatch workspace next
-    swipe left 4 hyprctl dispatch workspace prev
+{...}: {
+  wayland.windowManager.hyprland.settings.plugin.touch_gestures = {
+    sensitivity = 1.0;
+    workspace_swipe_fingers = 3;
+    workspace_swipe_edge = "d";
+    long_press_delay = 400;
+    resize_on_border_long_press = true;
+    edge_margin = 10;
+    emulate_touchpad_swipe = false;
 
-    # Three-finger swipe for app focus
-    swipe right 3 hyprctl dispatch focuswindow next
-    swipe left 3 hyprctl dispatch focuswindow prev
-  '';
-in {
-  # Add libinput-gestures to the home packages
-  home.packages = [pkgs.libinput-gestures];
+    experimental = {
+      send_cancel = 0;
+    };
+  };
 
-  # Write the libinput-gestures configuration file
-  xdg.configFile."libinput-gestures.conf".text = gesturesConfig;
+  # optional: additional gesture bindings
+  wayland.windowManager.hyprland.settings."hyprgrass-bind" = [
+    # swipe left from right edge → next workspace
+    ", edge:r:l, workspace, +1"
 
-  # # Enable libinput-gestures as a systemd service for the user
-  # systemd.user.services.libinput-gestures = {
-  #   description = "Libinput Gestures Service";
-  #   wantedBy = [ "default.target" ];
-  #
-  #   # Start libinput-gestures on login
-  #   serviceConfig = {
-  #     ExecStart = "${pkgs.libinput-gestures}/bin/libinput-gestures-setup start";
-  #     ExecStop = "${pkgs.libinput-gestures}/bin/libinput-gestures-setup stop";
-  #   };
-  # };
+    # swipe up from bottom → launch Firefox
+    ", edge:d:u, exec, firefox"
 
-  # Optional: Ensure user is in the input group to access input devices
-  # users.users.${config.home.username}.extraGroups = [ "input" ];
+    # 4-finger swipe down → kill active window
+    ", swipe:4:d, killactive"
+  ];
 }

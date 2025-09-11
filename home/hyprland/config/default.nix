@@ -1,5 +1,6 @@
 {
   pkgs,
+  inputs,
   pkgs-unstable,
   ...
 }: let
@@ -20,6 +21,11 @@ in {
 
   home.packages = with pkgs; [
     rose-pine-cursor
+
+    # dependencies for hyprgrass
+    meson
+    ninja
+    libpulseaudio
   ];
   home.sessionVariables = {
     HYPRCURSOR_THEME = "rose-pine-hyprcursor";
@@ -28,7 +34,7 @@ in {
     XCURSOR_THEME = "rose-pine-cursor";
   };
   wayland.windowManager.hyprland = {
-    package = pkgs-unstable.hyprland;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     plugins = [
       # this makes it like paperwm but I dont want it for now
       # pkgs.hyprlandPlugins.hyprscroller
