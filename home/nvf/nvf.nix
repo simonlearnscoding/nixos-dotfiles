@@ -4,6 +4,7 @@
   ...
 }: {
   imports = [
+    ./latex.nix
     ./options.nix
     ./languages.nix
     ./bufferline.nix
@@ -29,6 +30,7 @@
       vim.languages.markdown.extensions.markview-nvim.enable = true;
       vim.utility.yanky-nvim.setupOpts.ring.storage = "memory";
       vim.utility.undotree.enable = true;
+      vim.utility.yazi-nvim.enable = true;
 
       # ---------------- Obsidian.nvim ----------------
       vim.notes.obsidian = {
@@ -286,6 +288,13 @@
             key = "<leader>fo";
             action = "<cmd>Telescope oldfiles<cr>";
             desc = "Find old files";
+          }
+
+          {
+            mode = "n";
+            key = "<leader>lf";
+            action = ":Yazi<cr>";
+            desc = "file explorer (yazi)";
           }
           {
             mode = "n";

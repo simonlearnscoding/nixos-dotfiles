@@ -104,6 +104,7 @@
         pkgs = pkgsFor "x86_64-linux";
         modules = [
           ./home/hosts/server.nix
+          nvf.homeManagerModules.default # <- adds nvf module
         ];
         extraSpecialArgs = {
           inherit inputs;
@@ -115,6 +116,8 @@
         modules = [
           ./home/hosts/pc.nix
           spicetify-nix.homeManagerModules.default
+
+          nvf.homeManagerModules.default # <- adds nvf module
         ];
         extraSpecialArgs = {
           inherit inputs;
