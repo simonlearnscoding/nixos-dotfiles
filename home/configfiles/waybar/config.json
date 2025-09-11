@@ -65,11 +65,6 @@
       "on-click": "blueman-manager", // GUI manager (or use 'bluetoothctl' for CLI)
       "on-click-right": "bluetooth toggle" // Toggle Bluetooth on right-click
     },
-    "custom/lock": {
-      "format": "",
-      "on-click": "hyprlock",
-      "tooltip": false
-    },
     "custom/mic": {
       "exec": "amixer get Capture | grep -q '\\[on\\]' && echo '' || echo ''",
       "interval": 2,
@@ -100,7 +95,7 @@
     },
     "custom/power": {
       "format": "",
-      "on-click": "wlogout --buttons-per-row 4",
+      "on-click": "wlogout --buttons-per-row 5",
       "tooltip": false
     },
     "height": 28,
@@ -131,7 +126,6 @@
       "pulseaudio",
       "custom/mic",
       "custom/idle-toggle",
-      "custom/lock",
       "custom/notifications",
       "custom/power"
     ],

@@ -38,6 +38,7 @@
 
   virtualisation.waydroid.enable = true;
   virtualisation.libvirtd.enable = true;
+  # TODO: make this for all users
   users.users.simon.extraGroups = ["libvirtd" "kvm"];
   programs.virt-manager.enable = true;
   environment.systemPackages = [

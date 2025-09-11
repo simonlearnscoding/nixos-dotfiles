@@ -46,14 +46,16 @@ in {
     "${mainMod}, mouse_down, workspace, e+1"
     "${mainMod}, mouse_up, workspace, e-1"
     "${mainMod}, Q, exec, hyprctl dispatch killactive"
-    "${mainMod}, N, exec, /home/simon/nixos-dotfiles/home/scripts/wofi-notes"
+    "${mainMod}, O, exec, /home/simon/nixos-dotfiles/home/scripts/wofi-notes"
     "${mainMod}, V, exec, neovide"
     "${mainMod}, D, overview:toggle"
     "${mainMod}, delete, exit"
     "${mainMod}, G, togglefloating"
     "${mainMod}, W, exec, waypaper"
     "${mainMod}, M, fullscreen"
-    "${mainMod}, Tab, exec, /home/simon/nixos-dotfiles/home/scripts/wofi.sh"
+    "${mainMod}, RETURN, exec, /home/simon/nixos-dotfiles/home/scripts/wofi.sh"
+    "${mainMod}, TAB, exec, /home/simon/nixos-dotfiles/home/scripts/restore.sh"
+    "${mainMod}, N, exec, /home/simon/nixos-dotfiles/home/scripts/minimize.sh"
     "ALT, return, fullscreen"
     # "${mainMod}, backspace, exec, $scrPath/logoutlaunch.sh 1" # logout menu
     "${mainMod}, T, exec, kitty"
@@ -63,7 +65,7 @@ in {
 
     # Rofi toggles
     "${mainMod}, SPACE, exec, /home/simon/scripts/toggle-wk.sh"
-    "${mainMod}, return, exec, /home/simon/scripts/toggle-wk.sh"
+    # "${mainMod}, return, exec, /home/simon/scripts/toggle-wk.sh"
     "${mainMod}, a, exec, pkill -x rofi ; rofi -show window"
     "${mainMod}, ESCAPE, exec, pkill -x rofi ; rofi -show window"
     "${mainMod}, e, exec, pkill -x rofi ; rofi -show drun"

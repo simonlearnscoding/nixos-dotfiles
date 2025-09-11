@@ -67,9 +67,9 @@
     XCURSOR_THEME = lib.mkForce "rose-pine-cursor"; # Force override
     XCURSOR_SIZE = "24";
     NIXOS_OZONE_WL = "1";
-    ELECTRON_OZONE_PLATFORM_HINT = "auto";
+    # ELECTRON_OZONE_PLATFORM_HINT = "auto";
     QT_STYLE_OVERRIDE = "gtk2";
-    QT_QPA_PLATFORMTHEME = "gtk2";
+    # QT_QPA_PLATFORMTHEME = "gtk2";
   };
 
   services.gnome-keyring.enable = true;
