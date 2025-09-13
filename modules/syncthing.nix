@@ -1,8 +1,8 @@
 {
-  # config,
-  # lib,
-  # pkgs,
-  # ...
+  config,
+  lib,
+  pkgs,
+  ...
 }: {
   systemd.services.syncthing = {
     after = ["mnt-drive.mount"];
