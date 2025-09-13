@@ -16,7 +16,7 @@ in {
 
   environment.systemPackages = with pkgs; [
     xorg.xauth
-    firefox
+    firefox # in case I ever need to login via browser
     cloudflared
   ];
   # networking.interfaces.enp1s0.ipv4.addresses = [
@@ -33,6 +33,7 @@ in {
   fileSystems."/mnt/drive" = {
     device = "/dev/disk/by-uuid/${UUID}";
     fsType = "ext4";
+    options = ["nofail" "x-systemd.devise-timeout=1s" "x-systemd.automount"];
   };
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 }
