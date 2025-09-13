@@ -1,11 +1,22 @@
-{pkgs, ...}: {
-  services.plex = {
-    enable = false;
-    dataDir = "/var/lib/plex"; # Default directory for Plex data (can be customized).
-    user = "plex"; # User to run the Plex Media Server as.
-    group = "plex"; # Group to run the Plex Media Server as.
-    # claimToken = "claim-xX4WVzNGgufzLw7V6hPs";
+{
+  pkgs,
+  lib,
+  ...
+}: let
+  # Helper function that makes a service depend on the external drive.
+  # - after   → start only after the drive is mounted
+  # - requires → service won’t start if the drive is missing
+  # - bindsTo  → if the drive is unmounted, the service is stopped automatically
+  needsDrive = {
+    after = ["mnt-drive.mount"];
+    requires = ["mnt-drive.mount"];
+    bindsTo = ["mnt-drive.mount"];
   };
+in {
+  # Plex (disabled here, still points to default /var/lib/plex)
+  services.plex.enable = false;
+
+  # Jellyfin media server (runs as your user `simon`, stores data on external drive)
   services.jellyfin = {
     enable = true;
     user = "simon";
@@ -13,82 +24,87 @@
     dataDir = "/mnt/drive/media-config/jellyfin";
   };
 
-  # needed for hardware accelleration (because of plex)
+  # Enable hardware video acceleration (Intel iGPU)
   hardware.opengl = {
     enable = true;
-    extraPackages = with pkgs; [
-      intel-media-driver
-    ];
+    extraPackages = with pkgs; [intel-media-driver];
   };
-  users.users.simon.extraGroups = ["video"];
-  # make sure jellyfin has access to this one
 
+  # Give `simon` access to the video group for HW acceleration
+  users.users.simon.extraGroups = ["video"];
+
+  # Make sure required directories exist on the external drive
   systemd.tmpfiles.rules = [
     "d /mnt/drive/media-config/jellyfin 0755 simon users -"
+    "d /mnt/drive/media-config/radarr 0755 simon users -"
+    "d /mnt/drive/media-config/sonarr 0755 simon users -"
+    "d /mnt/drive/media-config/nextcloud 0755 simon users -"
   ];
 
-  # SONARR RADARR AND SO ON
+  # Radarr (movie manager)
   services.radarr = {
-    # port 7878
     enable = true;
     user = "simon";
     group = "users";
     dataDir = "/mnt/drive/media-config/radarr";
   };
 
+  # Jellyseerr (requests manager for Jellyfin/Plex)
   services.jellyseerr = {
     enable = true;
-    openFirewall = true;
+    openFirewall = true; # open firewall for web UI
     port = 12345;
   };
 
-  # needed because sonarr relies on this one
+  # Needed because Sonarr uses these older .NET runtimes (marked insecure)
   nixpkgs.config.permittedInsecurePackages = [
     "aspnetcore-runtime-6.0.36"
     "dotnet-sdk-6.0.428"
   ];
+
+  # Jackett (torrent indexer, currently disabled)
   services.jackett = {
     enable = false;
-    # user = "simon";
-    # group = "users";
-    # dataDir = "/home/simon/drive/media-config/jackett";
-    # port = 1440;
+    # dataDir = "/mnt/drive/media-config/jackett";
   };
 
-  services.prowlarr = {
-    enable = true;
-  };
-  # for series
+  # Prowlarr (indexer manager for Sonarr/Radarr/etc.)
+  services.prowlarr.enable = true;
+
+  # Sonarr (TV series manager)
   services.sonarr = {
-    # port 8989
     enable = true;
     user = "simon";
     group = "users";
     dataDir = "/mnt/drive/media-config/sonarr";
   };
 
-  # to download subtitles
+  # Bazarr (subtitle downloader)
   services.bazarr = {
     enable = true;
     listenPort = 6768;
-    group = "users";
     user = "simon";
+    group = "users";
   };
+
+  # Deluge (torrent client with web UI)
   services.deluge = {
-    web.port = 8112;
-    web.enable = true;
     enable = true;
     user = "simon";
     group = "users";
+    web.enable = true;
+    web.port = 8112;
   };
-  # NEXTCLOUD
-  environment.etc."nextcloud-admin-pass".text = "ThePassword";
+
+  # Nextcloud (self-hosted cloud storage)
+  environment.etc."nextcloud-admin-pass".text = "ThePassword"; # store admin password in /etc
   services.nextcloud = {
-    package = pkgs.nextcloud30;
+    package = pkgs.nextcloud30; # Nextcloud v30
     enable = true;
     hostName = "localhost";
-    configureRedis = true;
-    database.createLocally = true;
+    configureRedis = true; # enable Redis caching
+    database.createLocally = true; # create local MariaDB/MySQL automatically
+    dataDir = "/mnt/drive/media-config/nextcloud"; # keep data on external drive
     config = {
       adminuser = "admin";
       dbtype = "mysql";
@@ -96,44 +112,47 @@
     };
   };
 
-  # DASHBOARD
-  # services.heimdall = {
-  #   enable = true;
-  #   port = 8088;
-  # };
+  # Nginx is disabled since we use Caddy instead
+  services.nginx.enable = false;
 
-  services.nginx = {
-    enable = false;
-  };
-
+  # Caddy reverse proxy (HTTPS out of the box, simple config)
   services.caddy = {
     enable = true;
 
-    virtualHosts."overseerr.simone-muscas.com" = {
-      extraConfig = ''
-        # Required for Plex Web
-        reverse_proxy localhost:12345
-      '';
-    };
-    virtualHosts."plex.simone-muscas.com" = {
-      extraConfig = ''
-        # Required for Plex Web
-        reverse_proxy localhost:8096
-      '';
-    };
+    # Overseerr → overseerr.simone-muscas.com
+    virtualHosts."overseerr.simone-muscas.com".extraConfig = ''
+      reverse_proxy localhost:12345
+    '';
 
-    virtualHosts."syncthing.simone-muscas.com" = {
-      extraConfig = ''
-        reverse_proxy localhost:8384 {
-          transport http {
-            tls_insecure_skip_verify
-          }
-          header_up Host {host}
-          header_up X-Real-IP {remote}
-          header_up X-Forwarded-For {remote}
-          header_up X-Forwarded-Proto {scheme}
+    # Plex (proxied through 8096, though Plex service is disabled above)
+    virtualHosts."plex.simone-muscas.com".extraConfig = ''
+      reverse_proxy localhost:8096
+    '';
+
+    # Syncthing web UI (with headers and TLS tweaks)
+    virtualHosts."syncthing.simone-muscas.com".extraConfig = ''
+      reverse_proxy localhost:8384 {
+        transport http {
+          tls_insecure_skip_verify
         }
-      '';
-    };
+        header_up Host {host}
+        header_up X-Real-IP {remote}
+        header_up X-Forwarded-For {remote}
+        header_up X-Forwarded-Proto {scheme}
+      }
+    '';
   };
+
+  # Apply the external drive dependency to all important services.
+  # These will:
+  # - start only if /mnt/drive is mounted
+  # - stop automatically if /mnt/drive is unmounted
+  systemd.services = lib.mkMerge [
+    {jellyfin = needsDrive;}
+    {radarr = needsDrive;}
+    {sonarr = needsDrive;}
+    {bazarr = needsDrive;}
+    {deluge = needsDrive;}
+    {nextcloud = needsDrive;}
+  ];
 }
