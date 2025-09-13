@@ -10,11 +10,10 @@
     enable = true;
     user = "simon";
     group = "users";
-    dataDir = "/home/simon/drive/media-config/jellyfin";
+    dataDir = "/mnt/drive/media-config/jellyfin";
   };
 
-  # needed for hardware acc
-
+  # needed for hardware accelleration (because of plex)
   hardware.opengl = {
     enable = true;
     extraPackages = with pkgs; [
@@ -25,7 +24,7 @@
   # make sure jellyfin has access to this one
 
   systemd.tmpfiles.rules = [
-    "d /home/simon/drive/media-config/jellyfin 0755 simon users -"
+    "d /mnt/drive/media-config/jellyfin 0755 simon users -"
   ];
 
   # SONARR RADARR AND SO ON
@@ -34,7 +33,7 @@
     enable = true;
     user = "simon";
     group = "users";
-    dataDir = "/home/simon/drive/media-config/radarr";
+    dataDir = "/mnt/drive/media-config/radarr";
   };
 
   services.jellyseerr = {
@@ -65,7 +64,7 @@
     enable = true;
     user = "simon";
     group = "users";
-    dataDir = "/home/simon/drive/media-config/sonarr";
+    dataDir = "/mnt/drive/media-config/sonarr";
   };
 
   # to download subtitles
