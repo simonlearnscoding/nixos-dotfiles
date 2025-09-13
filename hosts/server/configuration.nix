@@ -26,6 +26,11 @@ in {
   #   }
   # ];
 
+  hardware.enableRedistributableFirmware = true;
+  boot.extraModulePackages = with pkgs.linuxPackages; [
+    rtl88xxau-aircrack # common Realtek driver
+  ];
+
   programs.zsh.enable = true;
   networking.hostName = "simon-server";
   programs.gamemode.enable = true;
