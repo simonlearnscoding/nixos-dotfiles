@@ -38,7 +38,6 @@ in {
     "d /mnt/drive/media-config/jellyfin 0755 simon users -"
     "d /mnt/drive/media-config/radarr 0755 simon users -"
     "d /mnt/drive/media-config/sonarr 0755 simon users -"
-    "d /mnt/drive/media-config/nextcloud 0755 simon users -"
   ];
 
   # Radarr (movie manager)
@@ -96,22 +95,6 @@ in {
     web.port = 8112;
   };
 
-  # Nextcloud (self-hosted cloud storage)
-  environment.etc."nextcloud-admin-pass".text = "ThePassword"; # store admin password in /etc
-  services.nextcloud = {
-    package = pkgs.nextcloud30; # Nextcloud v30
-    enable = true;
-    hostName = "localhost";
-    configureRedis = true; # enable Redis caching
-    database.createLocally = true; # create local MariaDB/MySQL automatically
-    dataDir = "/mnt/drive/media-config/nextcloud"; # keep data on external drive
-    config = {
-      adminuser = "admin";
-      dbtype = "mysql";
-      adminpassFile = "/etc/nextcloud-admin-pass";
-    };
-  };
-
   # Nginx is disabled since we use Caddy instead
   services.nginx.enable = false;
 
@@ -153,6 +136,5 @@ in {
     {sonarr = needsDrive;}
     {bazarr = needsDrive;}
     {deluge = needsDrive;}
-    {nextcloud = needsDrive;}
   ];
 }
