@@ -35,10 +35,11 @@ in {
   networking.hostName = "simon-server";
   programs.gamemode.enable = true;
 
+  services.fstrim.enable = true; # runs weekly via timer
   fileSystems."/mnt/drive" = {
     device = "/dev/disk/by-uuid/${UUID}";
     fsType = "ext4";
-    options = ["nofail" "x-systemd.devise-timeout=1s" "x-systemd.automount"];
+    options = ["nofail" "x-systemd.device-timeout=1s" "x-systemd.automount"];
   };
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 }

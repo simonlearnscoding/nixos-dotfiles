@@ -130,11 +130,12 @@ in {
   # These will:
   # - start only if /mnt/drive is mounted
   # - stop automatically if /mnt/drive is unmounted
-  systemd.services = lib.mkMerge [
-    {jellyfin = needsDrive;}
-    {radarr = needsDrive;}
-    {sonarr = needsDrive;}
-    {bazarr = needsDrive;}
-    {deluge = needsDrive;}
-  ];
+  systemd.services = {
+    jellyfin = needsDrive;
+    radarr = needsDrive;
+    syncthing = needsDrive;
+    sonarr = needsDrive;
+    bazarr = needsDrive;
+    deluge = needsDrive;
+  };
 }
