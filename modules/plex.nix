@@ -113,17 +113,17 @@ in {
     '';
 
     # Syncthing web UI (with headers and TLS tweaks)
-    virtualHosts."syncthing.simone-muscas.com".extraConfig = ''
-      reverse_proxy localhost:8384 {
-        transport http {
-          tls_insecure_skip_verify
-        }
-        header_up Host {host}
-        header_up X-Real-IP {remote}
-        header_up X-Forwarded-For {remote}
-        header_up X-Forwarded-Proto {scheme}
-      }
-    '';
+    # virtualHosts."syncthing.simone-muscas.com".extraConfig = ''
+    #   reverse_proxy localhost:8384 {
+    #     transport http {
+    #       tls_insecure_skip_verify
+    #     }
+    #     header_up Host {host}
+    #     header_up X-Real-IP {remote}
+    #     header_up X-Forwarded-For {remote}
+    #     header_up X-Forwarded-Proto {scheme}
+    #   }
+    # '';
   };
 
   # Apply the external drive dependency to all important services.
