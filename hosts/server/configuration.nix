@@ -31,6 +31,18 @@ in {
     rtl88xxau-aircrack # common Realtek driver
   ];
 
+  ##########################
+  ## User & Hardware Setup
+  ##########################
+
+  # Enable Intel iGPU video acceleration
+  hardware.opengl = {
+    enable = true;
+    extraPackages = with pkgs; [intel-media-driver];
+  };
+
+  # Put user `simon` in video group so Jellyfin can use GPU
+  users.users.simon.extraGroups = ["video"];
   programs.zsh.enable = true;
   networking.hostName = "simon-server";
   programs.gamemode.enable = true;
