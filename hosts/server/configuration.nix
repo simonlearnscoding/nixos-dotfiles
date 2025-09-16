@@ -7,34 +7,22 @@
   UUID = "04c67b4a-ead1-4613-9abc-2985e9202e5c";
 in {
   imports = [
-    #     inputs.xremap-flake.nixosModules.default
     ./hardware-configuration.nix
     ./../common.nix
-    # ./../../modules/ci-user.nix
     ./../serverstuff.nix
   ];
 
   environment.systemPackages = with pkgs; [
     xorg.xauth
-    firefox # in case I ever need to login via browser
+    firefox
     cloudflared
   ];
-  # networking.interfaces.enp1s0.ipv4.addresses = [
-  #   {
-  #     address = "192.168.1.23";
-  #     prefixLength = 24;
-  #   }
-  # ];
 
   hardware.enableRedistributableFirmware = true;
   security.sudo.enable = true;
   boot.extraModulePackages = with pkgs.linuxPackages; [
-    rtl88xxau-aircrack # common Realtek driver
+    rtl88xxau-aircrack
   ];
-
-  ##########################
-  ## User & Hardware Setup
-  ##########################
 
   # Enable Intel iGPU video acceleration
   hardware.opengl = {
@@ -42,17 +30,55 @@ in {
     extraPackages = with pkgs; [intel-media-driver];
   };
 
-  # Put user `simon` in video group so Jellyfin can use GPU
   users.users.simon.extraGroups = ["video" "wheel"];
   programs.zsh.enable = true;
   networking.hostName = "simon-server";
   programs.gamemode.enable = true;
 
-  services.fstrim.enable = true; # runs weekly via timer
+  ##########################
+  ## Drive Configuration
+  ##########################
+
+  services.fstrim.enable = true;
+
   fileSystems."/mnt/drive" = {
     device = "/dev/disk/by-uuid/${UUID}";
     fsType = "ext4";
-    options = ["nofail" "x-systemd.device-timeout-1s" "x-systemd.automount"];
+    options = ["nofail" "x-systemd.device-timeout=1s"];
   };
+
+  systemd.tmpfiles.rules = [
+    "d /mnt/drive 0755 simon users -"
+  ];
+
+  # USB drive watcher service
+  systemd.services.drive-watcher = {
+    description = "Watch for and mount 8TB USB drive";
+    wantedBy = ["multi-user.target"];
+    after = ["network.target"];
+
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      ExecStart = let
+        script = pkgs.writeScript "mount-drive" ''
+          #!/bin/sh
+          if [ -b "/dev/disk/by-uuid/${UUID}" ] && ! mountpoint -q /mnt/drive; then
+            echo "Drive found, mounting..."
+            systemctl start mnt-drive.mount
+          else
+            echo "Drive not found or already mounted"
+          fi
+        '';
+      in "${script}";
+    };
+  };
+
+  # Udev rules for hotplug
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="block", RUN+="${pkgs.systemd}/bin/systemctl start drive-watcher.service"
+    ACTION=="remove", SUBSYSTEM=="block", ENV{ID_FS_UUID}=="${UUID}", RUN+="${pkgs.systemd}/bin/systemctl stop mnt-drive.mount"
+  '';
+
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 }
