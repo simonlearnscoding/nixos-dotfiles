@@ -3,20 +3,38 @@
   lib,
   ...
 }: let
-  # Helper function that makes a service depend on the external drive.
-  # - after   → start only after the drive is mounted
-  # - requires → service won’t start if the drive is missing
-  # - bindsTo  → if the drive is unmounted, the service is stopped automatically
+  # Helper: make services depend on external drive
+  # - after    → wait until drive is mounted
+  # - requires → service won't start if drive is missing
+  # - bindsTo  → if drive unmounts, service stops
   needsDrive = {
     after = ["mnt-drive.mount"];
     requires = ["mnt-drive.mount"];
     bindsTo = ["mnt-drive.mount"];
   };
+
+  # Helper: generic proxy snippet for most services
+  mkProxy = port: ''
+    reverse_proxy localhost:${toString port}
+  '';
+
+  # Special case: Jellyfin proxy (needs real client headers)
+  jellyfinProxy = ''
+    reverse_proxy localhost:8096 {
+      header_up X-Real-IP {remote_host}
+      header_up X-Forwarded-For {remote_host}
+      header_up X-Forwarded-Proto {scheme}
+    }
+  '';
 in {
-  # Plex (disabled here, still points to default /var/lib/plex)
+  ##########################
+  ## Media Services
+  ##########################
+
+  # Plex is disabled (still points to default location)
   services.plex.enable = false;
 
-  # Jellyfin media server (runs as your user `simon`, stores data on external drive)
+  # Jellyfin media server
   services.jellyfin = {
     enable = true;
     user = "simon";
@@ -24,23 +42,7 @@ in {
     dataDir = "/mnt/drive/media-config/jellyfin";
   };
 
-  # Enable hardware video acceleration (Intel iGPU)
-  hardware.opengl = {
-    enable = true;
-    extraPackages = with pkgs; [intel-media-driver];
-  };
-
-  # Give `simon` access to the video group for HW acceleration
-  users.users.simon.extraGroups = ["video"];
-
-  # Make sure required directories exist on the external drive
-  systemd.tmpfiles.rules = [
-    "d /mnt/drive/media-config/jellyfin 0755 simon users -"
-    "d /mnt/drive/media-config/radarr 0755 simon users -"
-    "d /mnt/drive/media-config/sonarr 0755 simon users -"
-  ];
-
-  # Radarr (movie manager)
+  # Radarr (movies)
   services.radarr = {
     enable = true;
     user = "simon";
@@ -48,29 +50,7 @@ in {
     dataDir = "/mnt/drive/media-config/radarr";
   };
 
-  # Jellyseerr (requests manager for Jellyfin/Plex)
-  services.jellyseerr = {
-    enable = true;
-    openFirewall = true; # open firewall for web UI
-    port = 12345;
-  };
-
-  # Needed because Sonarr uses these older .NET runtimes (marked insecure)
-  nixpkgs.config.permittedInsecurePackages = [
-    "aspnetcore-runtime-6.0.36"
-    "dotnet-sdk-6.0.428"
-  ];
-
-  # Jackett (torrent indexer, currently disabled)
-  services.jackett = {
-    enable = false;
-    # dataDir = "/mnt/drive/media-config/jackett";
-  };
-
-  # Prowlarr (indexer manager for Sonarr/Radarr/etc.)
-  services.prowlarr.enable = true;
-
-  # Sonarr (TV series manager)
+  # Sonarr (TV series)
   services.sonarr = {
     enable = true;
     user = "simon";
@@ -78,7 +58,7 @@ in {
     dataDir = "/mnt/drive/media-config/sonarr";
   };
 
-  # Bazarr (subtitle downloader)
+  # Bazarr (subtitles)
   services.bazarr = {
     enable = true;
     listenPort = 6768;
@@ -86,7 +66,10 @@ in {
     group = "users";
   };
 
-  # Deluge (torrent client with web UI)
+  # Prowlarr (indexer manager)
+  services.prowlarr.enable = true;
+
+  # Deluge torrent client (with web UI)
   services.deluge = {
     enable = true;
     user = "simon";
@@ -95,47 +78,71 @@ in {
     web.port = 8112;
   };
 
-  # Nginx is disabled since we use Caddy instead
-  services.nginx.enable = false;
-
-  # Caddy reverse proxy (HTTPS out of the box, simple config)
-  services.caddy = {
+  # Jellyseerr (requests for Jellyfin/Plex)
+  services.jellyseerr = {
     enable = true;
-
-    # Overseerr → overseerr.simone-muscas.com
-    virtualHosts."overseerr.simone-muscas.com".extraConfig = ''
-      reverse_proxy localhost:12345
-    '';
-
-    # Plex (proxied through 8096, though Plex service is disabled above)
-    virtualHosts."plex.simone-muscas.com".extraConfig = ''
-      reverse_proxy localhost:8096
-    '';
-
-    # Syncthing web UI (with headers and TLS tweaks)
-    virtualHosts."syncthing.simone-muscas.com".extraConfig = ''
-      reverse_proxy localhost:8384 {
-        transport http {
-          tls_insecure_skip_verify
-        }
-        header_up Host {host}
-        header_up X-Real-IP {remote}
-        header_up X-Forwarded-For {remote}
-        header_up X-Forwarded-Proto {scheme}
-      }
-    '';
+    openFirewall = true; # allow LAN access to web UI
+    port = 12345;
   };
 
-  # Apply the external drive dependency to all important services.
-  # These will:
-  # - start only if /mnt/drive is mounted
-  # - stop automatically if /mnt/drive is unmounted
+  # Jackett (indexer) is currently disabled
+  services.jackett = {
+    enable = false;
+    # dataDir = "/mnt/drive/media-config/jackett";
+  };
+
+  # Sonarr requires old insecure .NET runtimes → whitelist them
+  nixpkgs.config.permittedInsecurePackages = [
+    "aspnetcore-runtime-6.0.36"
+    "dotnet-sdk-6.0.428"
+  ];
+
+  ##########################
+  ## Filesystem Integration
+  ##########################
+
+  # Ensure config directories exist on the external drive
+  systemd.tmpfiles.rules = [
+    "d /mnt/drive/media-config/jellyfin 0755 simon users -"
+    "d /mnt/drive/media-config/radarr 0755 simon users -"
+    "d /mnt/drive/media-config/sonarr 0755 simon users -"
+  ];
+
+  # Make services depend on the external drive
   systemd.services = {
     jellyfin = needsDrive;
     radarr = needsDrive;
-    syncthing = needsDrive;
     sonarr = needsDrive;
     bazarr = needsDrive;
     deluge = needsDrive;
+    syncthing = needsDrive; # not configured here, but tied to drive
   };
+
+  ##########################
+  ## Reverse Proxy (Caddy)
+  ##########################
+
+  # Disable nginx → only use Caddy
+  services.nginx.enable = false;
+
+  services.caddy = {
+    enable = true;
+
+    virtualHosts = {
+      # Media apps on subdomains
+      "jellyfin.simone-muscas.com".extraConfig = jellyfinProxy;
+      "radarr.simone-muscas.com".extraConfig = mkProxy 7878;
+      "sonarr.simone-muscas.com".extraConfig = mkProxy 8989;
+      "bazarr.simone-muscas.com".extraConfig = mkProxy 6768;
+      "prowlarr.simone-muscas.com".extraConfig = mkProxy 9696;
+      "deluge.simone-muscas.com".extraConfig = mkProxy 8112;
+      "overseerr.simone-muscas.com".extraConfig = mkProxy 12345;
+
+      # Plex proxy exists, but Plex service itself is disabled
+      "plex.simone-muscas.com".extraConfig = mkProxy 8096;
+    };
+  };
+
+  # Only open web ports to the outside
+  networking.firewall.allowedTCPPorts = [80 443];
 }

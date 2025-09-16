@@ -19,12 +19,24 @@ in {
   ];
 
   hardware.enableRedistributableFirmware = true;
+  security.sudo.enable = true;
   boot.extraModulePackages = with pkgs.linuxPackages; [
     rtl88xxau-aircrack
   ];
 
+  # Enable Intel iGPU video acceleration
+  hardware.opengl = {
+    enable = true;
+    extraPackages = with pkgs; [intel-media-driver];
+  };
+
+  users.users.simon.extraGroups = ["video" "wheel"];
   programs.zsh.enable = true;
   networking.hostName = "simon-server";
+
+  ##########################
+  ## Drive Configuration
+  ##########################
 
   services.fstrim.enable = true;
 
