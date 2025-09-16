@@ -1,9 +1,9 @@
 {
   description = "A very basic flake";
   inputs = {
-    # I dont think I need this anymore
     nvf.url = "github:notashelf/nvf";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    copyparty.url = "github:9001/copyparty";
     rose-pine-hyprcursor.url = "github:ndom91/rose-pine-hyprcursor";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     spicetify-nix = {
@@ -17,9 +17,7 @@
     };
     sops-nix.url = "github:Mic92/sops-nix";
     hyprland.url = "github:hyprwm/Hyprland";
-    # I am not using this right now
     xremap-flake.url = "github:xremap/nix-flake";
-    # I dont know if I am using this right now
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     home-manager = {
@@ -31,6 +29,7 @@
   outputs = {
     self,
     nixpkgs,
+    copyparty,
     spicetify-nix,
     nixpkgs-unstable,
     home-manager,
@@ -41,24 +40,21 @@
     pkgsFor = system:
       import nixpkgs {
         inherit system;
-        config = {
-          allowUnfree = true;
-        };
+        config.allowUnfree = true;
         overlays = [
-          inputs.hyprpanel.overlay # Adding HyprPanel overlay here
+          inputs.hyprpanel.overlay
+          copyparty.overlays.default
         ];
       };
 
     pkgsForUnstable = system:
       import nixpkgs-unstable {
         inherit system;
-        config = {
-          allowUnfree = true;
-        };
+        config.allowUnfree = true;
       };
   in {
     nixosConfigurations.pc = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux"; # Specify the system type here
+      system = "x86_64-linux";
       specialArgs = {inherit inputs;};
       modules = [
         ./hosts/pc/configuration.nix
@@ -68,7 +64,7 @@
     };
 
     nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux"; # Specify the system type here
+      system = "x86_64-linux";
       specialArgs = {inherit inputs;};
       modules = [
         ./hosts/laptop/configuration.nix
@@ -78,21 +74,37 @@
     };
 
     nixosConfigurations.server = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux"; # Specify the system type here
+      system = "x86_64-linux";
       specialArgs = {inherit inputs;};
       modules = [
         ./hosts/server/configuration.nix
         inputs.stylix.nixosModules.stylix
         sops-nix.nixosModules.sops
+
+        # ✅ Copyparty module
+        copyparty.nixosModules.default
+
+        # ✅ Extra config for Copyparty
+        ({pkgs, ...}: {
+          environment.systemPackages = [pkgs.copyparty];
+          services.copyparty = {
+            enable = true;
+            openFirewall = true;
+            dataDir = "/srv/copyparty";
+            listenAddress = "0.0.0.0";
+            port = 3923;
+          };
+        })
       ];
     };
+
     homeConfigurations = {
       laptop = home-manager.lib.homeManagerConfiguration {
         pkgs = pkgsFor "x86_64-linux";
         modules = [
           ./home/hosts/laptop.nix
           spicetify-nix.homeManagerModules.default
-          nvf.homeManagerModules.default # <- adds nvf module
+          nvf.homeManagerModules.default
         ];
         extraSpecialArgs = {
           inherit inputs;
@@ -104,20 +116,20 @@
         pkgs = pkgsFor "x86_64-linux";
         modules = [
           ./home/hosts/server.nix
-          nvf.homeManagerModules.default # <- adds nvf module
+          nvf.homeManagerModules.default
         ];
         extraSpecialArgs = {
           inherit inputs;
           pkgs-unstable = pkgsForUnstable "x86_64-linux";
         };
       };
+
       pc = home-manager.lib.homeManagerConfiguration {
         pkgs = pkgsFor "x86_64-linux";
         modules = [
           ./home/hosts/pc.nix
           spicetify-nix.homeManagerModules.default
-
-          nvf.homeManagerModules.default # <- adds nvf module
+          nvf.homeManagerModules.default
         ];
         extraSpecialArgs = {
           inherit inputs;
