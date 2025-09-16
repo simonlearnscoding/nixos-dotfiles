@@ -12,13 +12,13 @@
 
   services.syncthing = {
     enable = true;
-    openDefaultPorts = false;
+    openDefaultPorts = true;
     dataDir = "/mnt/drive";
     configDir = "/mnt/drive/syncthing-config";
     user = "simon";
 
     # GUI only available locally
-    settings.gui.address = "127.0.0.1:8384";
+    guiAddress = "0.0.0.0:8384";
 
     # Hardening: rely only on Tailscale, disable WAN/LAN discovery
     settings.options = {
