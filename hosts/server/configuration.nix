@@ -74,9 +74,9 @@ in {
     };
   };
 
-  # Udev rules for hotplug
   services.udev.extraRules = ''
-    ACTION=="add", SUBSYSTEM=="block", RUN+="${pkgs.systemd}/bin/systemctl start drive-watcher.service"
+    # Only act on USB devices with your specific UUID
+    ACTION=="add", SUBSYSTEM=="block", ENV{ID_BUS}=="usb", ENV{ID_FS_UUID}=="${UUID}", RUN+="${pkgs.systemd}/bin/systemctl start drive-watcher.service"
     ACTION=="remove", SUBSYSTEM=="block", ENV{ID_FS_UUID}=="${UUID}", RUN+="${pkgs.systemd}/bin/systemctl stop mnt-drive.mount"
   '';
 
