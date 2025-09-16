@@ -7,6 +7,8 @@
   needsDrive = {
     after = ["mnt-drive.mount"];
     requires = ["mnt-drive.mount"];
+    partOf = ["mnt-drive.mount"];
+    serviceConfig.Restart = "on-failure";
     bindsTo = ["mnt-drive.mount"];
   };
 in {
