@@ -10,7 +10,7 @@ in {
     #     inputs.xremap-flake.nixosModules.default
     ./hardware-configuration.nix
     ./../common.nix
-    ./../../modules/ci-user.nix
+    # ./../../modules/ci-user.nix
     ./../serverstuff.nix
   ];
 
@@ -27,6 +27,7 @@ in {
   # ];
 
   hardware.enableRedistributableFirmware = true;
+  security.sudo.enable = true;
   boot.extraModulePackages = with pkgs.linuxPackages; [
     rtl88xxau-aircrack # common Realtek driver
   ];
@@ -42,7 +43,7 @@ in {
   };
 
   # Put user `simon` in video group so Jellyfin can use GPU
-  users.users.simon.extraGroups = ["video"];
+  users.users.simon.extraGroups = ["video" "wheel"];
   programs.zsh.enable = true;
   networking.hostName = "simon-server";
   programs.gamemode.enable = true;
@@ -51,7 +52,7 @@ in {
   fileSystems."/mnt/drive" = {
     device = "/dev/disk/by-uuid/${UUID}";
     fsType = "ext4";
-    options = ["nofail" "x-systemd.device-timeout=1s" "x-systemd.automount"];
+    options = ["nofail" "x-systemd.device-timeout-1s" "x-systemd.automount"];
   };
   nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 }
