@@ -34,7 +34,7 @@
 
       devices = {
         fabio-pc = {
-          id = "MMRJWPX-7YX3TQW-OCVPOQL-2IP22QH-SJLAXIE-A3AGC7C-3546S6L-ZVQGUQP";
+          id = "YNYJV2K-UTS3MTJ-RTVBJ44-EZAC7QB-2GI3Y3P-VIKKUVO-N4OLOUF-5AEHJQO";
           name = "fabio-pc";
         };
         server-salzburg = {
@@ -43,7 +43,7 @@
         };
 
         fabio-laptop-lenovo = {
-          id = "4ZLQ5YQ-LHX6M7G-MQHQEOL-QWLZSFQ-KOIYB5F-NDPYLWB-PLCJEGF-CDT6PAI";
+          id = "G6JHDK7-K7AB5YJ-JXUGO7K-QH4OEVF-IGB7Q6R-2WCTX2D-IBYV4I2-MBZXNQA";
           name = "fabio-laptop-lenovo";
         };
       };
