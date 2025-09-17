@@ -32,17 +32,26 @@
       overrideDevices = false;
       overrideFolders = false;
 
-      # Example devices (uncomment + replace IDs to use):
       devices = {
-        laptop-fabio.id = "XXXX-XXXX-...";
-        pc-fabio.id = "YYYY-YYYY-...";
-      };
+        fabio-pc = {
+          id = "MMRJWPX-7YX3TQW-OCVPOQL-2IP22QH-SJLAXIE-A3AGC7C-3546S6L-ZVQGUQP";
+          name = "fabio-pc";
+        };
+        server-salzburg = {
+          id = "IL3DCZS-4ASMHNV-UJ654ZK-BEL5LFU-5AVY764-BHTRCVL-THGBZPH-ZIAKVAJ";
+          name = "server-salzburg";
+        };
 
+        fabio-laptop-lenovo = {
+          id = "4ZLQ5YQ-LHX6M7G-MQHQEOL-QWLZSFQ-KOIYB5F-NDPYLWB-PLCJEGF-CDT6PAI";
+          name = "fabio-laptop-lenovo";
+        };
+      };
       # Example folders (uncomment + adjust paths/devices to use):
       folders = {
         documents = {
           path = "/mnt/drive/syncthing/fabio/documents";
-          devices = ["laptop-simon" "laptop-fabio"];
+          devices = ["server-salzburg" "fabio-pc" "fabio-laptop-lenovo"];
           versioning = {
             type = "trashcan";
           };
