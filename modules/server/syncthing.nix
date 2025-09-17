@@ -23,14 +23,14 @@
     # Hardening: rely only on Tailscale, disable WAN/LAN discovery
     settings.options = {
       natEnabled = false;
-      globalAnnounceEnabled = false;
-      localAnnounceEnabled = false;
+      globalAnnounceEnabled = true;
+      localAnnounceEnabled = true;
       relayEnabled = false;
     };
 
     declarative = {
-      overrideDevices = false;
-      overrideFolders = false;
+      overrideDevices = true;
+      overrideFolders = true;
 
       devices = {
         fabio-pc = {
@@ -49,7 +49,7 @@
       };
       # Example folders (uncomment + adjust paths/devices to use):
       folders = {
-        documents = {
+        "fabio-documents" = {
           path = "/mnt/drive/syncthing/fabio/documents";
           devices = ["server-salzburg" "fabio-pc" "fabio-laptop-lenovo"];
           versioning = {
