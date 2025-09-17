@@ -39,16 +39,15 @@
       # };
 
       # Example folders (uncomment + adjust paths/devices to use):
-      # folders = {
-      #   documents = {
-      #     path = "/mnt/drive/syncthing/documents";
-      #     devices = [ "laptop-simon" "laptop-fabio" ];
-      #     versioning = {
-      #       type = "simple";
-      #       params.keep = "5";
-      #     };
-      #   };
-      # };
+      folders = {
+        documents = {
+          path = "/mnt/drive/syncthing/fabio/documents";
+          devices = ["laptop-simon" "laptop-fabio"];
+          versioning = {
+            type = "trashcan";
+          };
+        };
+      };
     };
   };
 }

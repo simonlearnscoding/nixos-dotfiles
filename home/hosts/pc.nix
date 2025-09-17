@@ -19,7 +19,6 @@ in {
 
   home = {
     useUserPackages = false;
-    useGlobalPkgs = true;
     inherit username;
     inherit homeDirectory;
     stateVersion = "24.05";

@@ -12,6 +12,10 @@
   ];
 
   networking.hostName = "simon-pc";
+  services.nfs.server.enable = true;
+  services.nfs.server.exports = ''
+    /home/simon/shared *(rw,sync,no_subtree_check,no_root_squash)
+  '';
   programs.gamemode.enable = true;
   programs.steam.enable = true;
   # services.logmein-hamachi.enable = true;

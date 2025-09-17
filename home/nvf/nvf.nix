@@ -15,6 +15,9 @@
     enable = true;
 
     settings = {
+      vim.debugger.nvim-dap.enable = true;
+      vim.debugger.nvim-dap.ui.autoStart = true;
+
       vim.navigation.harpoon = {
         enable = true;
         mappings = {
