@@ -33,10 +33,10 @@
       overrideFolders = false;
 
       # Example devices (uncomment + replace IDs to use):
-      # devices = {
-      #   laptop-simon.id = "XXXX-XXXX-...";
-      #   laptop-fabio.id = "YYYY-YYYY-...";
-      # };
+      devices = {
+        laptop-fabio.id = "XXXX-XXXX-...";
+        pc-fabio.id = "YYYY-YYYY-...";
+      };
 
       # Example folders (uncomment + adjust paths/devices to use):
       folders = {
